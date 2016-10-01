@@ -182,6 +182,28 @@ body {
 	margin-top:100px
 }
 
+a:hover{
+	text-decoration:none;
+}
+
+.memberList {
+	color: #f4511e;
+	font-weight: bold;
+	height: 80px;
+}
+
+.memberList2 {
+	color: #5D5D5D;
+}
+
+.memberList2>a {
+	color: #f4511e;
+}
+
+.memberList2>a:hover {
+	color: #f4511e;
+	font-weight: bold;
+}
 
 /* latin-ext */
 @font-face {

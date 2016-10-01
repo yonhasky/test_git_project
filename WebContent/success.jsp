@@ -34,79 +34,8 @@
 				<li>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-primary " data-toggle="modal"
-						data-target="#myModal" style="margin: 8px">login</button> <!-- Modal -->
-					<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-						aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-								</div>
-								<div class="modal-body">
-									<form class="form-horizontal" method="post"
-										action="controller?action=login">
-										<div class="form-group">
-											<label for="inputEmail3" class="col-sm-2 control-label">ID</label>
-											<div class="col-sm-10">
-												<input type="text" class="form-control" id="id" name="id"
-													placeholder="ID">
-											</div>
-										</div>
-										<div class="form-group">
-											<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-											<div class="col-sm-10">
-												<input type="password" class="form-control" name="pw"
-													id="pw" placeholder="Password">
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<div class="checkbox">
-													<label> <input type="checkbox"> Remember me
-													</label>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-10">
-												<button type="submit" class="btn btn-default">Sign
-													in</button>
-											</div>
-										</div>
-									</form>
-
-								</div>
-
-								<div class="modal-footer">
-
-									<a class="btn btn-success" role="button" data-toggle="collapse"
-										href="#collapseExample" aria-expanded="false"
-										aria-controls="collapseExample">join us</a>
-
-									<div class="collapse" id="collapseExample">
-										<div class="well">
-											<a href="sJoin.jsp"><button type="button"
-													class="btn btn-success">재학생 회원가입</button></a> <a
-												href="gJoin.jsp"><button type="button"
-													class="btn btn-success">졸업생 회원가입</button></a>
-										</div>
-									</div>
-
-
-									<button type="button" class="btn btn-danger">Find ID</button>
-
-									<button type="button" class="btn btn-danger">Find PW</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-
+						data-target="#myModal" style="margin: 8px"><a href="myPage.jsp"><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급</a></button> <!-- Modal -->
+					
 
 				</li>
 				<li><a href="about.jsp">ABOUT</a></li>

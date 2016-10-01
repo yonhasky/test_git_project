@@ -30,7 +30,7 @@
 				<br>
 				<p>재학생과 졸업생이 서로 정보를 주고받는 윈윈전략을</p>
 				<br>
-				<button class="btn btn-default btn-lg">삼육대학교 바로가기</button>
+				<button class="btn btn-default btn-lg"><a href="http://www.syu.ac.kr">삼육대학교 바로가기</a></button>
 			</div>
 			<div class="col-sm-4">
 				<span class="glyphicon glyphicon-signal logo"></span>

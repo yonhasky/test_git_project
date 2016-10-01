@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="work.model.dto.Student"%>
+<%@ page import="work.util.Utility"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>MCS - 회원 정보변경</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -140,7 +144,7 @@
 		}
 		temp.options[0].selected = true
 	}
-	
+
 	function secondChange() {
 		var first = document.form.first.options.selectedIndex;
 		var x = document.form.second.options.selectedIndex;
@@ -287,18 +291,18 @@
 	<div id="about" class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-signal logo"></span>
+				<span class="glyphicon glyphicon-user logo"></span>
 			</div>
 			<div class="col-sm-8">
 				<form name="form" class="form-horizontal" method="post"
-					action="controller?action=sJoin" enctype="multipart/form-data">
+					action="controller?action=updateStudent"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-xs-2 control-label">ID</label>
 						<span class="col-xs-4" style="width: 300px"> <input
-							type="text" class="form-control" id="id" name="id"
-							placeholder="id" maxlength="12" data-toggle="tooltip"
-							data-placement="top" onblur="isUserId()"
-							title="아이디는 4-12자 이내로 작성해주세요.">
+							type="text" class="form-control" id="id" name="id" maxlength="12"
+							data-toggle="tooltip" data-placement="top" onblur="isUserId()"
+							title="아이디는 4-12자 이내로 작성해주세요." value="${requestScope.dto.id}">
 						</span><span id="messageUserId" class="col-xs-4 "
 							style="margin-left: 10px"></span>
 					</div>
@@ -307,7 +311,7 @@
 						<label for="inputPassword3" class="col-xs-2 control-label">Password</label>
 						<div class="col-xs-5">
 							<input type="password" class="form-control" id="pw" name="pw"
-								placeholder="Password" maxlength="12" data-toggle="tooltip"
+								maxlength="12" data-toggle="tooltip"
 								title="비밀번호는 4-12자 이내로 작성해주세요.">
 						</div>
 					</div>
@@ -327,7 +331,7 @@
 						<label for="inputPassword3" class="col-xs-2 control-label">이름</label>
 						<div class="col-xs-5">
 							<input type="text" class="form-control" id="name" name="name"
-								placeholder="name">
+								value="${requestScope.dto.name}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -473,11 +477,123 @@
 					</div>
 
 					<div class="form-group">
+						<label for="inputPassword3" class="col-xs-2 control-label">졸업일
+						</label>
+						<div class="col-sm-2" style="width: 100px;">
+
+							<select class="form-control" name="gDate1" style="width: 100px;">
+
+								<option value='2001'>2001</option>
+								<option value='2002'>2002</option>
+								<option value='2003'>2003</option>
+								<option value='2004'>2004</option>
+								<option value='2005'>2005</option>
+								<option value='2006'>2006</option>
+								<option value='2007'>2007</option>
+								<option value='2008'>2008</option>
+								<option value='2009'>2009</option>
+								<option value='2010'>2010</option>
+								<option value='2011'>2011</option>
+								<option value='2012'>2012</option>
+								<option value='2013'>2013</option>
+								<option value='2014'>2014</option>
+								<option value='2015'>2015</option>
+							</select>
+						</div>
+						<div class="col-sm-1" style="width: 20px">년</div>
+						<div class="col-sm-2" style="width: 90px;">
+
+							<select class="form-control" name="gDate2" style="width: 80px;">
+								<option>02</option>
+								<option>08</option>
+							</select>
+						</div>
+						<div class="col-sm-1" style="width: 20px">월</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-xs-2 control-label">직종
+						</label>
+						<div class="col-sm-2" style="width: 80px;">
+
+							<select class="form-control" name="job">
+								<option value="경영·사무">경영·사무</option>
+								<option value="영업·고객상담">영업·고객상담</option>
+								<option value="생산·제조">생산·제조</option>
+								<option value="IT·인터넷">IT·인터넷</option>
+								<option value="전문직">전문직</option>
+								<option value="교육">교육</option>
+								<option value="미디어">미디어</option>
+								<option value="특수계층·공공">특수계층·공공</option>
+								<option value="건설">건설</option>
+								<option value="유통·무역">유통·무역</option>
+								<option value="서비스">서비스</option>
+								<option value="디자인">디자인</option>
+								<option value="의료">의료</option>
+
+							</select>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-xs-2 control-label">회사</label>
+						<div class="col-xs-5">
+							<input type="text" class="form-control" id="company"
+								name="company" >
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-xs-2 control-label">경력
+						</label>
+						<div class="col-xs-2" style="width: 90px;">
+							<select class="form-control" name="career1" style="width: 80px;">
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+							</select>
+						</div>
+						<div class="col-xs-1" style="width: 20px">년</div>
+						<div class="col-xs-2" style="width: 90px;">
+
+							<select class="form-control" name="career2" style="width: 80px;">
+								<option value="01">01</option>
+								<option value="02">02</option>
+								<option value="03">03</option>
+								<option value="04">04</option>
+								<option value="05">05</option>
+								<option value="06">06</option>
+								<option value="07">07</option>
+								<option value="08">08</option>
+								<option value="09">09</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+
+							</select>
+						</div>
+						<div class="col-sm-1" style="width: 20px">월</div>
+					</div>
+
+					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-4">
 							<button id="btnJoin" type="submit" class="btn btn-default btn-lg"
-								onclick="return validCheck()" name="submit">Sign in</button>
+								onclick="return validCheck()" name="submit">회원정보 수정</button>
 							<button type="submit" class="btn btn-danger btn-lg"
-								onclick="return validCheck()" name="submit">back</button>
+								onclick="return validCheck()" name="submit">돌아가기</button>
 						</div>
 					</div>
 

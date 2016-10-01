@@ -7,7 +7,7 @@ public class Student {
 	private String name;
 	private String mobile;
 	private String email;
-	private String birth;
+	private int birth;
 	private String gender;
 	private String major;
 	private String division;
@@ -25,8 +25,120 @@ public class Student {
 	public Student() {
 	}
 
+	
+	
+	
+	
+	
+	public Student(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
+
+
+
+
+	/**
+	 * 재학생 회원
+	 * @param id
+	 * @param pw
+	 * @param name
+	 * @param mobile
+	 * @param email
+	 * @param birth
+	 * @param gender
+	 * @param major
+	 * @param division
+	 * @param grade
+	 * @param img
+	 */
 	public Student(String id, String pw, String name, String mobile,
-			String email, String birth, String gender, String major,
+			String email, int birth, String gender, String major,
+			String division, String grade, String img) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.mobile = mobile;
+		this.email = email;
+		this.birth = birth;
+		this.gender = gender;
+		this.major = major;
+		this.division = division;
+		this.grade = grade;
+		this.img = img;
+	}
+
+
+	/**
+	 * 졸업생 초기화
+	 * @param id
+	 * @param pw
+	 * @param name
+	 * @param mobile
+	 * @param email
+	 * @param birth
+	 * @param gender
+	 * @param major
+	 * @param division
+	 * @param grade
+	 * @param img
+	 * @param gDate
+	 * @param company
+	 * @param job
+	 * @param career
+	 */
+	public Student(String id, String pw, String name, String mobile,
+			String email, int birth, String gender, String major,
+			String division, String grade, String img, String gDate,
+			String company, String job, String career) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.mobile = mobile;
+		this.email = email;
+		this.birth = birth;
+		this.gender = gender;
+		this.major = major;
+		this.division = division;
+		this.grade = grade;
+		this.img = img;
+		this.gDate = gDate;
+		this.company = company;
+		this.job = job;
+		this.career = career;
+	}
+
+
+
+
+
+
+	/**
+	 * 전체 초기화 생성자
+	 * @param id
+	 * @param pw
+	 * @param name
+	 * @param mobile
+	 * @param email
+	 * @param birth
+	 * @param gender
+	 * @param major
+	 * @param division
+	 * @param grade
+	 * @param img
+	 * @param gDate
+	 * @param company
+	 * @param job
+	 * @param career
+	 * @param part
+	 */
+	public Student(String id, String pw, String name, String mobile,
+			String email, int birth, String gender, String major,
 			String division, String grade, String img, String gDate,
 			String company, String job, String career, String part) {
 		super();
@@ -48,6 +160,10 @@ public class Student {
 		this.part = part;
 	}
 
+	
+	
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -88,11 +204,11 @@ public class Student {
 		this.email = email;
 	}
 
-	public String getBirth() {
+	public int getBirth() {
 		return birth;
 	}
 
-	public void setBirth(String birth) {
+	public void setBirth(int birth) {
 		this.birth = birth;
 	}
 
@@ -176,11 +292,15 @@ public class Student {
 		this.part = part;
 	}
 
+	
+
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((birth == null) ? 0 : birth.hashCode());
+		result = prime * result + birth;
 		result = prime * result + ((career == null) ? 0 : career.hashCode());
 		result = prime * result + ((company == null) ? 0 : company.hashCode());
 		result = prime * result
@@ -200,6 +320,11 @@ public class Student {
 		return result;
 	}
 
+
+
+
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -209,10 +334,7 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		if (birth == null) {
-			if (other.birth != null)
-				return false;
-		} else if (!birth.equals(other.birth))
+		if (birth != other.birth)
 			return false;
 		if (career == null) {
 			if (other.career != null)
@@ -291,6 +413,11 @@ public class Student {
 			return false;
 		return true;
 	}
+
+
+
+
+
 
 	@Override
 	public String toString() {

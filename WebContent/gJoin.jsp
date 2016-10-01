@@ -34,7 +34,7 @@
 		var params = "";
 		params += "action=idCheck";
 
-		var userId = document.getElementById("id").value;
+		var id = document.getElementById("id").value;
 		params += "&id=" + id;
 
 		// 응답데이터 : Json
@@ -46,42 +46,42 @@
 		// js/ajax.js 스크립트 이용햐소 ajax 서버 요청
 		new ajax.xhr.Request(url, params, callback, method)
 	}
-	 
-	 /** Json 응답데이터 처리 callback 함수
-		{"valid","true"}
-		
-		eval("1+2") =>문자열수식 변환함수
-		json 형식의 문자열을 json객체 변환
-		eval("("+json형식의 응답문자열+")")
-		 */
-		function responseJson(xhr) {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var resultJson = eval("(" + xhr.responseText + ")");
-				var result = resultJson.valid;
-				if (result == 'true') {
-					// messageUserId 결과메세지 출력
-					document.getElementById("messageUserId").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>아이디 중복 ";
-					document.getElementById("btnJoin").disabled = true;
 
-				} else if (result == 'false') {
-					document.getElementById("messageUserId").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>사용가능 ";
+	/** Json 응답데이터 처리 callback 함수
+	{"valid","true"}
+	
+	eval("1+2") =>문자열수식 변환함수
+	json 형식의 문자열을 json객체 변환
+	eval("("+json형식의 응답문자열+")")
+	 */
+	function responseJson(xhr) {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var resultJson = eval("(" + xhr.responseText + ")");
+			var result = resultJson.valid;
+			if (result == 'true') {
+				// messageUserId 결과메세지 출력
+				document.getElementById("messageUserId").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>아이디 중복 ";
+				document.getElementById("btnJoin").disabled = true;
 
-				} else if (result == 'required') {
-					document.getElementById("messageUserId").innerHTML = "미입력";
-					document.getElementById("btnJoin").disabled = true;
-				} 
-			}
+			} else if (result == 'false') {
+				document.getElementById("messageUserId").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>사용가능 ";
 
-		}
-
-		//비밀번호 보이기
-		function isShowUserPw() {
-			if (document.getElementById("isShow").checked) {
-				document.getElementById("pw").type = "text";
-			} else {
-				document.getElementById("pw").type = "password";
+			} else if (result == 'required') {
+				document.getElementById("messageUserId").innerHTML = "미입력";
+				document.getElementById("btnJoin").disabled = true;
 			}
 		}
+
+	}
+
+	//비밀번호 보이기
+	function isShowUserPw() {
+		if (document.getElementById("isShow").checked) {
+			document.getElementById("pw").type = "text";
+		} else {
+			document.getElementById("pw").type = "password";
+		}
+	}
 
 	function firstChange() {
 		var x = document.form.first.options.selectedIndex;
@@ -140,6 +140,7 @@
 		}
 		temp.options[0].selected = true
 	}
+	
 	function secondChange() {
 		var first = document.form.first.options.selectedIndex;
 		var x = document.form.second.options.selectedIndex;
@@ -149,8 +150,8 @@
 			group[i] = new Array();
 		if (first == 1) {
 			group[0][0] = new Option("", "");
-			group[1][0] = new Option("영어영문학전공", "");
-			group[1][1] = new Option("영어통번역전공", "ss3");
+			group[1][0] = new Option("영어영문학전공", "영어영문학전공");
+			group[1][1] = new Option("영어통번역전공", "영어통번역전공");
 			group[2][0] = new Option("", "");
 			group[3][0] = new Option("", "");
 			group[4][0] = new Option("", "");
@@ -170,9 +171,9 @@
 			group[1][0] = new Option("", "");
 			group[2][0] = new Option("", "");
 			group[3][0] = new Option("", "");
-			group[4][0] = new Option("컴퓨터시스템 전공", "hp_laser");
-			group[4][1] = new Option("소프트웨어 전공", "hp_laser");
-			group[4][2] = new Option("응용컴퓨팅 전공", "hp_laser");
+			group[4][0] = new Option("컴퓨터시스템 전공", "컴퓨터시스템 전공");
+			group[4][1] = new Option("소프트웨어 전공", "소프트웨어 전공");
+			group[4][2] = new Option("응용컴퓨팅 전공", "응용컴퓨팅 전공");
 			group[5][0] = new Option("", "");
 			group[6][0] = new Option("", "");
 
@@ -209,7 +210,8 @@
 		var mobile2 = document.getElementById("mobile2").value;
 		var mobile3 = document.getElementById("mobile3").value;
 		var email1 = document.getElementById("email1").value;
-		var gender = document.getElementById("gender").checked;
+		var gender1 = document.getElementById("gender1").checked;
+		var gender2 = document.getElementById("gender2").checked;
 
 		if (id == "") {
 			var ok = "아이디가 입력되지 않았습니다.";
@@ -227,20 +229,17 @@
 			var ok3 = "핸드폰이 입력되지 않았습니다.";
 			document.getElementById("messageBirth").innerHTML = ok3;
 			document.getElementById("mobile2").focus();
-		}else if (mobile3 == "") {
+		} else if (mobile3 == "") {
 			var ok4 = "핸드폰이 입력되지 않았습니다.";
 			document.getElementById("messageBirth").innerHTML = ok4;
 			document.getElementById("mobile3").focus();
-		}else if (email1 == "") {
-			var ok5 = "이메일이 입력되지 않았습니다.";
-			document.getElementById("messageBirth").innerHTML = ok5;
+		} else if (email1 == "") {
+			document.getElementById("messageBirth").innerHTML = "이메일이 입력되지 않았습니다.";
 			document.getElementById("email1").focus();
-		}else if (gender == false) {
-			var ok6 = "성별이 입력되지 않았습니다.";
-			document.getElementById("messageBirth").innerHTML = ok6;
-			document.getElementById("gender").focus();
-		}
-		else {
+		} else if (gender1 == false && gender2 == false) {
+			document.getElementById("messageBirth").innerHTML = "성별이 입력되지 않았습니다.";
+			document.getElementById("gender1").focus();
+		} else {
 			document.getElementById("messageBirth").innerHTML = "";
 			document.getElementById("btnJoin").disabled = false;
 		}
@@ -288,18 +287,20 @@
 	<div id="about" class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4">
-				<span class="glyphicon glyphicon-signal logo"></span>
+				<span class="glyphicon glyphicon-user logo"></span>
 			</div>
 			<div class="col-sm-8">
 				<form name="form" class="form-horizontal" method="post"
-					action="controller?action=join" enctype="multipart/form-data">
+					action="controller?action=gJoin" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-xs-2 control-label">ID</label>
-						<span class="col-xs-5">
-							<input type="text" class="form-control" id="id" name="id"
-								placeholder="id" maxlength="12" data-toggle="tooltip"
-								data-placement="top" onblur="isUserId()" title="아이디는 4-12자 이내로 작성해주세요.">
-						</span><span id="messageUserId" class="col-xs-4 " style="margin-left: 10px"></span>
+						<span class="col-xs-4" style="width: 300px"> <input
+							type="text" class="form-control" id="id" name="id"
+							placeholder="id" maxlength="12" data-toggle="tooltip"
+							data-placement="top" onblur="isUserId()"
+							title="아이디는 4-12자 이내로 작성해주세요.">
+						</span><span id="messageUserId" class="col-xs-4 "
+							style="margin-left: 10px"></span>
 					</div>
 
 					<div class="form-group">
@@ -334,11 +335,11 @@
 
 						<span class="col-xs-2" style="width: 110px;"> <select
 							class="form-control" name="mobile1" style="width: 80px;">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>018</option>
-								<option>019</option>
+								<option value="010">010</option>
+								<option value="011">011</option>
+								<option value="016">016</option>
+								<option value="018">018</option>
+								<option value="019">019</option>
 						</select>
 						</span> <span class="col-xs-2" style="width: 110px;"> <input
 							type="text" class="form-control" id="mobile2" name="mobile2"
@@ -360,7 +361,7 @@
 						<label for="inputPassword3" class="col-xs-2 control-label"></label>
 
 						<div class="col-xs-8">
-							<select class="form-control" name="email2" >
+							<select class="form-control" name="email2">
 								<option value="@naver.com">@naver.com</option>
 								<option value="@daum.net">@daum.net</option>
 								<option value="@syu.ac.kr">@syu.ac.kr</option>
@@ -373,9 +374,9 @@
 						<label for="inputPassword3" class="col-xs-2 control-label">성별</label>
 						<div class="col-xs-8">
 							<label class="radio-inline"> <input type="radio"
-								name="gender" id="gender" value="M"> Male
+								name="gender" id="gender1" value="M"> Male
 							</label> <label class="radio-inline"> <input type="radio"
-								name="gender" id="gender" value="F"> Female
+								name="gender" id="gender2" value="F"> Female
 							</label>
 						</div>
 					</div>
@@ -383,16 +384,32 @@
 
 					<div class="form-group">
 						<label for="inputPassword3" class="col-xs-2 control-label">생년
-						</label>
-						<span class="col-xs-2" style="width: 80px;">
-							<select class="form-control" name="birth" onfocus="Verification()" style="width: 80px;">
-								<option>1990</option>
-								<option>1991</option>
-								<option>1992</option>
-								<option>1993</option>
-								<option>1994</option>
-							</select>
-						</span><span id="messageBirth" class="col-xs-4 " style="margin-left: 10px"></span>
+						</label> <span class="col-xs-2" style="width: 100px;"> <select
+							class="form-control" name="birth" onfocus="Verification()"
+							style="width: 100px;">
+								<option value="1980">1980</option>
+								<option value="1981">1981</option>
+								<option value="1982">1982</option>
+								<option value="1983">1983</option>
+								<option value="1984">1984</option>
+								<option value="1985">1985</option>
+								<option value="1986">1986</option>
+								<option value="1987">1987</option>
+								<option value="1988">1988</option>
+								<option value="1989">1989</option>
+								<option value="1990">1990</option>
+								<option value="1991">1991</option>
+								<option value="1992">1992</option>
+								<option value="1993">1993</option>
+								<option value="1994">1994</option>
+								<option value="1994">1995</option>
+								<option value="1994">1996</option>
+								<option value="1994">1997</option>
+								<option value="1994">1998</option>
+
+						</select>
+						</span><span id="messageBirth" class="col-xs-4 "
+							style="margin-left: 10px"></span>
 					</div>
 
 					<div class="form-group">
@@ -423,9 +440,9 @@
 					<div class="form-group">
 						<label for="inputPassword3" class="col-xs-2 control-label">학번
 						</label>
-						<div class="col-sm-2" style="width: 80px;">
+						<div class="col-sm-2" style="width: 100px;">
 
-							<select class="form-control" name="grade" style="width: 80px;">
+							<select class="form-control" name="grade" style="width: 100px;">
 								<option value='2001'>2001</option>
 								<option value='2002'>2002</option>
 								<option value='2003'>2003</option>
@@ -458,9 +475,9 @@
 					<div class="form-group">
 						<label for="inputPassword3" class="col-xs-2 control-label">졸업일
 						</label>
-						<div class="col-sm-2" style="width: 90px;">
+						<div class="col-sm-2" style="width: 100px;">
 
-							<select class="form-control" name="gDate1" style="width: 80px;">
+							<select class="form-control" name="gDate1" style="width: 100px;">
 
 								<option value='2001'>2001</option>
 								<option value='2002'>2002</option>
@@ -570,7 +587,7 @@
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-4">
 							<button id="btnJoin" type="submit" class="btn btn-default btn-lg"
-								onclick="return validCheck()" name="submit" >Sign in</button>
+								onclick="return validCheck()" name="submit">Sign in</button>
 							<button type="submit" class="btn btn-danger btn-lg"
 								onclick="return validCheck()" name="submit">back</button>
 						</div>
