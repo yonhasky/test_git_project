@@ -186,6 +186,7 @@ public class StudentDao {
 		return null;
 	}
 
+	
 	/**
 	 * 전체조회
 	 * 
@@ -430,7 +431,7 @@ public class StudentDao {
 		PreparedStatement pstmt = null;
 		try {
 			conn = factory.getConnection();
-			String sql = "delete STUDENTS where id=? and pw=?";
+			String sql = "delete from STUDENTS where id=? and pw=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);

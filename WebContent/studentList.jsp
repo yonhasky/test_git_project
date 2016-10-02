@@ -128,38 +128,8 @@
 </head>
 <body id="myPage">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="success.jsp">MCS</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
+	<%@ include file="topMenuAdm.jsp"%>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary " data-toggle="modal"
-						data-target="#myModal" style="margin: 8px"><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급</a>
-					</button> <!-- Modal -->
-
-
-				</li>
-				<li><a href="about.jsp">ABOUT</a></li>
-				<li><a href="mentoring.jsp">멘토링</a></li>
-				<li><a href="study.jsp">그룹스터디</a></li>
-				<li><a href="kin.jsp">지식IN</a></li>
-				<li><a href="notice.jsp">고객센터</a></li>
-
-			</ul>
-		</div>
-	</div>
-
-	</nav>
 
 	<div class="jumbotron text-center">
 
@@ -185,38 +155,36 @@
 					<td class="memberList" onclick="sortTable('tblSort', 0)"
 						style="cursor: pointer; width: 60px;">상세</td>
 					<td class="memberList" onclick="sortTable('tblSort', 1)"
-						style="cursor: pointer; width: 60px;">탈퇴</td>
-					<td class="memberList" onclick="sortTable('tblSort', 2)"
 						style="cursor: pointer">아이디</td>
-					<td class="memberList" onclick="sortTable('tblSort', 3)"
+					<td class="memberList" onclick="sortTable('tblSort', 2)"
 						style="cursor: pointer">비밀번호</td>
-					<td class="memberList" onclick="sortTable('tblSort', 4)"
+					<td class="memberList" onclick="sortTable('tblSort', 3)"
 						style="cursor: pointer">이름</td>
-					<td class="memberList" onclick="sortTable('tblSort', 5)"
+					<td class="memberList" onclick="sortTable('tblSort', 4)"
 						style="cursor: pointer">연락처</td>
-					<td class="memberList" onclick="sortTable('tblSort', 7)"
+					<td class="memberList" onclick="sortTable('tblSort', 5)"
 						style="cursor: pointer">이메일</td>
-					<td class="memberList" onclick="sortTable('tblSort', 8)"
+					<td class="memberList" onclick="sortTable('tblSort', 6)"
 						style="cursor: pointer">생년</td>
-					<td class="memberList" onclick="sortTable('tblSort', 9, 'int')"
+					<td class="memberList" onclick="sortTable('tblSort', 7, 'int')"
 						style="cursor: pointer">성별</td>
-					<td class="memberList" onclick="sortTable('tblSort', 10)"
+					<td class="memberList" onclick="sortTable('tblSort', 8)"
 						style="cursor: pointer">전공</td>
-					<td class="memberList" onclick="sortTable('tblSort', 11)"
+					<td class="memberList" onclick="sortTable('tblSort', 9)"
 						style="cursor: pointer">세부전공</td>
-					<td class="memberList" onclick="sortTable('tblSort', 12)"
+					<td class="memberList" onclick="sortTable('tblSort', 10)"
 						style="cursor: pointer">학번</td>
-					<td class="memberList" onclick="sortTable('tblSort', 13)"
+					<td class="memberList" onclick="sortTable('tblSort', 11)"
 						style="cursor: pointer">이미지</td>
-					<td class="memberList" onclick="sortTable('tblSort', 14)"
+					<td class="memberList" onclick="sortTable('tblSort', 12)"
 						style="cursor: pointer">졸업일</td>
-					<td class="memberList" onclick="sortTable('tblSort', 15)"
+					<td class="memberList" onclick="sortTable('tblSort', 13)"
 						style="cursor: pointer">회사</td>
-					<td class="memberList" onclick="sortTable('tblSort', 16)"
+					<td class="memberList" onclick="sortTable('tblSort', 14)"
 						style="cursor: pointer">직종</td>
-					<td class="memberList" onclick="sortTable('tblSort', 17)"
+					<td class="memberList" onclick="sortTable('tblSort', 15)"
 						style="cursor: pointer">경력</td>
-					<td class="memberList" onclick="sortTable('tblSort', 18)"
+					<td class="memberList" onclick="sortTable('tblSort', 16)"
 						style="cursor: pointer">등급</td>
 				</tr>
 			</thead>
@@ -227,47 +195,10 @@
 
 					<tr align="center">
 						<td class="memberList2"><a
-							href="Controller?action=memberDetail&userId=${dto.id}"><button>상세</button></a>
+							href="Controller?action=studentDetail&id=${dto.id}"><button>상세</button></a>
 						</td>
-						<td class="memberList2"><button data-toggle="modal"
-								data-target="#delete">탈퇴</button></td>
-
-						<div class="modal fade" id="delete" tabindex="-1" role="dialog"
-							aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document"
-								style="margin-top: 100px">
-								<div class="modal-content" style="height: 180px;">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">회원 탈퇴</h4>
-									</div>
-									<div class="modal-body">
-
-										<div class="form-group">
-											<label for="inputEmail3" class="col-sx-12 control-label">회원을
-												탈퇴시키겠습니까?</label>
-											<div class="col-sm-10"></div>
-										</div>
-
-
-										<div class="form-group">
-											<div class="col-xs-12">
-												<a href="Controller?action=deleteM&id=${dto.id}"><button
-														class="btn btn-default">탈퇴</button></a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-
 						<td class="memberList2">${dto.id}</td>
+
 						<td class="memberList2">${dto.pw}</td>
 						<td class="memberList2">${dto.name}</td>
 						<td class="memberList2">${dto.mobile}</td>

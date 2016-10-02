@@ -127,38 +127,8 @@
 </head>
 <body id="myPage">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="success.jsp">MCS</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
+		<%@ include file="topMenuSuccess.jsp"%>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary " data-toggle="modal"
-						data-target="#myModal" style="margin: 8px"><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급</a>
-					</button> <!-- Modal -->
-
-
-				</li>
-				<li><a href="about.jsp">ABOUT</a></li>
-				<li><a href="mentoring.jsp">멘토링</a></li>
-				<li><a href="study.jsp">그룹스터디</a></li>
-				<li><a href="kin.jsp">지식IN</a></li>
-				<li><a href="notice.jsp">고객센터</a></li>
-
-			</ul>
-		</div>
-	</div>
-
-	</nav>
 
 	<div class="jumbotron text-center">
 
@@ -186,7 +156,7 @@
 		<br>
 		<div class="row slideanim">
 			<div class="col-sm-4">
-				<a href="studentUpdate.jsp"> <span
+				<a href="controller?action=studentInfo"> <span
 					class="glyphicon glyphicon-user logo-small"></span>
 					<h4>회원정보수정</h4></a>
 			</div>

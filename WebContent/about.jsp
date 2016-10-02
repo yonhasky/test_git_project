@@ -17,7 +17,7 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar"
 	data-offset="60">
 
-	<%@ include file="topMenu.jsp"%>
+		<%@ include file="topMenuSuccess.jsp"%>
 
 	<!-- Container (About Section) -->
 	<div id="about" class="container-fluid">

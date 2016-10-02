@@ -285,7 +285,7 @@
 <body id="myPage" data-spy="scroll" data-target=".navbar"
 	data-offset="60">
 
-	<%@ include file="topMenuSuccess.jsp"%>
+	<%@ include file="topMenuAdm.jsp"%>
 
 	<!-- Container (About Section) -->
 	<div id="about" class="container-fluid">
@@ -593,13 +593,19 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-6">
-							<button id="btnJoin" type="submit" class="btn btn-default btn-lg"
-								onclick="return validCheck()" name="submit">회원정보 수정</button>
-							<a href="myPage.jsp">
-							<button type="button" class="btn btn-danger btn-lg">
-							돌아가기
-							</button>
+						<div class="col-sm-offset-2 col-sm-5">
+							<button id="btnJoin" type="submit" class="btn btn-primary btn-lg"
+								onclick="return validCheck()">정보 수정</button>
+
+							<a href="controller?action=deleteM&id=${dto.id}"><button
+									type="button" class="btn btn-danger btn-lg">회원탈퇴</button></a>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<a href="controller?action=studentList">
+								<button class="btn btn-default btn-lg" type="button">돌아가기</button>
 							</a>
 						</div>
 					</div>
@@ -607,8 +613,8 @@
 			</div>
 		</div>
 	</div>
-
 	<%@ include file="footer.jsp"%>
 
 </body>
 </html>
+	

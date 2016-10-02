@@ -15,20 +15,27 @@
 
 </head>
 <body>
-	<%@ include file="topMenu.jsp"%>
-
+		<%@ include file="topMenuSuccess.jsp"%>
+	<div class="jumbotron text-center">
+		<h1>지식 IN</h1>
+		<p>질문 & 답변</p>
+		<form class="form-inline">
+			<input type="text" class="form-control" size="50" placeholder="검색"
+				required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
+	</div>
 
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
 		<div class="row">
-
 			<div class="text-center">
 				<h2>Pricing</h2>
 				<h4>Choose a payment plan that works for you</h4>
 			</div>
 			<div class="row slideanim">
 				
-				<div class="col-sm-4 col-xs-12" style="width:1200px">
+				<div class="col-xs-12" style=" margin:0 auto;">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
 							<h1>Premium</h1>

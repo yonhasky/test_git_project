@@ -416,7 +416,34 @@ public class FrontController extends HttpServlet {
 	}
 	
 	
+	/**
+	 * 회원 자신 정보 조회
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	
+	protected void studentInfo(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+
+		String id = (String) session.getAttribute("id");
+
+		if (session == null || id == null) {
+			request.setAttribute("message", "로그인 후 사용해");
+			request.getRequestDispatcher("studentUpdate.jsp").forward(request,
+					response);
+		}
+
+		Student dto = studentService.selectOne(id);
+
+		request.setAttribute("dto", dto);
+
+		request.getRequestDispatcher("studentUpdate.jsp").forward(request, response);
+		;
+	}
 	
 	/**
 	 * 회원 전체 조회
@@ -609,6 +636,7 @@ public class FrontController extends HttpServlet {
 		String career = career1 + career2;
 		String part = multi.getParameter("part");
 
+		System.out.println();
 		if (img != null) {
 			img = "img" + "\\" + img;
 		}
@@ -760,7 +788,6 @@ public class FrontController extends HttpServlet {
 		String newPw = request.getParameter("newPw");
 
 		int updateNewPw = studentService.updatePw(id, pw, newPw);
-System.out.println(updateNewPw);
 		if (updateNewPw > 0) {
 			request.getRequestDispatcher("myPage.jsp").forward(request,
 					response);
@@ -781,7 +808,32 @@ System.out.println(updateNewPw);
 	}
 	
 	
-	
+	/**
+	 * 로그아웃 요청 서비스 메소드
+	 * 
+	 * @throws IOException
+	 * @throws ServletException
+	 */
+	protected void logout(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+
+		if (session != null && session.getAttribute("id") != null) {
+			session.removeAttribute("id");
+			session.removeAttribute("pw");
+			session.removeAttribute("part");
+			session.invalidate();
+
+			response.sendRedirect("index.jsp");
+		} else {
+			// 응답페이지이동:실패
+			// 로그인 성공-> HttpSession 으로 변경 예정
+
+			request.setAttribute("message", "로그인 정보가 부적절합니다.");
+			request.getRequestDispatcher("logoutError.jsp").forward(request,
+					response);
+		}
+	}
 	
 
 	/**
@@ -828,7 +880,12 @@ System.out.println(updateNewPw);
 			case "newPasswd":
 				newPasswd(request, response);
 				break;
-
+			case "studentInfo":
+				studentInfo(request, response);
+				break;
+			case "logout":
+				logout(request, response);
+				break;
 			default:
 				break;
 			// 지원하지 않는 요청 오류

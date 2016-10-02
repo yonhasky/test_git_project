@@ -60,7 +60,6 @@
 				document.getElementById("btnPw").disabled = true;
 				document.getElementById("pw").focus();
 
-
 			} else if (result == 'required') {
 				document.getElementById("pwConfirm").innerHTML = "미입력";
 				document.getElementById("btnPw").disabled = true;
@@ -70,99 +69,64 @@
 		}
 
 	}
-	 
-	 
-	 function isPwDelete() {
-			//web.xml
-			var url = "controller";
 
-			var params = "";
-			params += "action=pwCheckDelete";
+	function isPwDelete() {
+		//web.xml
+		var url = "controller";
 
-			var pwDelete = document.getElementById("pwDelete").value;
-			params += "&pwDelete=" + pwDelete;
+		var params = "";
+		params += "action=pwCheckDelete";
 
-			// 응답데이터 : Json
-			params += "&responseDataType=json";
+		var pwDelete = document.getElementById("pwDelete").value;
+		params += "&pwDelete=" + pwDelete;
 
-			//응답위한 콜백 함수 바인딩
-			var callback = responseJson2;
-			var method = "GET";
-			// js/ajax.js 스크립트 이용햐소 ajax 서버 요청
-			new ajax.xhr.Request(url, params, callback, method)
-		}
+		// 응답데이터 : Json
+		params += "&responseDataType=json";
 
-		/** Json 응답데이터 처리 callback 함수
-		 {"valid","true"}
+		//응답위한 콜백 함수 바인딩
+		var callback = responseJson2;
+		var method = "GET";
+		// js/ajax.js 스크립트 이용햐소 ajax 서버 요청
+		new ajax.xhr.Request(url, params, callback, method)
+	}
 
-		 eval("1+2") =>문자열수식 변환함수
-		 json 형식의 문자열을 json객체 변환
-		 eval("("+json형식의 응답문자열+")")
-		 */
-		function responseJson2(xhr) {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var resultJson = eval("(" + xhr.responseText + ")");
-				var result = resultJson.valid;
-				if (result == 'true') {
-					// messageUserId 결과메세지 출력
-					document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>일치 ";
-					document.getElementById("btnPwDelete").disabled = false;
+	/** Json 응답데이터 처리 callback 함수
+	 {"valid","true"}
 
-				} else if (result == 'false') {
-					document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>불일치 ";
-					document.getElementById("btnPwDelete").disabled = true;
-					document.getElementById("pwDelete").focus();
+	 eval("1+2") =>문자열수식 변환함수
+	 json 형식의 문자열을 json객체 변환
+	 eval("("+json형식의 응답문자열+")")
+	 */
+	function responseJson2(xhr) {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var resultJson = eval("(" + xhr.responseText + ")");
+			var result = resultJson.valid;
+			if (result == 'true') {
+				// messageUserId 결과메세지 출력
+				document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>일치 ";
+				document.getElementById("btnPwDelete").disabled = false;
 
+			} else if (result == 'false') {
+				document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>불일치 ";
+				document.getElementById("btnPwDelete").disabled = true;
+				document.getElementById("pwDelete").focus();
 
-				} else if (result == 'required') {
-					document.getElementById("pwConfirmDelete").innerHTML = "미입력";
-					document.getElementById("btnPwDelete").disabled = true;
-					document.getElementById("pwDelete").focus();
+			} else if (result == 'required') {
+				document.getElementById("pwConfirmDelete").innerHTML = "미입력";
+				document.getElementById("btnPwDelete").disabled = true;
+				document.getElementById("pwDelete").focus();
 
-				}
 			}
-
 		}
+
+	}
 </script>
 </head>
 <body id="myPage">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="success.jsp">MCS</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-
-			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary " data-toggle="modal"
-						data-target="#myModal" style="margin: 8px"><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급</a>
-					</button> <!-- Modal -->
-
-
-				</li>
-				<li><a href="about.jsp">ABOUT</a></li>
-				<li><a href="mentoring.jsp">멘토링</a></li>
-				<li><a href="study.jsp">그룹스터디</a></li>
-				<li><a href="kin.jsp">지식IN</a></li>
-				<li><a href="notice.jsp">고객센터</a></li>
-
-			</ul>
-		</div>
-	</div>
-
-	</nav>
+	<%@ include file="topMenuAdm.jsp"%>
 
 	<div class="jumbotron text-center">
-
-
 
 		<h1>MC in SYU</h1>
 		<p>Mentoring Campus in Sahmyook University</p>
