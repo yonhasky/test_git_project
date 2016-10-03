@@ -1,17 +1,19 @@
 package work.model.dto;
 
-public class Study {
-	int stNo;
-	String stTitle;
-	String stAuthor;
-	String stDate;
-	String stPeriod;
-	String stOverview;
-	String stContent;
-	String stFile1;
-	String stFile2;
-	int stHit;
-	String stStatus;
+import java.io.Serializable;
+
+public class Study implements Serializable{
+	private int stNo;
+	private String stTitle;
+	private String stAuthor;
+	private String stDate;
+	private String stPeriod;
+	private String stOverview;
+	private String stContent;
+	private String stFile1;
+	private String stFile2;
+	private int stHit;
+	private String stStatus;
 	
 	public Study() { }
 	
