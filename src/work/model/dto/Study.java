@@ -12,12 +12,11 @@ public class Study {
 	String stFile2;
 	int stHit;
 	String stStatus;
-	public Study() {
-		super();
-	}
+	
+	public Study() { }
+	
 	public Study(int stNo, String stTitle, String stAuthor, String stDate, String stPeriod, String stOverview,
 			String stContent, String stFile1, String stFile2, int stHit, String stStatus) {
-		super();
 		this.stNo = stNo;
 		this.stTitle = stTitle;
 		this.stAuthor = stAuthor;
