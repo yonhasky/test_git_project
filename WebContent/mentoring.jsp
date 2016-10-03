@@ -147,7 +147,7 @@
 
 		<h1>Mentoring</h1>
 		<p>Mentoring Campus in Sahmyook University</p>
-		<form name="form" class="form-inline">
+		<form name="form" class="form-inline" method="post">
 			<span class="form-group" >
 			
 				<span class="col-xs-12">
@@ -172,7 +172,7 @@
 		
 		<input type="text" class="form-control" size="50" placeholder="검색"
 			required>
-		<button type="button" class="btn btn-danger">검색</button>
+		<button type="button" class="btn btn-danger"><a href="controller?action=studentList">검색</a></button>
 		</form>
 	</div>
 

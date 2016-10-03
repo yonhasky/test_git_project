@@ -198,7 +198,6 @@
 							href="Controller?action=studentDetail&id=${dto.id}"><button>»ó¼¼</button></a>
 						</td>
 						<td class="memberList2">${dto.id}</td>
-
 						<td class="memberList2">${dto.pw}</td>
 						<td class="memberList2">${dto.name}</td>
 						<td class="memberList2">${dto.mobile}</td>
@@ -209,14 +208,11 @@
 						<td class="memberList2">${dto.division}</td>
 						<td class="memberList2">${dto.grade}</td>
 						<td class="memberList2">${dto.img}</td>
-
 						<td class="memberList2">${dto.gDate}</td>
-
 						<td class="memberList2">${dto.company}</td>
 						<td class="memberList2">${dto.job}</td>
 						<td class="memberList2">${dto.career}</td>
 						<td class="memberList2">${dto.part}</td>
-
 					</tr>
 
 				</c:forEach>
