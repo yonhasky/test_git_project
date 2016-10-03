@@ -462,7 +462,7 @@ public class FrontController extends HttpServlet {
 				ArrayList<Student> list = studentService.selectList();
 
 				request.setAttribute("list", list);
-				request.getRequestDispatcher("studentList.jsp").forward(
+				request.getRequestDispatcher("mentoringList.jsp").forward(
 						request, response);
 			} else {
 				request.setAttribute("message", "접근권한이 부족합니다");

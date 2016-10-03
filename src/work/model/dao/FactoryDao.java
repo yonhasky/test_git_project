@@ -46,13 +46,13 @@ public class FactoryDao {
 		} catch (NamingException e) {
 			System.out.println("DataSource 이름 검색 오류 발생");
 		}
-		}
+	}
 
 	public static FactoryDao getInstance() {
 		return instance;
 	}
 
-	// 공통 기능 : connection 샛성 반환
+	// 공통 기능 : connection 생성 반환
 	public Connection getConnection() {
 		try {
 			// Connection Pool (DataSource)에게 연결객체 하나 가져와서 반환

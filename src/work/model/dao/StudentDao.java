@@ -157,12 +157,11 @@ public class StudentDao {
 		try {
 			conn = factory.getConnection();
 			String sql = "select name, part from STUDENTS where id = ? and pw = ?";
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pw);
-
 			rs = pstmt.executeQuery();
-
 			if (rs.next()) {
 				String name = rs.getString("name");
 				String part = rs.getString("part");
