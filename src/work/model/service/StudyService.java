@@ -1,9 +1,9 @@
 package work.model.service;
 
-import work.model.dao.FactoryDao;
+import work.model.dao.StudyDao;
 
 public class StudyService {
-	FactoryDao factory = FactoryDao.getInstance();
+	private StudyDao dao = StudyDao.getInstance();
 	
 	
 }
