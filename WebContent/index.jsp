@@ -26,7 +26,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#myPage">MCS</a>
+			<a class="navbar-brand" href="index.jsp">MCS</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 
@@ -44,7 +44,7 @@
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
-									<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+									<h4 class="modal-title" id="myModalLabel">Login</h4>
 								</div>
 								<div class="modal-body">
 									<form class="form-horizontal" method="post"

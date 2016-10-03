@@ -9,16 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <servlet>
-		<description></description>
-		<display-name>FrontController</display-name>
-		<servlet-name>FrontController</servlet-name>
-		<servlet-class>work.controller.FrontController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>FrontController</servlet-name>
-		<url-pattern>/controller</url-pattern>
-	</servlet-mapping>
+    <description></description>
+    <display-name>FrontController</display-name>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>work.controller.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudyController</display-name>
+    <servlet-name>StudyController</servlet-name>
+    <servlet-class>work.controller.StudyController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudyController</servlet-name>
+    <url-pattern>/StudyController</url-pattern>
+  </servlet-mapping>
 </web-app>
