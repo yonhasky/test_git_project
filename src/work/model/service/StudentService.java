@@ -132,6 +132,11 @@ public class StudentService {
 	public int updatePw(String id, String pw, String newPw) {
 		return dao.updatePw(id, pw, newPw);
 	}
+	
+	public ArrayList<Student> graduationList(String major) {
+		return dao.graduationList(major);
+	}
+
 
 
 }

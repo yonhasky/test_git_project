@@ -193,7 +193,7 @@ font-weight:bold;
 						<div class="col-xs-3">
 							<div class="col-xs-12 glyphicon glyphicon-education logo-small"></div>
 							<div class="col-xs-12 ">
-								<img src="images/ceci1.jpg" alt="..." class="img-circle"
+								<img src="${dto.img}" alt="images/ceci1.jpg" class="img-circle"
 									style="width: 120px; height: 120px; margin: 10px">
 							</div>
 
@@ -204,23 +204,23 @@ font-weight:bold;
 							<div class="btn-group btn-group-justified" role="group"
 								aria-label="...">
 								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-major">컴퓨터시스템과</button>
+									<button type="button" class="btn btn-major">${dto.major}</button>
 								</div>
 
 								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-default">2011년2월
-										졸업</button>
+									<button type="button" class="btn btn-default">${dto.gDate} 졸업
+										</button>
 								</div>
 							</div>
 							<div class="col-xs-12">
-								<h3>김훈호</h3>
-								<p>2011학번</p>
+								<h3>${dto.name}</h3>
+								<p>${dto.grade}학번</p>
 
-								<p>현대모비스 직종 IT</p>
+								<p>직종 : ${dto.job} 회사 : ${dto.company}</p>
 							</div>
 						</div>
 						<button class="col-xs-2 btn" style="height:190px;background-color:#f4511e">
-						<a href="#" class="glyphicon glyphicon-chevron-right logo-small" style=" color:white"
+						<a href="Controller?action=graduationDetail&id=${dto.id}" class="glyphicon glyphicon-chevron-right logo-small" style=" color:white"
 							role="button"></a></button>
 					</div>
 				</c:forEach>

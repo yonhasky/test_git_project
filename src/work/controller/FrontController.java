@@ -506,6 +506,62 @@ public class FrontController extends HttpServlet {
 		;
 	}
 	
+	
+	/**
+	 * 멘토 회원 전체 조회
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void graduationList(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		String major = request.getParameter("second");
+		HttpSession session = request.getSession(false);
+		if (session != null && session.getAttribute("id") != null) {
+				ArrayList<Student> list = studentService.graduationList(major);
+
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("mentoringList.jsp").forward(
+						request, response);
+			} else {
+				request.setAttribute("message", "접근권한이 부족합니다");
+				request.getRequestDispatcher("loginError.jsp").forward(request,
+						response);
+			}
+		}
+	
+	
+	
+	/**
+	 * 멘토 회원 상세조회
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void graduationDetail(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+
+		if (id.trim().length() == 0) {
+			request.setAttribute("message", "로그인 후 사용해");
+			request.getRequestDispatcher("loginError.jsp").forward(request,
+					response);
+		}
+
+		Student dto = studentService.selectOne(id);
+
+		request.setAttribute("dto", dto);
+		request.getRequestDispatcher("mentoringDetail.jsp").forward(request,
+				response);
+		;
+	}
+	
+
 	/**
 	 * 관리자 - 회원정보변경
 	 * 
@@ -885,6 +941,12 @@ public class FrontController extends HttpServlet {
 				break;
 			case "logout":
 				logout(request, response);
+				break;
+			case "graduationList":
+				graduationList(request, response);
+				break;
+			case "graduationDetail":
+				graduationDetail(request, response);
 				break;
 			default:
 				break;

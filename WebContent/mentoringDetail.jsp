@@ -196,66 +196,58 @@ border:20px;}
 				<div class="col-xs-3">
 					<div class="col-xs-12 glyphicon glyphicon-education logo-small"></div>
 
-					<img src="images/ceci1.jpg" alt="..." class="img-circle"
+					<img src="${dto.img}" alt="..." class="img-circle"
 						style="width: 100%; height: 260px;">
 				</div>
 				<div class="col-xs-offset-1 col-xs-8">
-
 					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation" class="active"><a style="font-weight:bold; font-size:20px" >김훈호
+						<li role="presentation" class="active"><a style="font-weight:bold; font-size:20px" >${dto.name}
 								선배님</a></li>
-						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">컴퓨터시스템과</a></li>
-						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">세부전공M</a></li>
+						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">${dto.major}</a></li>
+						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">${dto.division}</a></li>
 					</ul>
-
 					<table class="table" style="margin-top:20px;">
 						<tr >
 							<td ><img alt="images/grade.png"
 								src="images/grade.png"></td>
-							<td >2011 학번</td>
+							<td >${dto.grade} 학번</td>
 							<td ><img alt="images/gDate.png"
 								src="images/gDate.png"></td>
-							<td >2017-02 졸업</td>
+							<td >${dto.gDate} 졸업</td>
 						</tr>
-
 						<tr>
 						<td ><img alt="images/job.png"
 								src="images/job.png"></td>
-							<td>IT계열 직종</td>
+							<td>${dto.job} 직종</td>
 							<td ><img alt="images/company.png"
 								src="images/company.png"></td>
-							<td >이스트소프트 입사</td>
+							<td >${dto.company} 입사</td>
 						</tr>
 						<tr>
 						<td ><img alt="images/career.png"
 								src="images/career.png"></td>
-							<td>02년12개월 경력</td>
+							<td>${dto.career} 경력</td>
 							<td ><img alt="images/grade.png"
 								src="images/gender.png"></td>
-							<td>남자</td>
+							<td>${dto.gender}</td>
 						</tr><tr>
 						<td ><img alt="images/grade.png"
 								src="images/birth.png"></td>
-							<td>25살</td>
+							<td>${2016-dto.birth}살</td>
 							<td ><img alt="images/grade.png"
 								src="images/email.png"></td>
-							<td>yonhasky@naver.com</td>
+							<td>${dto.email}</td>
 						</tr><tr>
 						<td ><img alt="images/grade.png"
 								src="images/phone.png"></td>
-							<td>010-9090-9090</td>
+							<td>${dto.mobile}</td>
 							<td ><img alt="images/grade.png"
 								src="images/grade.png"></td>
 							<td>asdfasdf</td>
 						</tr>
 					</table>
-
-
 				</div>
-
-
 			</div>
-
 		</div>
 	</div>
 

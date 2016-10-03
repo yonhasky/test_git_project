@@ -292,6 +292,63 @@ public class StudentDao {
 		return null;
 	}
 
+	
+	/**
+	 * 전체조회
+	 * 
+	 * @return ArrayList 반환
+	 */
+	public ArrayList<Student> graduationList(String major) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Student> arr = new ArrayList<Student>();
+
+		try {
+			conn = factory.getConnection();
+			String sql = "select * from students where major=? and part='G'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, major);
+
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String id = rs.getString("id");
+				String pw = rs.getString("pw");
+				String name = rs.getString("name");
+				String mobile = rs.getString("mobile");
+				String email = rs.getString("email");
+				int birth = rs.getInt("birth");
+				String gender = rs.getString("gender");
+				String division = rs.getString("division");
+				String grade = rs.getString("grade");
+				String img = rs.getString("img");
+				String gDate = rs.getString("gDate");
+				String company = rs.getString("company");
+				String job = rs.getString("job");
+				String career = rs.getString("career");
+				String part = rs.getString("part");
+
+				Student dto = new Student(id, pw, name, mobile, email, birth,
+						gender, major, division, grade, img, gDate, company,
+						job, career, part);
+
+				arr.add(dto);
+			}
+			return arr;
+		} catch (SQLException e) {
+			System.out.println("error: 조회 오류");
+			e.printStackTrace();
+
+		} finally {
+			// 자원해제
+			factory.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+	
+	
 	/**
 	 * 회원 - 회원 정보 변경
 	 * 

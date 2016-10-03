@@ -141,21 +141,17 @@
 </style>
 </head>
 <body>
-		<%@ include file="topMenuSuccess.jsp"%>
+	<%@ include file="topMenuSuccess.jsp"%>
 
 	<div class="jumbotron text-center">
 
 		<h1>Mentoring</h1>
 		<p>Mentoring Campus in Sahmyook University</p>
-		<form name="form" class="form-inline" method="post">
-			<span class="form-group" >
-			
-				<span class="col-xs-12">
-
-					<select class="form-control" name="first" onchange="firstChange();"
-						size=1>
+		<form name="form" class="form-inline" method="post"
+			action="controller?action=graduationList">
+			<span class="form-group"> <span class="col-xs-12"> <select
+					class="form-control" name="first" onchange="firstChange();" size=1>
 						<OPTION value=''>대학분류</OPTION>
-
 						<OPTION value=''>인문사회대학</OPTION>
 						<OPTION value=''>보건복지대학</OPTION>
 						<OPTION value=''>과학기술대학</OPTION>
@@ -163,16 +159,13 @@
 						<OPTION value=''>문화예술대학</OPTION>
 						<OPTION value=''>신학대학</OPTION>
 
-					</SELECT> <SELECT class="form-control" name="second"
-						onchange="secondChange();" size=1>
+				</SELECT> <SELECT class="form-control" name="second"
+					onchange="secondChange();" size=1>
 						<OPTION value=''>학과분류</OPTION>
-					</SELECT> 
-				</span>
+				</SELECT>
 			</span>
-		
-		<input type="text" class="form-control" size="50" placeholder="검색"
-			required>
-		<button type="button" class="btn btn-danger"><a href="controller?action=studentList">검색</a></button>
+			</span> <input type="text" class="form-control" size="50" placeholder="검색">
+			<button type="submit" class="btn btn-danger">검색</button>
 		</form>
 	</div>
 
@@ -187,7 +180,7 @@
 			<h2>Mentoring</h2>
 			<h4>졸업한 선배님들과의 멘토링</h4>
 
-		
+
 			<div class="row text-center">
 				<h2>Today's TOP 3</h2>
 
@@ -267,6 +260,6 @@
 	</div>
 
 
-
+	<%@ include file="footer.jsp"%>
 </body>
 </html>
