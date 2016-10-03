@@ -31,6 +31,92 @@ public class Study implements Serializable{
 		this.stHit = stHit;
 		this.stStatus = stStatus;
 	}
-	
-	
+
+	public int getStNo() {
+		return stNo;
+	}
+
+	public void setStNo(int stNo) {
+		this.stNo = stNo;
+	}
+
+	public String getStTitle() {
+		return stTitle;
+	}
+
+	public void setStTitle(String stTitle) {
+		this.stTitle = stTitle;
+	}
+
+	public String getStAuthor() {
+		return stAuthor;
+	}
+
+	public void setStAuthor(String stAuthor) {
+		this.stAuthor = stAuthor;
+	}
+
+	public String getStDate() {
+		return stDate;
+	}
+
+	public void setStDate(String stDate) {
+		this.stDate = stDate;
+	}
+
+	public String getStPeriod() {
+		return stPeriod;
+	}
+
+	public void setStPeriod(String stPeriod) {
+		this.stPeriod = stPeriod;
+	}
+
+	public String getStOverview() {
+		return stOverview;
+	}
+
+	public void setStOverview(String stOverview) {
+		this.stOverview = stOverview;
+	}
+
+	public String getStContent() {
+		return stContent;
+	}
+
+	public void setStContent(String stContent) {
+		this.stContent = stContent;
+	}
+
+	public String getStFile1() {
+		return stFile1;
+	}
+
+	public void setStFile1(String stFile1) {
+		this.stFile1 = stFile1;
+	}
+
+	public String getStFile2() {
+		return stFile2;
+	}
+
+	public void setStFile2(String stFile2) {
+		this.stFile2 = stFile2;
+	}
+
+	public int getStHit() {
+		return stHit;
+	}
+
+	public void setStHit(int stHit) {
+		this.stHit = stHit;
+	}
+
+	public String getStStatus() {
+		return stStatus;
+	}
+
+	public void setStStatus(String stStatus) {
+		this.stStatus = stStatus;
+	}
 }
