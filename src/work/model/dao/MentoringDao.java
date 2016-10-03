@@ -99,9 +99,10 @@ public class MentoringDao {
 				String mFile1 = rs.getString("m_FILE1");
 				String mFile2 = rs.getString("m_FILE2");
 				int mHit = rs.getInt("m_HIT");
-
+				String mStatus = rs.getString("m_STATUS");
+				
 				Mentoring dto = new Mentoring(mNo, mTitle, mAuthor, mDate,
-						mPeriod, mOverview, mContent, mFile1, mFile2, mHit);
+						mPeriod, mOverview, mContent, mFile1, mFile2, mHit, mStatus);
 
 				arr.add(dto);
 			}
@@ -147,9 +148,10 @@ public class MentoringDao {
 				String mFile1 = rs.getString("m_FILE1");
 				String mFile2 = rs.getString("m_FILE2");
 				int mHit = rs.getInt("m_HIT");
+				String mStatus = rs.getString("m_Status");
 
 				dto = new Mentoring(mNo, mTitle, mAuthor, mDate, mPeriod,
-						mOverview, mContent, mFile1, mFile2, mHit);
+						mOverview, mContent, mFile1, mFile2, mHit, mStatus);
 
 				return dto;
 
@@ -322,10 +324,10 @@ public class MentoringDao {
 				String mFile1 = rs.getString("m_FILE1");
 				String mFile2 = rs.getString("m_FILE2");
 				int mHit = rs.getInt("m_HIT");
+				String mStatus = rs.getString("m_STATUS");
 
 				Mentoring dto = new Mentoring(mNo, mTitle, mAuthor, mDate,
-						mPeriod, mOverview, mContent, mFile1, mFile2, mHit);
-
+						mPeriod, mOverview, mContent, mFile1, mFile2, mHit, mStatus);
 
 				arr.add(dto);
 			}
