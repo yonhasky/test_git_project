@@ -156,7 +156,7 @@ public class StudentDao {
 		HashMap<String, String> loginmap = new HashMap<String, String>();
 		try {
 			conn = factory.getConnection();
-			String sql = "select name, part from STUDENTS where id = ? and pw = ?";
+			String sql = "select name, part, grade, major from STUDENTS where id = ? and pw = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -165,11 +165,16 @@ public class StudentDao {
 			if (rs.next()) {
 				String name = rs.getString("name");
 				String part = rs.getString("part");
+				String grade = rs.getString("grade");
+				String major = rs.getString("major");
 
 				loginmap.put("name", name);
 				loginmap.put("id", id);
 				loginmap.put("pw", pw);
 				loginmap.put("part", part);
+				loginmap.put("grade", grade);
+				loginmap.put("major", major);
+
 
 				return loginmap;
 			}

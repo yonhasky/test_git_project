@@ -29,4 +29,14 @@
     <servlet-name>StudyController</servlet-name>
     <url-pattern>/StudyController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MentoringController</display-name>
+    <servlet-name>MentoringController</servlet-name>
+    <servlet-class>work.controller.MentoringController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MentoringController</servlet-name>
+    <url-pattern>/MentoringController</url-pattern>
+  </servlet-mapping>
 </web-app>
