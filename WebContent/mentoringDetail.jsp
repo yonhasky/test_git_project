@@ -146,11 +146,14 @@
 	color: white;
 	font-weight: bold;
 }
-.table>tbody>tr>td{
-border: 20px solid white;}
 
-.table>tbody>tr{
-border:20px;}
+.table>tbody>tr>td {
+	border: 20px solid white;
+}
+
+.table>tbody>tr {
+	border: 20px;
+}
 </style>
 </head>
 <body>
@@ -164,7 +167,6 @@ border:20px;}
 			<span class="form-group"> <span class="col-xs-12"> <select
 					class="form-control" name="first" onchange="firstChange();" size=1>
 						<OPTION value=''>대학분류</OPTION>
-
 						<OPTION value=''>인문사회대학</OPTION>
 						<OPTION value=''>보건복지대학</OPTION>
 						<OPTION value=''>과학기술대학</OPTION>
@@ -187,7 +189,6 @@ border:20px;}
 	<div id="portfolio" class="container-fluid text-center ">
 		<div class="row">
 
-
 			<h2>Mentoring</h2>
 			<h4>졸업한 선배님들과의 멘토링</h4>
 
@@ -198,58 +199,98 @@ border:20px;}
 
 					<img src="${dto.img}" alt="..." class="img-circle"
 						style="width: 100%; height: 260px;">
+						<ul class="pager">
+							<li role="presentation" class="active"><a
+								href="#">쪽지보내기</a></li>
+							<li role="presentation" class="active"><a
+								href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
+						</ul>
 				</div>
 				<div class="col-xs-offset-1 col-xs-8">
 					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation" class="active"><a style="font-weight:bold; font-size:20px" >${dto.name}
-								선배님</a></li>
-						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">${dto.major}</a></li>
-						<li role="presentation"><a style="font-weight:bold; font-size:15px; color:#f4511e">${dto.division}</a></li>
+						<li role="presentation" class="active"><a
+							style="font-weight: bold; font-size: 20px">${dto.name} 선배님</a></li>
+						<li role="presentation"><a
+							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.major}</a></li>
+						<li role="presentation"><a
+							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.division}</a></li>
 					</ul>
-					<table class="table" style="margin-top:20px;">
-						<tr >
-							<td ><img alt="images/grade.png"
-								src="images/grade.png"></td>
-							<td >${dto.grade} 학번</td>
-							<td ><img alt="images/gDate.png"
-								src="images/gDate.png"></td>
-							<td >${dto.gDate} 졸업</td>
+					<table class="table" style="margin-top: 20px;">
+						<tr>
+							<td><img alt="images/grade.png" src="images/grade.png"></td>
+							<td>${dto.grade}학번</td>
+							<td><img alt="images/gDate.png" src="images/gDate.png"></td>
+							<td>${dto.gDate}졸업</td>
 						</tr>
 						<tr>
-						<td ><img alt="images/job.png"
-								src="images/job.png"></td>
-							<td>${dto.job} 직종</td>
-							<td ><img alt="images/company.png"
-								src="images/company.png"></td>
-							<td >${dto.company} 입사</td>
+							<td><img alt="images/job.png" src="images/job.png"></td>
+							<td>${dto.job}직종</td>
+							<td><img alt="images/company.png" src="images/company.png"></td>
+							<td>${dto.company}입사</td>
 						</tr>
 						<tr>
-						<td ><img alt="images/career.png"
-								src="images/career.png"></td>
-							<td>${dto.career} 경력</td>
-							<td ><img alt="images/grade.png"
-								src="images/gender.png"></td>
+							<td><img alt="images/career.png" src="images/career.png"></td>
+							<td>${dto.career}경력</td>
+							<td><img alt="images/grade.png" src="images/gender.png"></td>
 							<td>${dto.gender}</td>
-						</tr><tr>
-						<td ><img alt="images/grade.png"
-								src="images/birth.png"></td>
+						</tr>
+						<tr>
+							<td><img alt="images/grade.png" src="images/birth.png"></td>
 							<td>${2016-dto.birth}살</td>
-							<td ><img alt="images/grade.png"
-								src="images/email.png"></td>
+							<td><img alt="images/grade.png" src="images/email.png"></td>
 							<td>${dto.email}</td>
-						</tr><tr>
-						<td ><img alt="images/grade.png"
-								src="images/phone.png"></td>
+						</tr>
+						<tr>
+							<td><img alt="images/grade.png" src="images/phone.png"></td>
 							<td>${dto.mobile}</td>
-							<td ><img alt="images/grade.png"
-								src="images/grade.png"></td>
+							<td><img alt="images/grade.png" src="images/grade.png"></td>
 							<td>asdfasdf</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 		</div>
+
+
 	</div>
+
+
+	<div class="row container-fluid text-center">
+		<div class=" col-xs-offset-2 col-xs-8"
+			style="border: 6px black solid; padding-top: 60px">
+			<div class="col-xs-3">
+				<div class="col-xs-12 glyphicon glyphicon-education logo-small"></div>
+				<br> <br>
+				<h3>멘토링 신청내역</h3>
+			</div>
+			<div class=" col-xs-8">
+
+				<table class="table " style="margin-top: 20px;">
+					<tr>
+						<td>이름</td>
+						<td>제목</td>
+						<td>학과</td>
+						<td>학번</td>
+						<td>신청일</td>
+						<td>상태</td>
+					</tr>
+					<c:forEach var="list" items="${requestScope.list}">
+
+						<tr>
+							<td>${list.mName}</td>
+							<td>${list.mComment}</td>
+							<td>${list.mMajor}학과</td>
+							<td>${list.mGrade}학번</td>
+							<td>${list.mDate}</td>
+							<td>${list.mStatus}상태</td>
+						</tr>
+					</c:forEach>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
 
 
 	<%@ include file="footer.jsp"%>

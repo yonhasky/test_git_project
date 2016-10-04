@@ -13,23 +13,21 @@ public class MentoringService {
 	 */
 	private MentoringDao dao = MentoringDao.getInstance();
 
-	
-	
 	/**
 	 * 멘토링 회원 등록
 	 * @param dto
 	 * @return
 	 */
-	
 	public int Mentoringinsert(Mentoring dto) {
 	
 		return dao.insert(dto);
-		
 	}
-	
 
 	// 게시판 전체조회
 	public  ArrayList<Mentoring> memtoringSelectList() {
+		return dao.selectList();
+	}
+	public  ArrayList<Mentoring> memtoringSelectList(String id) {
 		return dao.selectList();
 	}
 
@@ -38,7 +36,6 @@ public class MentoringService {
 		return dao.selectOne(mNo);
 	}
 	
-
 	// 회원 게시판 수정
 	public int boardupdateUser(Mentoring dto) {
 		return dao.updateUser(dto);
@@ -53,11 +50,5 @@ public class MentoringService {
 	public int deleteMentoring(int mNo) {
 		return dao.deleteMentoring(mNo);
 	}
-
-	// 게시글 검색
-	public ArrayList<Mentoring> searchMentoring(String search, String searchName) {
-		return dao.searchMentoring(search, searchName);
-	}
-
 
 }

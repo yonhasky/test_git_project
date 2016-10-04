@@ -205,6 +205,12 @@ a:hover{
 	font-weight: bold;
 }
 
+.logo-m {
+    color: #f4511e;
+    font-size: 100px;
+}
+
+
 /* latin-ext */
 @font-face {
   font-family: 'Lato';

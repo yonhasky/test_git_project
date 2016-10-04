@@ -34,27 +34,27 @@ public class MentoringDao {
 		PreparedStatement pstmt = null;
 
 		// 아규먼트로 전달받은 객체의 멤버데이터 추출
-		String mTitle = dto.getmTitle();
-		String mAuthor = dto.getmAuthor();
-		String mPeriod = dto.getmPeriod();
-		String mOverview = dto.getmOverview();
-		String mContent = dto.getmContent();
-		String mFile1 = dto.getmFile1();
-		String mFile2 = dto.getmFile2();
-		int mHit = dto.getmHit();
+		int mNo = dto.getmNo();
+		String mHost = dto.getmHost();
+		String mEntry = dto.getmEntry();
+		String mName = dto.getmName();
+		String mMajor = dto.getmMajor();
+		String mGrade = dto.getmGrade();
+		String mComment = dto.getmComment();
+		String mDate= dto.getmDate();
+		String mStatus = dto.getmStatus();
 
 		try {
 			conn = factory.getConnection();
-			String sql = "insert into Mentorings values(seq_Mentorings.nextval,?,?,sysdate,?,?,?,?,?,?)";
+			String sql = "insert into Mentorings values(seq_Mentorings.nextval,?,?,?,?,?,?,sysdate,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mTitle);
-			pstmt.setString(2, mAuthor);
-			pstmt.setString(3, mPeriod);
-			pstmt.setString(4, mOverview);
-			pstmt.setString(5, mContent);
-			pstmt.setString(6, mFile1);
-			pstmt.setString(7, mFile2);
-			pstmt.setInt(8, mHit);
+			pstmt.setString(1, mHost);
+			pstmt.setString(2, mEntry);
+			pstmt.setString(3, mName);
+			pstmt.setString(4, mMajor);
+			pstmt.setString(5, mGrade);
+			pstmt.setString(6, mComment);
+			pstmt.setString(7, mStatus);
 
 			int rows = pstmt.executeUpdate();
 
@@ -90,19 +90,17 @@ public class MentoringDao {
 			while (rs.next()) {
 
 				int mNo = rs.getInt("m_no");
-				String mTitle = rs.getString("m_title");
-				String mAuthor = rs.getString("m_AUTHOR");
-				String mDate = rs.getString("m_DATE");
-				String mPeriod = rs.getString("m_PERIOD");
-				String mOverview = rs.getString("m_OVERVIEW");
-				String mContent = rs.getString("m_CONTENT");
-				String mFile1 = rs.getString("m_FILE1");
-				String mFile2 = rs.getString("m_FILE2");
-				int mHit = rs.getInt("m_HIT");
+				String mHost = rs.getString("m_host");
+				String mEntry = rs.getString("m_entry");
+				String mName = rs.getString("m_name");
+				String mMajor = rs.getString("m_major");
+				String mGrade = rs.getString("m_grade");
+				String mComment = rs.getString("m_comment");
+				String mDate = rs.getString("m_date");
 				String mStatus = rs.getString("m_STATUS");
 				
-				Mentoring dto = new Mentoring(mNo, mTitle, mAuthor, mDate,
-						mPeriod, mOverview, mContent, mFile1, mFile2, mHit, mStatus);
+				Mentoring dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor, mGrade,
+						mComment, mDate, mStatus);
 
 				arr.add(dto);
 			}
@@ -119,6 +117,57 @@ public class MentoringDao {
 		return null;
 	}
 
+	
+	/**
+	 * 전체조회
+	 * 
+	 * @return ArrayList 반환
+	 */
+	public ArrayList<Mentoring> selectList(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Mentoring> arr = new ArrayList<Mentoring>();
+
+		try {
+			conn = factory.getConnection();
+			String sql = "select * from Mentorings where m_host=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+
+				int mNo = rs.getInt("m_no");
+				String mHost = rs.getString("m_host");
+				String mEntry = rs.getString("m_entry");
+				String mName = rs.getString("m_name");
+				String mMajor = rs.getString("m_major");
+				String mGrade = rs.getString("m_grade");
+				String mComment = rs.getString("m_comment");
+				String mDate = rs.getString("m_date");
+				String mStatus = rs.getString("m_STATUS");
+				
+				Mentoring dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor, mGrade,
+						mComment, mDate, mStatus);
+
+				arr.add(dto);
+			}
+			return arr;
+		} catch (SQLException e) {
+			System.out.println("error: 조회 오류");
+			e.printStackTrace();
+
+		} finally {
+			// 자원해제
+			factory.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+	
+	
+	
 	/**
 	 * 상세조회
 	 * 
@@ -139,19 +188,17 @@ public class MentoringDao {
 			rs = pstmt.executeQuery();
 			Mentoring dto = null;
 			if (rs.next()) {
-				String mTitle = rs.getString("m_title");
-				String mAuthor = rs.getString("m_AUTHOR");
-				String mDate = rs.getString("m_DATE");
-				String mPeriod = rs.getString("m_PERIOD");
-				String mOverview = rs.getString("m_OVERVIEW");
-				String mContent = rs.getString("m_CONTENT");
-				String mFile1 = rs.getString("m_FILE1");
-				String mFile2 = rs.getString("m_FILE2");
-				int mHit = rs.getInt("m_HIT");
-				String mStatus = rs.getString("m_Status");
+				String mHost = rs.getString("m_host");
+				String mEntry = rs.getString("m_entry");
+				String mName = rs.getString("m_name");
+				String mMajor = rs.getString("m_major");
+				String mGrade = rs.getString("m_grade");
+				String mComment = rs.getString("m_comment");
+				String mDate = rs.getString("m_date");
+				String mStatus = rs.getString("m_STATUS");
 
-				dto = new Mentoring(mNo, mTitle, mAuthor, mDate, mPeriod,
-						mOverview, mContent, mFile1, mFile2, mHit, mStatus);
+				dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor, mGrade,
+						mComment, mDate, mStatus);
 
 				return dto;
 
@@ -178,25 +225,15 @@ public class MentoringDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		int mNo = dto.getmNo();
-		String mTitle = dto.getmTitle();
-		String mPeriod = dto.getmPeriod();
-		String mOverview = dto.getmOverview();
-		String mContent = dto.getmContent();
-		String mFile1 = dto.getmFile1();
-		String mFile2 = dto.getmFile2();
+		String mName = dto.getmName();
+		String mComment = dto.getmComment();
 
 		try {
 			conn = factory.getConnection();
-			String sql = "update Mentorings set M_TITLE=?, M_PERIOD=?, M_OVERVIEW=?, M_CONTENT=?, M_FILE1=?, M_FILE2=?  where M_NO=?";
+			String sql = "update Mentorings set m_name=?, m_comment=? where M_NO=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mTitle);
-			pstmt.setString(2, mPeriod);
-			pstmt.setString(3, mOverview);
-			pstmt.setString(4, mContent);
-			pstmt.setString(5, mFile1);
-			pstmt.setString(6, mFile2);
-			pstmt.setInt(7, mNo);
+			pstmt.setString(1, mName);
+			pstmt.setString(2, mComment);
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -205,9 +242,7 @@ public class MentoringDao {
 		} finally {
 			// 자원해제
 			factory.close(conn, pstmt);
-
 		}
-
 		return 0;
 	}
 
@@ -223,32 +258,30 @@ public class MentoringDao {
 
 		// 아규먼트로 전달받은 객체의 멤버데이터 추출
 		int mNo = dto.getmNo();
-		String mTitle = dto.getmTitle();
-		String mAuthor = dto.getmAuthor();
-		String mDate = dto.getmDate();
-		String mPeriod = dto.getmPeriod();
-		String mOverview = dto.getmOverview();
-		String mContent = dto.getmContent();
-		String mFile1 = dto.getmFile1();
-		String mFile2 = dto.getmFile2();
-		int mHit = dto.getmHit();
+		String mHost = dto.getmHost();
+		String mEntry = dto.getmEntry();
+		String mName = dto.getmName();
+		String mMajor = dto.getmMajor();
+		String mGrade = dto.getmGrade();
+		String mComment = dto.getmComment();
+		String mDate= dto.getmDate();
+		String mStatus = dto.getmStatus();
 		
 		try {
 			conn = factory.getConnection();
-			String sql = "update Mentorings set M_NO =?, M_TITLE=?, M_AUTHOR=?, M_DATE=?, M_PERIOD=?, M_OVERVIEW=?, M_CONTENT=?, M_FILE1=?, M_FILE2=?, M_HIT=? where M_NO=?";
+			String sql = "update Mentorings set M_NO =?, M_host=?, M_entry=?, M_name=?, m_major=?, m_grade, M_comment=?, M_date=?, M_status=? where M_NO=?";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, mNo);
-			pstmt.setString(2, mTitle);
-			pstmt.setString(3, mAuthor);
-			pstmt.setString(4, mDate);
-			pstmt.setString(5, mPeriod);
-			pstmt.setString(6, mOverview);
-			pstmt.setString(7, mContent);
-			pstmt.setString(8, mFile1);
-			pstmt.setString(9, mFile2);
-			pstmt.setInt(10, mHit);
-			pstmt.setInt(11, mNo);
+			pstmt.setString(2, mHost);
+			pstmt.setString(3, mEntry);
+			pstmt.setString(4, mName);
+			pstmt.setString(5, mMajor);
+			pstmt.setString(6, mGrade);
+			pstmt.setString(7, mComment);
+			pstmt.setString(8, mDate);
+			pstmt.setString(9, mStatus);
+			pstmt.setInt(10, mNo);
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -286,62 +319,7 @@ public class MentoringDao {
 		} finally {
 			// 자원해제
 			factory.close(conn, pstmt);
-
 		}
-
 		return 0;
-	}
-
-	/**
-	 * String으로 받아온 값으로 조회 (부분이름, 부분핸드폰, 부분아이디) 게시판 조회 :
-	 * 
-	 * @param search
-	 *            , searchName
-	 * @return ArrayList
-	 */
-	public ArrayList<Mentoring> searchMentoring(String search, String searchName) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<Mentoring> arr = new ArrayList<Mentoring>();
-
-		try {
-			conn = factory.getConnection();
-			String sql = "select * from Mentorings where " + search + " like ?";
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setString(1, "%" + searchName + "%");
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int mNo = rs.getInt("m_no");
-				String mTitle = rs.getString("m_title");
-				String mAuthor = rs.getString("m_AUTHOR");
-				String mDate = rs.getString("m_DATE");
-				String mPeriod = rs.getString("m_PERIOD");
-				String mOverview = rs.getString("m_OVERVIEW");
-				String mContent = rs.getString("m_CONTENT");
-				String mFile1 = rs.getString("m_FILE1");
-				String mFile2 = rs.getString("m_FILE2");
-				int mHit = rs.getInt("m_HIT");
-				String mStatus = rs.getString("m_STATUS");
-
-				Mentoring dto = new Mentoring(mNo, mTitle, mAuthor, mDate,
-						mPeriod, mOverview, mContent, mFile1, mFile2, mHit, mStatus);
-
-				arr.add(dto);
-			}
-			return arr;
-		} catch (SQLException e) {
-			System.out.println("error: 조회 오류");
-			e.printStackTrace();
-
-		} finally {
-			// 자원해제
-			factory.close(conn, pstmt, rs);
-
-		}
-
-		return null;
 	}
 }
