@@ -80,6 +80,7 @@ font-weight:bold;
 									~ 2016-12-31</button>
 							</div>
 						</div>
+						
 						<div class="col-xs-12">
 							<h3>stTitle</h3>
 							<p>stAuthor</p>
