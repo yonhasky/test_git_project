@@ -29,4 +29,24 @@
     <servlet-name>StudyController</servlet-name>
     <url-pattern>/StudyController</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>KinController</display-name>
+    <servlet-name>KinController</servlet-name>
+    <servlet-class>work.controller.KinController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KinController</servlet-name>
+    <url-pattern>/Kcontroller</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RplController</display-name>
+    <servlet-name>RplController</servlet-name>
+    <servlet-class>work.controller.RplController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RplController</servlet-name>
+    <url-pattern>/Rcontroller</url-pattern>
+  </servlet-mapping>
 </web-app>
