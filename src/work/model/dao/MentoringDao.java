@@ -199,9 +199,9 @@ public class MentoringDao {
 
 				dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor, mGrade,
 						mComment, mDate, mStatus);
+				System.out.println(dto);
 
 				return dto;
-
 			}
 		} catch (SQLException e) {
 			System.out.println("error: 조회 오류");
@@ -224,16 +224,16 @@ public class MentoringDao {
 	public int updateUser(Mentoring dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		int mNo = dto.getmNo();
 
-		String mName = dto.getmName();
 		String mComment = dto.getmComment();
 
 		try {
 			conn = factory.getConnection();
-			String sql = "update Mentorings set m_name=?, m_comment=? where M_NO=?";
+			String sql = "update Mentorings set m_date=sysdate, m_comment=? where M_NO=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mName);
-			pstmt.setString(2, mComment);
+			pstmt.setString(1, mComment);
+			pstmt.setInt(2, mNo);
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

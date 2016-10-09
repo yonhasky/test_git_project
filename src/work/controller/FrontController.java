@@ -48,7 +48,7 @@ public class FrontController extends HttpServlet {
 		String savePath = application.getRealPath("img");
 
 		MultipartRequest multi = new MultipartRequest(request, savePath,
-				sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+				sizeLimit, "euc-kr", new DefaultFileRenamePolicy());
 
 		String id = multi.getParameter("id");
 		String pw = multi.getParameter("pwConfirm");
@@ -133,7 +133,7 @@ public class FrontController extends HttpServlet {
 		String savePath = application.getRealPath("img");
 
 		MultipartRequest multi = new MultipartRequest(request, savePath,
-				sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+				sizeLimit, "euc-kr", new DefaultFileRenamePolicy());
 
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pwConfirm");
