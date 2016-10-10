@@ -15,7 +15,9 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import work.model.dao.KinDao;
+import work.model.dao.KinreplieDao;
 import work.model.dto.Kin;
+import work.model.dto.Kinreplie;
 
 /**
  * Servlet implementation class KinController
@@ -23,6 +25,7 @@ import work.model.dto.Kin;
 public class KinController extends HttpServlet {
 	
 	private KinDao dao = KinDao.getInstance();
+	private KinreplieDao dao2 = KinreplieDao.getInstance();
 	
     /** 1. 전체 리스트 조회 */
     protected void kinList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -104,7 +107,14 @@ public class KinController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			
 			if(opt == null) {
-				request.getRequestDispatcher("kinItem.jsp").forward(request, response);
+				ArrayList<Kinreplie> list = dao2.selectRplList(Integer.parseInt(kNo));
+				if(list != null) {
+					request.setAttribute("list", list);
+					System.out.println("답변리스트 : " + list);
+					request.getRequestDispatcher("kinItem.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("kinItem.jsp").forward(request, response);
+				}
 			} else if(opt.equals("update")) {
 				request.getRequestDispatcher("kinUpdate.jsp").forward(request, response);
 			}
