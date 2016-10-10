@@ -19,7 +19,7 @@
 				<li><a href="about.jsp">ABOUT</a></li>
 				<li><a href="mentoring.jsp">선배멘토찾기</a></li>
 				<li><a href="study.jsp">스터디그룹</a></li>
-				<li><a href="kin.jsp">지식공유</a></li>
+				<li><a href="Kcontroller?action=kinList&pageNum=1">지식IN</a></li>
 				<li><a href="notice.jsp">고객센터</a></li>
 			</ul>
 		</div>

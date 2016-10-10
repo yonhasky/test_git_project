@@ -21,19 +21,17 @@ public class StudyMatch implements Serializable{
 	private String stmEntryComment;
 	private String stmEntryDate;
 	private String stmEntryStatus;
-	private int stNo;
 	
 	public StudyMatch() { }
 	
 	public StudyMatch(int stmNo, String stmHost, String stmEntry, String stmEntryComment, String stmEntryDate,
-			String stmEntryStatus, int stNo) {
+			String stmEntryStatus) {
 		this.stmNo = stmNo;
 		this.stmHost = stmHost;
 		this.stmEntry = stmEntry;
 		this.stmEntryComment = stmEntryComment;
 		this.stmEntryDate = stmEntryDate;
 		this.stmEntryStatus = stmEntryStatus;
-		this.stNo = stNo;
 	}
 
 	public int getStmNo() {
@@ -84,19 +82,11 @@ public class StudyMatch implements Serializable{
 		this.stmEntryStatus = stmEntryStatus;
 	}
 
-	public int getStNo() {
-		return stNo;
-	}
-
-	public void setStNo(int stNo) {
-		this.stNo = stNo;
-	}
-
 	@Override
 	public String toString() {
 		return "StudyMatch [stmNo=" + stmNo + ", stmHost=" + stmHost + ", stmEntry=" + stmEntry + ", stmEntryComment="
 				+ stmEntryComment + ", stmEntryDate=" + stmEntryDate + ", stmEntryStatus=" + stmEntryStatus + ", stNo="
-				+ stNo + "]";
+			 + "]";
 	}
 	
 	

@@ -29,7 +29,6 @@ font-weight:bold;
 </head>
 <body>
 	<%@ include file="topMenuSuccess.jsp"%>
-
 	<div class="jumbotron text-center">
 
 		<h1>Study</h1>
@@ -107,7 +106,7 @@ font-weight:bold;
 					</div>
 					<button class="col-xs-2 btn"
 						style="height: 190px; background-color: #f4511e">
-						<a href="Controller?action=graduationDetail&id=${dto.id}"
+						<a href="StudyController?action=searchStudy&stNo=<%=dto.getStNo()%>"
 							class="glyphicon glyphicon-chevron-right logo-small"
 							style="color: white" role="button"></a>
 					</button>

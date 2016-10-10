@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Language" content="ko">
 <title>스터디 등록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -14,6 +15,7 @@
 <script>
 function moveEntryPage() {
 	if(confirm('스터디를 등록하시겠습니까?')) {
+		document.entryForm.method = "POST";
 		document.entryForm.action = "StudyController?action=addStudy";
 		document.entryForm.submit();
 	}
@@ -38,7 +40,7 @@ function init() {
 	}
 	
 	for(var i = 1; i <= 12; i++) {
-		var newOpt = new Option(i+'월',i);
+		var newOpt = new Option(i+'월','0'+i);
 		stMonth1.options[i-1] = newOpt;
 		
 	}
@@ -49,7 +51,7 @@ function init() {
 	}
 	
 	for(var i = 1; i <= 12; i++) {
-		var newOpt = new Option(i+'월',i);
+		var newOpt = new Option(i+'월','0'+i);
 		stMonth2.options[i-1] = newOpt;
 	}
 	
@@ -69,19 +71,19 @@ function initDay() {
 	if(stMonth.value == 1 || stMonth.value == 3 || stMonth.value == 5 || stMonth.value == 7 || stMonth.value == 8 || stMonth.value == 10 || stMonth.value == 12) {
 		
 		for(var i = 1; i <= 31; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 		
 	} else if(stMonth.value == 2) {
 		for(var i = 1; i <= 28; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 		
 	} else {
 		for(var i = 1; i <= 30; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 	
@@ -99,19 +101,19 @@ function initDay2() {
 	if(stMonth.value == 1 || stMonth.value == 3 || stMonth.value == 5 || stMonth.value == 7 || stMonth.value == 8 || stMonth.value == 10 || stMonth.value == 12) {
 		
 		for(var i = 1; i <= 31; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 		
 	} else if(stMonth.value == 2) {
 		for(var i = 1; i <= 28; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 		
 	} else {
 		for(var i = 1; i <= 30; i++) {
-			var newOpt = new Option(i+'일', i);
+			var newOpt = new Option(i+'일', '0'+i);
 			stDay.options[i-1] = newOpt;
 		}
 	
@@ -128,9 +130,27 @@ window.onload=init;
 
 		<h1>Study</h1>
 		<p>Study Campus in Sahmyook University</p>
+		<form name="form" class="form-inline">
+			<span class="form-group"> <span class="col-xs-12"> 
+			<select	class="form-control" name="stType" size=1>
+						<OPTION value="">검색</OPTION>
+						<OPTION value="">제목</OPTION>
+						<OPTION value="">작성자</OPTION>
+						<OPTION value="">내용</OPTION>
+			</select>
+			</span>
+			</span>
+			<input type="text" class="form-control" size="50" placeholder="검색" required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
 </div>
-<div>
-<form class="form-horizontal" name="entryForm" method="post" enctype="multipart/form-data" action="StudyController?action=addStudy">
+<div id="portfolio" class="container-fluid text-center bg-grey">
+		<div class="row">
+
+			<h2>Study Room</h2>
+			<h4>재학생 및 졸업생들을 위한 공부방</h4>
+</div>
+<form class="form-horizontal" method="POST" name="entryForm" enctype="multipart/form-data">
   <div class="form-group">
     <label for="stYear1" class="col-xs-2 control-label">수행기간</label>
     <div class="col-xs-1">
@@ -171,7 +191,7 @@ window.onload=init;
   <div class="form-group">
     <label for="stOverview" class="col-sm-2 control-label">개요</label>
     <div class="col-sm-8">
-      <input type="password" class="form-control" name="stOverview" id="stOverview" placeholder="Input Overview">
+      <input type="text" class="form-control" name="stOverview" id="stOverview" placeholder="Input Overview">
     </div>
   </div>
   <div class="form-group">

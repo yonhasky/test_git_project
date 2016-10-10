@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import work.model.dto.Study;
+import work.model.dto.StudyMatch;
 
 public class StudyDao {
 	private FactoryDao factory = FactoryDao.getInstance();
@@ -32,10 +33,10 @@ public class StudyDao {
 		String stFile2 = dto.getStFile2();
 		int stHit = dto.getStHit();
 		String stStatus = dto.getStStatus();
-		
+
 		try {
 			conn = factory.getConnection();
-			String sql = "INSERT INTO studies VALUES(seq_study.nextval, ?, ?, to_char(sysdate,'yyyy/MM/dd'), concat(to_char(sysdate,'yyyy/MM/dd ~ '),to_char(sysdate+60,'yyyy/MM/dd')), ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO studies VALUES(seq_studies.nextval, ?, ?, to_char(sysdate,'yyyy/MM/dd'), ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, stTitle);
 			pstmt.setString(2, stAuthor);
@@ -84,7 +85,7 @@ public class StudyDao {
 			pstmt.close();
 			rs.close();
 			
-			sql="SELECT rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM (SELECT * FROM (SELECT rownum AS rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM studies ORDER BY st_date DESC)) WHERE rown>=? AND rown<=?";
+			sql="SELECT rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM (SELECT rownum AS rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM (SELECT rownum AS rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM studies ORDER BY st_date DESC)) WHERE rown>=? AND rown<=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ((pageNo - 1) * 10) + 1);
 			pstmt.setInt(2, ((pageNo) * 10));
@@ -129,7 +130,7 @@ public class StudyDao {
 		return null;
 	}
 	
-	public Study selectStudy(String stNo) {
+	public ArrayList selectStudy(String stNo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -142,6 +143,7 @@ public class StudyDao {
 			rs = pstmt.executeQuery();
 			
 			Study dto = new Study();
+			ArrayList list = new ArrayList();
 			
 			if(rs.next()) {
 				dto.setStNo(Integer.parseInt(stNo));
@@ -155,8 +157,37 @@ public class StudyDao {
 				dto.setStFile2(rs.getString("ST_FILE2"));
 				dto.setStHit(rs.getInt("ST_Hit"));
 				dto.setStStatus(rs.getString("ST_STATUS"));
-				return dto;
+				list.add(dto);
 			}
+			pstmt.close();
+			rs.close();
+			
+			
+			sql = "select STM_NO, STM_HOST, STM_ENTRY, STM_ENTRY_COMMENT, STM_ENTRY_DATE, STM_ENTRY_STATUS from studymatches WHERE ST_NO=?"; 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(stNo));
+			rs = pstmt.executeQuery();
+			
+			StudyMatch dto1 = null;
+			int stmNo = 0;
+			String stmHost = null;
+			String stmEntry = null;
+			String stmEntryComment = null;
+			String stmEntryDate = null;
+			String stmEntryStatus = null;
+			
+			while(rs.next()) {
+				stmNo = rs.getInt("STM_NO");
+				stmHost = rs.getString("STM_HOST");
+				stmEntry = rs.getString("STM_ENTRY");
+				stmEntryComment = rs.getString("STM_ENTRY_COMMENT");
+				stmEntryDate = rs.getString("STM_ENTRY_DATE");
+				stmEntryStatus = rs.getString("STM_ENTRY_STATUS");
+				dto1 = new StudyMatch(stmNo, stmHost, stmEntry, stmEntryComment, stmEntryDate, stmEntryStatus);
+				list.add(dto1);
+			}
+			
+			return list;
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
