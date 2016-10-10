@@ -57,15 +57,37 @@ public class StudyDao {
 		return 0;
 	}
 	
-	public ArrayList<Study> selectStudyList() {
+	public ArrayList<Study> selectStudyList(String pageNum) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		int pageNo = Integer.parseInt(pageNum);
 		
 		try{
 			conn = factory.getConnection();
-			String sql="SELECT * FROM studies";
+			String sql = "SELECT COUNT(st_no) FROM studies";
+
 			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			int stCount = 0;
+			if (rs.next()) {
+				stCount = rs.getInt(1);
+				stCount = ((stCount / 10) == 0) ? (stCount / 10) : (stCount / 10) + 1;
+			}
+
+			if (pageNo == 0) {
+				pageNo = 1;
+			} else if (pageNo >= stCount) {
+				pageNo = stCount;
+			}
+
+			pstmt.close();
+			rs.close();
+			
+			sql="SELECT rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM (SELECT * FROM (SELECT rownum AS rown, st_no, st_title, st_author, st_date, st_period, st_overview, st_content, st_file1, st_file2, st_hit, st_status FROM studies ORDER BY st_date DESC)) WHERE rown>=? AND rown<=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ((pageNo - 1) * 10) + 1);
+			pstmt.setInt(2, ((pageNo) * 10));
 			rs = pstmt.executeQuery();
 			
 			Study dto = null;
@@ -83,18 +105,18 @@ public class StudyDao {
 			ArrayList<Study> list = new ArrayList<Study>();
 			
 			while(rs.next()) {
-				 stNo = rs.getInt("");
-				 stTitle = rs.getString("");
-				 stAuthor = rs.getString("");
-				 stDate = rs.getString("");
-				 stPeriod = rs.getString("");
-				 stOverview = rs.getString("");
-				 stContent = rs.getString("");
-				 stFile1 = rs.getString("");
-				 stFile2 = rs.getString("");
-				 stHit = rs.getInt("");
-				 stStatus = rs.getString("");
-				 dto = new Study(stNo, stTitle, stAuthor, stDate, stPeriod, stOverview, stContent, stFile1, stFile2, stHit, stStatus);
+				 stNo = rs.getInt("ST_NO");
+				 stTitle = rs.getString("ST_TITLE");
+				 stAuthor = rs.getString("ST_AUTHOR");
+				 stDate = rs.getString("ST_DATE");
+				 stPeriod = rs.getString("ST_PERIOD");
+				 stOverview = rs.getString("ST_OVERVIEW");
+				 stContent = rs.getString("ST_CONTENT");
+				 stFile1 = rs.getString("ST_FILE1");
+				 stFile2 = rs.getString("ST_FILE2");
+				 stHit = rs.getInt("ST_HIT");
+				 stStatus = rs.getString("ST_STATUS");
+				 dto = new Study(stNo, stTitle, stAuthor, stDate, stPeriod, stOverview, stContent, stFile1, stFile2, stHit, stStatus, stCount);
 				 list.add(dto);
 			}
 			
