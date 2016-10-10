@@ -220,7 +220,7 @@ font-weight:bold;
 							</div>
 						</div>
 						<button class="col-xs-2 btn" style="height:190px;background-color:#f4511e">
-						<a href="Controller?action=graduationDetail&id=${dto.id}" class="glyphicon glyphicon-chevron-right logo-small" style=" color:white"
+						<a href="controller?action=graduationDetail&id=${dto.id}" class="glyphicon glyphicon-chevron-right logo-small" style=" color:white"
 							role="button"></a></button>
 					</div>
 				</c:forEach>

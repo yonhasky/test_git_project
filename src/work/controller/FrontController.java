@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import work.model.dto.Mentoring;
 import work.model.dto.Student;
 import work.model.service.MentoringService;
 import work.model.service.StudentService;
@@ -247,10 +248,10 @@ public class FrontController extends HttpServlet {
 			out.write("{'valid':'required'}");
 		}
 	}
-	
-	
+
 	/**
 	 * 비밀번호 체크
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -300,9 +301,10 @@ public class FrontController extends HttpServlet {
 			out.write("{'valid':'required'}");
 		}
 	}
-	
+
 	/**
 	 * 비밀번호 체크
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -324,7 +326,7 @@ public class FrontController extends HttpServlet {
 					.forward(request, response);
 		}
 	}
-	
+
 	/**
 	 * idCheck 응답 데이터 : json 응답 처리 메서드 json : {"valid","true"}
 	 */
@@ -352,7 +354,7 @@ public class FrontController extends HttpServlet {
 			out.write("{'valid':'required'}");
 		}
 	}
-	
+
 	/**
 	 * 로그인 요청 서비스 메소드
 	 * 
@@ -374,7 +376,6 @@ public class FrontController extends HttpServlet {
 					.getRequestDispatcher("loginError.jsp");
 			nextView.forward(request, response);
 		}
-		System.out.println(id+pw);
 
 		// Model 요청의뢰
 		HashMap<String, String> loginMap = studentService.login(id, pw);
@@ -387,6 +388,8 @@ public class FrontController extends HttpServlet {
 			session.setAttribute("id", id);
 			session.setAttribute("pw", pw);
 			session.setAttribute("name", loginMap.get("name"));
+			session.setAttribute("grade", loginMap.get("grade"));
+			session.setAttribute("major", loginMap.get("major"));
 			session.setAttribute("part", loginMap.get("part"));
 
 			if (session.getAttribute("part").equals("A")) {
@@ -414,8 +417,7 @@ public class FrontController extends HttpServlet {
 		}
 		// 응답페이지이동: 성공, 실패, 기타
 	}
-	
-	
+
 	/**
 	 * 회원 자신 정보 조회
 	 * 
@@ -424,7 +426,7 @@ public class FrontController extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	
+
 	protected void studentInfo(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
@@ -441,10 +443,11 @@ public class FrontController extends HttpServlet {
 
 		request.setAttribute("dto", dto);
 
-		request.getRequestDispatcher("studentUpdate.jsp").forward(request, response);
+		request.getRequestDispatcher("studentUpdate.jsp").forward(request,
+				response);
 		;
 	}
-	
+
 	/**
 	 * 회원 전체 조회
 	 * 
@@ -462,7 +465,7 @@ public class FrontController extends HttpServlet {
 				ArrayList<Student> list = studentService.selectList();
 
 				request.setAttribute("list", list);
-				request.getRequestDispatcher("mentoringList.jsp").forward(
+				request.getRequestDispatcher("studentList.jsp").forward(
 						request, response);
 			} else {
 				request.setAttribute("message", "접근권한이 부족합니다");
@@ -478,8 +481,7 @@ public class FrontController extends HttpServlet {
 		}
 
 	}
-	
-	
+
 	/**
 	 * 회원 상세조회
 	 * 
@@ -505,8 +507,7 @@ public class FrontController extends HttpServlet {
 				response);
 		;
 	}
-	
-	
+
 	/**
 	 * 멘토 회원 전체 조회
 	 * 
@@ -521,20 +522,18 @@ public class FrontController extends HttpServlet {
 		String major = request.getParameter("second");
 		HttpSession session = request.getSession(false);
 		if (session != null && session.getAttribute("id") != null) {
-				ArrayList<Student> list = studentService.graduationList(major);
+			ArrayList<Student> list = studentService.graduationList(major);
 
-				request.setAttribute("list", list);
-				request.getRequestDispatcher("mentoringList.jsp").forward(
-						request, response);
-			} else {
-				request.setAttribute("message", "접근권한이 부족합니다");
-				request.getRequestDispatcher("loginError.jsp").forward(request,
-						response);
-			}
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("mentoringList.jsp").forward(request,
+					response);
+		} else {
+			request.setAttribute("message", "접근권한이 부족합니다");
+			request.getRequestDispatcher("loginError.jsp").forward(request,
+					response);
 		}
-	
-	
-	
+	}
+
 	/**
 	 * 멘토 회원 상세조회
 	 * 
@@ -556,11 +555,11 @@ public class FrontController extends HttpServlet {
 		Student dto = studentService.selectOne(id);
 
 		request.setAttribute("dto", dto);
+		ArrayList<Mentoring> list = mentoringService.memtoringSelectList(id);
+		request.setAttribute("list", list);		
 		request.getRequestDispatcher("mentoringDetail.jsp").forward(request,
 				response);
-		;
 	}
-	
 
 	/**
 	 * 관리자 - 회원정보변경
@@ -610,7 +609,6 @@ public class FrontController extends HttpServlet {
 		if (img != null) {
 			img = "img" + "\\" + img;
 		}
-		
 
 		if (id == null || id.trim().length() == 0 || pw == null
 				|| pw.trim().length() == 0 || name == null
@@ -621,7 +619,7 @@ public class FrontController extends HttpServlet {
 			request.getRequestDispatcher("joinError.jsp").forward(request,
 					response);
 		} else {
-			Student dto =  new Student(id, pw, name, mobile, email, birth,
+			Student dto = new Student(id, pw, name, mobile, email, birth,
 					gender, major, division, grade, img, gDate, company, job,
 					career, part);
 			int update = studentService.update(dto);
@@ -656,7 +654,6 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void updateStudent(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 
 		ServletContext application = getServletContext();
 
@@ -706,7 +703,7 @@ public class FrontController extends HttpServlet {
 			request.getRequestDispatcher("joinError.jsp").forward(request,
 					response);
 		} else {
-			Student dto =  new Student(id, pw, name, mobile, email, birth,
+			Student dto = new Student(id, pw, name, mobile, email, birth,
 					gender, major, division, grade, img, gDate, company, job,
 					career, part);
 			int updateStudent = studentService.updateStudent(dto);
@@ -828,8 +825,7 @@ public class FrontController extends HttpServlet {
 		// 응답페이지이동: 성공, 실패, 기타
 
 	}
-	
-	
+
 	/**
 	 * 새로운 암호변경 요청 서비스 메소드
 	 * 
@@ -862,8 +858,7 @@ public class FrontController extends HttpServlet {
 		}
 		// 응답페이지이동: 성공, 실패, 기타
 	}
-	
-	
+
 	/**
 	 * 로그아웃 요청 서비스 메소드
 	 * 
@@ -890,7 +885,6 @@ public class FrontController extends HttpServlet {
 					response);
 		}
 	}
-	
 
 	/**
 	 * get, post 요청을 처리하는 서비스 메소드

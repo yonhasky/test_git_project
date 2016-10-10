@@ -44,25 +44,31 @@ function moveListPage() {
 				%>
 				<form class="form-horizontal" name="entryForm" method="post">
 				  <div class="form-group">
-				    <label for="bTitle" class="col-sm-2 control-label">제목</label>
+				    <label for="kTitle" class="col-sm-2 control-label">제목</label>
 				    <div class="col-sm-8">
 				      <label class="text-center"><%=dto.getkTitle()%></label>
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label for="bContent" class="col-sm-2 control-label">작성자</label>
+				    <label for="kContent" class="col-sm-2 control-label">작성자</label>
 				    <div class="col-sm-8">
 				      <label class="text-center"><%=dto.getkAuthor()%></label>
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label for="bDate" class="col-sm-2 control-label">작성일</label>
+				    <label for="kDate" class="col-sm-2 control-label">작성일</label>
 				    <div class="col-sm-8">
 				      <label class="text-center"><%=dto.getkDate()%></label>
 				    </div>
 				  </div>
+				   <div class="form-group">
+				    <label for="kType" class="col-sm-2 control-label">타입</label>
+				    <div class="col-sm-8">
+				      <label class="text-center"><%=dto.getkType()%></label>
+				    </div>
+				  </div>
 				  <div class="form-group">
-				    <label for="bContent" class="col-sm-2 control-label">내용</label>
+				    <label for="kContent" class="col-sm-2 control-label">내용</label>
 				    <div class="col-sm-7">
 				   		<textarea class="form-control" name="bContent" rows="7" readonly><%=dto.getkContent()%></textarea>   
 				    </div>

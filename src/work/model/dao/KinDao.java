@@ -365,13 +365,14 @@ public class KinDao {
 
 		try {
 			conn = factory.getConnection();
-			String sql = "UPDATE kins SET k_title=?, k_date=to_char(sysdate,'yy-MM-dd'), k_content=?, k_file1=?, k_file2=? WHERE k_no=?";
+			String sql = "UPDATE kins SET k_title=?, k_type=?, k_date=to_char(sysdate,'yyyy-MM-dd'), k_content=?, k_file1=?, k_file2=? WHERE k_no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getkTitle());
-			pstmt.setString(2, dto.getkContent());
-			pstmt.setString(3, dto.getkFile1());
-			pstmt.setString(4, dto.getkFile2());
-			pstmt.setInt(5, dto.getkNo());
+			pstmt.setString(2, dto.getkType());
+			pstmt.setString(3, dto.getkContent());
+			pstmt.setString(4, dto.getkFile1());
+			pstmt.setString(5, dto.getkFile2());
+			pstmt.setInt(6, dto.getkNo());
 
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {

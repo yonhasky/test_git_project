@@ -1,0 +1,10 @@
+INSERT INTO notes VALUES(1, 'user01', 'user02', '안녕하세요~', '잘부탁드립니다!', '2016/09/18', 'T');
+INSERT INTO notes VALUES(2, 'user02', 'user01', '네, 안녕하세요~', '저도 잘부탁드립니다!', '2016/09/19', 'T');
+INSERT INTO notes VALUES(3, 'user01', 'admin01', '관리자께', 'ㅎㅎ', '2016/09/19', 'F');
+INSERT INTO notes VALUES(4, 'admin01','user01','관리자 메세지','전체 메세지입니다.','2016/09/10','F');
+INSERT INTO notes VALUES(5, 'admin01','user02','관리자 메세지','전체 메세지입니다.','2016/09/12','F');
+INSERT INTO notes VALUES(6, 'admin01','user03','관리자 메세지','전체 메세지입니다.','2016/09/14','F');
+INSERT INTO notes VALUES(7, 'admin01','user04','관리자 메세지','전체 메세지입니다.','2016/09/19','F');
+INSERT INTO notes VALUES(8, 'admin01','kang0114','관리자 메세지','전체 메세지입니다.','2016/09/20','F');
+INSERT INTO notes VALUES(9, 'user01','user03','안녕하세요~','메세지 한번 보내봐요','2016/09/19','T');
+INSERT INTO notes VALUES(10, 'user04','user01','안녕하세요?','잘부탁드려요','2016/09/18','F');

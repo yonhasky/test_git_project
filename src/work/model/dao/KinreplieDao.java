@@ -63,7 +63,7 @@ public class KinreplieDao {
 				rConfirm = rs.getString(9);
 				kNo = rs.getInt(10);
 
-				dto = new Kinreplie(rNo, rTitle, rAuthor, rDate, rContent, 						rRecommends, rFile1, rFile2, rConfirm, kNo);
+				dto = new Kinreplie(rNo, rTitle, rAuthor, rDate, rContent, rRecommends, rFile1, rFile2, rConfirm, kNo);
 						
 				list.add(dto);
 			}

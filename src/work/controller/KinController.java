@@ -67,6 +67,8 @@ public class KinController extends HttpServlet {
     protected void kinSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kNo = request.getParameter("kNo");
 		String opt = request.getParameter("opt");
+		System.out.println("kNo : " + kNo);
+		System.out.println("opt : " + opt);
 		Kin dto = null;
 		Cookie[] cookies = request.getCookies();
 		Cookie viewCookie = null;
@@ -98,7 +100,6 @@ public class KinController extends HttpServlet {
 			} 	
 		}
 		
-		System.out.println(dto);
 		if(dto != null) {
 			request.setAttribute("dto", dto);
 			
@@ -144,10 +145,9 @@ public class KinController extends HttpServlet {
 		
 		if(kType != null && kTitle != null && kAuthor != null && kContent != null) {
 			int row = 0;
-			System.out.println(dto);
 			row = dao.insertKin(dto);
 			
-			System.out.println(row);
+//			System.out.println(row);
 			if(row == 1) {
 				request.setAttribute("message", "질문등록 성공.");
 				response.sendRedirect("Kcontroller?action=kinList&pageNum=1");
@@ -169,7 +169,9 @@ public class KinController extends HttpServlet {
 		String savePath = application.getRealPath("images");
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "EUC-KR", new DefaultFileRenamePolicy());
 		
+		String kNo = multi.getParameter("kNo");
 		String kTitle = multi.getParameter("kTitle");
+		String kType = multi.getParameter("kType");
 		String kContent = multi.getParameter("kContent");
 		String kFile1 = multi.getFilesystemName("kFile1");
 		String kFile2 = multi.getFilesystemName("kFile2");
@@ -183,8 +185,9 @@ public class KinController extends HttpServlet {
 		if(kFile2 != null) {
 			filePath2 = "images"+"\\"+kFile2;
 		}
-		Kin dto = new Kin(0, null, kTitle, null, null, kContent,
+		Kin dto = new Kin(Integer.parseInt(kNo), kType, kTitle, "test", null, kContent,
 				0, 0, 0, filePath1, filePath2, 0);
+		System.out.println("dto : " + dto);
 		int row = dao.updateKin(dto);
 		
 		if(row == 1) {
@@ -200,7 +203,6 @@ public class KinController extends HttpServlet {
     protected void kinDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kNo = request.getParameter("kNo");
 		int row = dao.deleteKin(Integer.parseInt(kNo));
-		System.out.println(kNo);
 		if(row == 1) {
 			request.setAttribute("message", "게시글 삭제 성공.");
 			request.getRequestDispatcher("Kcontroller?action=kinList&pageNum=1").forward(request, response);	
