@@ -189,11 +189,12 @@ a:hover{
 .memberList {
 	color: #f4511e;
 	font-weight: bold;
-	height: 80px;
+	width:100px
 }
 
 .memberList2 {
 	color: #5D5D5D;
+	width:100px;
 }
 
 .memberList2>a {

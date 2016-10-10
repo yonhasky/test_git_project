@@ -25,7 +25,6 @@
 			group[i] = new Array();
 
 		group[0][0] = new Option("대학분류", "");
-
 		group[1][0] = new Option("학과선택", "");
 		group[1][1] = new Option("영어영문학부", "영어영문학부");
 		group[1][2] = new Option("중국어학과", "중국어학과");

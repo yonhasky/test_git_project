@@ -147,12 +147,11 @@
 	font-weight: bold;
 }
 
-.table>tbody>tr>td {
-	border: 20px solid white;
-}
-
 .table>tbody>tr {
 	border: 20px;
+}	
+img {
+width:15px;}	
 }
 </style>
 </head>
@@ -199,12 +198,11 @@
 
 					<img src="${dto.img}" alt="..." class="img-circle"
 						style="width: 100%; height: 260px;">
-						<ul class="pager">
-							<li role="presentation" class="active"><a
-								href="#">쪽지보내기</a></li>
-							<li role="presentation" class="active"><a
-								href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
-						</ul>
+					<ul class="pager">
+						<li role="presentation" class="active"><a href="#">쪽지보내기</a></li>
+						<li role="presentation" class="active"><a
+							href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
+					</ul>
 				</div>
 				<div class="col-xs-offset-1 col-xs-8">
 					<ul class="nav nav-tabs nav-justified">
@@ -263,35 +261,37 @@
 				<br> <br>
 				<h3>멘토링 신청내역</h3>
 			</div>
-			<div class=" col-xs-8">
+			<div class=" col-xs-9">
 
-				<table class="table " style="margin-top: 20px;">
+				<table class="table" style="margin-top: 20px;">
 					<tr>
-						<td>이름</td>
-						<td>제목</td>
-						<td>학과</td>
-						<td>학번</td>
-						<td>신청일</td>
-						<td>상태</td>
+						<td class="memberList">이름</td>
+						<td class="memberList">제목</td>
+						<td class="memberList">학과</td>
+						<td class="memberList">학번</td>
+						<td class="memberList">신청일</td>
+						<td class="memberList">상태</td>
+						<td class="memberList"></td>
 					</tr>
 					<c:forEach var="list" items="${requestScope.list}">
-
 						<tr>
-							<td>${list.mName}</td>
-							<td>${list.mComment}</td>
-							<td>${list.mMajor}학과</td>
-							<td>${list.mGrade}학번</td>
-							<td>${list.mDate}</td>
-							<td>${list.mStatus}상태</td>
+							<td class="memberList2">${list.mName}</td>
+							<td class="memberList2">${list.mComment}</td>
+							<td class="memberList2">${list.mMajor}학과</td>
+							<td class="memberList2">${list.mGrade}학번</td>
+							<td class="memberList2">${list.mDate}</td>
+							<td class="memberList2">${list.mStatus}상태</td>
+							<c:if test="${list.mEntry eq sessionScope.id}">
+								<td class="memberList2"><a href="MentoringController?action=mentoringDetail&mNo=${list.mNo}"><img
+										src="images/update.png"></a> |<a href="MentoringController?action=mentoringDelete&mEntry=${list.mEntry}&mNo=${list.mNo}&mHost=${list.mHost}"><img
+										src="images/delete.png"></a></td>
+							</c:if>
 						</tr>
 					</c:forEach>
-
 				</table>
 			</div>
 		</div>
 	</div>
-
-
 
 	<%@ include file="footer.jsp"%>
 </body>
