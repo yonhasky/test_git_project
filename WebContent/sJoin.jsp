@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>MCS - 재학생 회원가입</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -150,8 +150,8 @@
 			group[i] = new Array();
 		if (first == 1) {
 			group[0][0] = new Option("", "");
-			group[1][0] = new Option("영어영문학전공", "");
-			group[1][1] = new Option("영어통번역전공", "ss3");
+			group[1][0] = new Option("영어영문학전공", "영어영문학전공");
+			group[1][1] = new Option("영어통번역전공", "영어통번역전공");
 			group[2][0] = new Option("", "");
 			group[3][0] = new Option("", "");
 			group[4][0] = new Option("", "");
@@ -171,9 +171,9 @@
 			group[1][0] = new Option("", "");
 			group[2][0] = new Option("", "");
 			group[3][0] = new Option("", "");
-			group[4][0] = new Option("컴퓨터시스템 전공", "hp_laser");
-			group[4][1] = new Option("소프트웨어 전공", "hp_laser");
-			group[4][2] = new Option("응용컴퓨팅 전공", "hp_laser");
+			group[4][0] = new Option("컴퓨터시스템 전공", "컴퓨터시스템 전공");
+			group[4][1] = new Option("소프트웨어 전공", "소프트웨어 전공");
+			group[4][2] = new Option("응용컴퓨팅 전공", "응용컴퓨팅 전공");
 			group[5][0] = new Option("", "");
 			group[6][0] = new Option("", "");
 
