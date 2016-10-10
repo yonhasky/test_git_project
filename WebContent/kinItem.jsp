@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ page import="work.model.dto.Kin" %>		
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ page import="work.model.dto.Kin" %>
+<%@ page import="work.model.dto.Kinreplie" %>
+<%@ page import="java.util.ArrayList" %>
+				
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,7 +25,16 @@ function moveListPage() {
 </script>
 </head>
 <body>
-<%-- 	<%@ include file="topMenu.jsp"%> --%>
+<%@ include file="topMenuSuccess.jsp"%>
+	<div class="jumbotron text-center">
+		<h1>지식 IN</h1>
+		<p>질문 & 답변</p>
+		<form class="form-inline">
+			<input type="text" class="form-control" size="50" placeholder="검색"
+				required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
+	</div>
 
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
@@ -104,23 +117,52 @@ function moveListPage() {
 				    <div class="col-sm-offset-8">
 <%-- 				      <%if(session.getAttribute("uGrade") != null || session.getAttribute("uId") != null) {%> --%>
 <%-- 				      <%if(session.getAttribute("uGrade").equals("A") || (session.getAttribute("uId").equals(dto.getkAuthor()))) { %> --%>
-				      <button type="button" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}" class="col-sm-2 btn btn-warning">수정</button>
-				      <button type="button" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}" class="col-sm-2 btn btn-warning">삭제</button>
+				      <button type="button"  class="col-sm-2 btn btn-lg">수정</button>
+				      <button type="button"  class="col-sm-2 btn btn-lg">삭제</button>
+				      <button type="button" onclick="Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>" class="col-sm-2 btn btn-lg">삭제</button>
 <%-- 				      <%} --%>
 <%-- 				        }%>  --%>
-				      <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-info">목록</button>
+							<div class="panel-footer">
+							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
+							<button class="btn btn-lg" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}"">수정</button>
+							<button class="btn btn-lg" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}">삭제</button>
+							</div>
 				    </div>
 				  </div>
 				</form>
+				<br/>
+				<!-- ---------------------------------------------------------------- -->
+				
+					
+				<% ArrayList list = (ArrayList)request.getAttribute("list");
+				if(list != null) {%>
+				<c:forEach var="dto" items="${requestScope.list}">
+					<table class="table table-hover">
+							<tr>
+								<th align="center">No.1</th>
+								<th align="center">제목</th>
+								<th align="center">질문자</th>
+								<th align="center">답변내용</th>
+								<th align="center">답변일</th>
+							</tr>
+								<tr>
+								<td>${dto.rNo}</td>
+								<td>${dto.rTitle}</td>
+								<td>${dto.rAuthor}</td>
+								<td>${dto.rContent}</td>
+								<td>${dto.rDate}</td>
+								</tr>
+					</table>
+				</c:forEach>
+				<%} %>
+				  
 						
 						<div class="panel-footer">
-							<button class="btn btn-lg">등록하기</button>
+							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
 </body>
 </html>

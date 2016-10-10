@@ -83,7 +83,6 @@ public class NoticeDao {
 				list.add(dto);
 			}
 
-
 			return list;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

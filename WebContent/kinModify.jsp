@@ -30,7 +30,16 @@ function moveListPage() {
 </script>
 </head>
 <body>
-	<%@ include file="topMenu.jsp"%>
+	<%@ include file="topMenuSuccess.jsp"%>
+	<div class="jumbotron text-center">
+		<h1>지식 IN</h1>
+		<p>질문 & 답변</p>
+		<form class="form-inline">
+			<input type="text" class="form-control" size="50" placeholder="검색"
+				required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
+	</div>
 
 
 	<!-- Container (Pricing Section) -->

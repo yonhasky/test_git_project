@@ -291,7 +291,6 @@ public class KinDao {
 
 			Kin dto = null;
 
-			System.out.println(flag);
 			if (rs.next()) {
 				kNo = rs.getInt(1);
 				kType = rs.getString(2);

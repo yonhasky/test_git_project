@@ -15,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import work.model.dao.KinreplieDao;
+import work.model.dto.Kin;
 import work.model.dto.Kinreplie;
 
 /**
@@ -24,13 +25,14 @@ public class RplController extends HttpServlet {
        
 	private KinreplieDao dao = KinreplieDao.getInstance();
 	
-	/** 1. 답변 전체 리스트 (질문 + 답변 보이게) */
+	/** 1. 답변 전체 리스트  */
 	protected void rplList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Kinreplie> list = dao.selectRplList();
+		String kNo = request.getParameter("kNo");
+		ArrayList<Kinreplie> list = dao.selectRplList(Integer.parseInt(kNo));
 		
 		if(list != null) {
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("freeBoardList.jsp").forward(request, response);
+			request.getRequestDispatcher("kinItem.jsp").forward(request, response);
 		}
 	}
 	
@@ -41,7 +43,7 @@ public class RplController extends HttpServlet {
 		int sizeLimit = 16 * 1024 * 1024;
 		String savePath = application.getRealPath("images");
 		
-		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "EUC-KR", new DefaultFileRenamePolicy());
 		
 		String kNo = multi.getParameter("kNo");
 		String rTitle = multi.getParameter("rTitle");
@@ -66,7 +68,7 @@ public class RplController extends HttpServlet {
 			row = dao.insertRpl(dto);
 			if(row == 1) {
 				request.setAttribute("message", "질문등록 성공.");
-				response.sendRedirect("Controller?action=rplList");
+				response.sendRedirect("Kcontroller?action=kinList&pageNum=1");
 			} else {
 				request.setAttribute("message", "게시글 등록 오류 발생");
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -86,7 +88,7 @@ public class RplController extends HttpServlet {
 		System.out.println(kNo + "," + rNo);
 		if(row == 1) {
 			request.setAttribute("message", "게시글 삭제 성공.");
-			request.getRequestDispatcher("Controller?action=kinList").forward(request, response);	
+			request.getRequestDispatcher("Kcontroller?action=kinList&pageNum=1").forward(request, response);	
 		} else {
 			request.setAttribute("message", "게시글 삭제 에러.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -98,7 +100,7 @@ public class RplController extends HttpServlet {
 		ServletContext application = getServletContext();
 		int sizeLimit = 16 * 1024 * 1024;
 		String savePath = application.getRealPath("images");
-		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "EUC-KR", new DefaultFileRenamePolicy());
 		
 		String rTitle = multi.getParameter("rTitle");
 		String rContent = multi.getParameter("rContent");
@@ -148,10 +150,10 @@ public class RplController extends HttpServlet {
 				int rows = dao.updateRplCount(Integer.parseInt(kNo));			
 				if(rows == 1) {
 					request.setAttribute("message", "답변수 증가 완료");
-					request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				} else {
 					request.setAttribute("message", "답변수 증가 실패.");
-					request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				}
 			} else {
 				System.out.println("VIEWCOOKIE 있음");
@@ -164,22 +166,71 @@ public class RplController extends HttpServlet {
 				   int rows = dao.updateRplCount(Integer.parseInt(kNo));				
 				   if(rows == 1) {
 						request.setAttribute("message", "답변수 증가 완료");
-						request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				   } else {
 						request.setAttribute("message", "답변수 증가 실패.");
-						request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				   }
 				} else {
 					request.setAttribute("message", "답변수 증가 중복은 불가능합니다.");
-					request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				} 	
 			}
 		} else {
 			request.setAttribute("message", "추천 실패. 로그인 후 다시 시도해주세요.");
-			request.getRequestDispatcher("Controller?action=kinSearch&kNo"+kNo).forward(request, response);
+			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 		}
 	}
 	
+	/** 6.답변 상세 */
+    protected void rplSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String rNo = request.getParameter("rNo");
+		String kNo = request.getParameter("kNo");
+		String opt = request.getParameter("opt");
+		Kinreplie dto = null;
+		Cookie[] cookies = request.getCookies();
+		Cookie viewCookie = null;
+		
+		if(cookies != null && cookies.length > 0) {		  
+			for(int i = 0; i< cookies.length; i++) {
+				if(cookies[i].getName().equals("VCOOKIE")) { 
+					viewCookie = cookies[i];
+				}
+			}  
+		}
+		
+		if(viewCookie == null) {
+			System.out.println("VIEWCOOKIE 없음");
+			Cookie newCookie = new Cookie("VCOOKIE","|"+kNo+"|"); 
+			response.addCookie(newCookie);
+			dto = dao.selectRpl(Integer.parseInt(kNo), Integer.parseInt(rNo));
+		} else {
+			System.out.println("VIEWCOOKIE 있음");
+			String value = viewCookie.getValue();
+			  
+			if(value.indexOf("|"+kNo+"|") <  0) { 
+			   value = value+"|"+kNo+"|";
+			   viewCookie.setValue(value);
+			   response.addCookie(viewCookie);
+			   dto = dao.selectRpl(Integer.parseInt(kNo), Integer.parseInt(rNo));
+			} else {
+			   dto = dao.selectRpl(Integer.parseInt(kNo), Integer.parseInt(rNo));
+			} 	
+		}
+		
+		if(dto != null) {
+			request.setAttribute("dto", dto);
+			
+			if(opt == null) {
+				request.getRequestDispatcher("kinItem.jsp").forward(request, response);
+			} else if(opt.equals("update")) {
+				request.getRequestDispatcher("rplUpdate.jsp").forward(request, response);
+			}
+		} else {
+			request.setAttribute("message", "게시글 조회 에러.");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
+	}
 	
 	
     protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -202,6 +253,10 @@ public class RplController extends HttpServlet {
 		case "rplCount":
 			rplCount(request,response);
 			break;
+		case "rplSearch":
+			rplSearch(request,response);
+			break;
+			
 		default:
 			break;
 		}

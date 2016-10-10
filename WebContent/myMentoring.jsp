@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>MCS-멘토링 상세조회 </title>
+<title>MCS - 나의 멘토링 내역</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -158,100 +158,8 @@ width:15px;}
 <body>
 	<%@ include file="topMenuSuccess.jsp"%>
 
-	<div class="jumbotron text-center">
-
-		<h1>Mentoring</h1>
-		<p>Mentoring Campus in Sahmyook University</p>
-		<form name="form" class="form-inline">
-			<span class="form-group"> <span class="col-xs-12"> <select
-					class="form-control" name="first" onchange="firstChange();" size=1>
-						<OPTION value=''>대학분류</OPTION>
-						<OPTION value=''>인문사회대학</OPTION>
-						<OPTION value=''>보건복지대학</OPTION>
-						<OPTION value=''>과학기술대학</OPTION>
-						<OPTION value=''>약학대학</OPTION>
-						<OPTION value=''>문화예술대학</OPTION>
-						<OPTION value=''>신학대학</OPTION>
-
-				</SELECT> <SELECT class="form-control" name="second"
-					onchange="secondChange();" size=1>
-						<OPTION value=''>학과분류</OPTION>
-				</SELECT>
-			</span>
-			</span> <input type="text" class="form-control" size="50" placeholder="검색"
-				required>
-			<button type="button" class="btn btn-danger">검색</button>
-		</form>
-	</div>
-
-	<!-- Container (Portfolio Section) -->
-	<div id="portfolio" class="container-fluid text-center ">
-		<div class="row">
-
-			<h2>Mentoring</h2>
-			<h4>졸업한 선배님들과의 멘토링</h4>
-
-			<div class="row col-xs-offset-2 col-xs-8"
-				style="border: 10px #f4511e solid; height: 500px; padding-top: 60px">
-				<div class="col-xs-3">
-					<div class="col-xs-12 glyphicon glyphicon-education logo-small"></div>
-
-					<img src="${dto.img}" alt="..." class="img-circle"
-						style="width: 100%; height: 200px;">
-					<ul class="pager">
-						<li role="presentation" class="active"><a href="#">쪽지보내기</a></li>
-						<li role="presentation" class="active"><a
-							href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-offset-1 col-xs-8">
-					<ul class="nav nav-tabs nav-justified">
-						<li role="presentation" class="active"><a
-							style="font-weight: bold; font-size: 20px">${dto.name} 선배님</a></li>
-						<li role="presentation"><a
-							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.major}</a></li>
-						<li role="presentation"><a
-							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.division}</a></li>
-					</ul>
-					<table class="table" style="margin-top: 20px;">
-						<tr>
-							<td><img alt="images/grade.png" src="images/grade.png"></td>
-							<td>${dto.grade}학번</td>
-							<td><img alt="images/gDate.png" src="images/gDate.png"></td>
-							<td>${dto.gDate}졸업</td>
-						</tr>
-						<tr>
-							<td><img alt="images/job.png" src="images/job.png"></td>
-							<td>${dto.job}직종</td>
-							<td><img alt="images/company.png" src="images/company.png"></td>
-							<td>${dto.company}입사</td>
-						</tr>
-						<tr>
-							<td><img alt="images/career.png" src="images/career.png"></td>
-							<td>${dto.career}경력</td>
-							<td><img alt="images/grade.png" src="images/gender.png"></td>
-							<td>${dto.gender}</td>
-						</tr>
-						<tr>
-							<td><img alt="images/grade.png" src="images/birth.png"></td>
-							<td>${2016-dto.birth}살</td>
-							<td><img alt="images/grade.png" src="images/email.png"></td>
-							<td>${dto.email}</td>
-						</tr>
-						<tr>
-							<td><img alt="images/grade.png" src="images/phone.png"></td>
-							<td>${dto.mobile}</td>
-							<td><img alt="images/grade.png" src="images/grade.png"></td>
-							<td>삼육대학교</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-
+	
+	
 
 	<div class="row container-fluid text-center">
 		<div class=" col-xs-offset-2 col-xs-8"
@@ -262,6 +170,7 @@ width:15px;}
 				<h3>멘토링 신청내역</h3>
 			</div>
 			<div class=" col-xs-9">
+
 				<table class="table" style="margin-top: 20px;">
 					<tr>
 						<td class="memberList">이름</td>

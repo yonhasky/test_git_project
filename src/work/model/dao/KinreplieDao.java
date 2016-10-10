@@ -27,15 +27,16 @@ public class KinreplieDao {
 	/** 0. 답변 리스트(질문 상세보기할때 답변도 보이게)
 	 * 
 	 */
-	public ArrayList<Kinreplie> selectRplList() {
+	public ArrayList<Kinreplie> selectRplList(int kNo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = factory.getConnection();
-			String sql = "select * from Kinreplies";
+			String sql = "select * from Kinreplies where k_no=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, kNo);
 			rs = pstmt.executeQuery();
 
 			ArrayList<Kinreplie> list = new ArrayList<Kinreplie>();
@@ -49,7 +50,6 @@ public class KinreplieDao {
 			String rFile1 = null;
 			String rFile2 = null;
 			String rConfirm = null;
-			int kNo = 0;
 
 			while (rs.next()) {
 				rNo = rs.getInt(1);
@@ -61,7 +61,6 @@ public class KinreplieDao {
 				rFile1 = rs.getString(7);
 				rFile2 = rs.getString(8);
 				rConfirm = rs.getString(9);
-				kNo = rs.getInt(10);
 
 				dto = new Kinreplie(rNo, rTitle, rAuthor, rDate, rContent, rRecommends, rFile1, rFile2, rConfirm, kNo);
 						

@@ -17,37 +17,45 @@
 
 </head>
 <body>
-
+	<%@ include file="topMenuSuccess.jsp"%>
+	<div class="jumbotron text-center">
+		<h1>지식 IN</h1>
+		<p>질문 & 답변</p>
+		<form class="form-inline">
+			<input type="text" class="form-control" size="50" placeholder="검색"
+				required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
+	</div>
+	
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
 		<div class="row">
 			<div class="text-center">
 
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+<!-- 				<form class="navbar-form navbar-left" role="search"> -->
+<!-- 					<div class="form-group"> -->
+<!-- 						<input type="text" class="form-control" placeholder="Search"> -->
+<!-- 					</div> -->
+<!-- 					<button type="submit" class="btn btn-default">Submit</button> -->
+<!-- 				</form> -->
 
 			</div>
 			<div class="row slideanim">
 				<div class="col-sm-12 col-xs-12">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h1>Basic</h1>
+							<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
 						</div>
-						<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
-						<h5 class="text-center"> 질문 리스트</h5><br/>
 						<form method="post"
 							action="Kcontroller?action=kinListSearch&pageNum=1">
-							<div class="col-sm-offset-7">
-								<select class="col-sm-4" name="sType">
-									<option value="b_title">제목</option>
-									<option value="b_author">작성자</option>
-								</select> <input type="text" class="col-sm-4" name="sTitle" id="bTitle">
-								<button type="submit" class="col-sm-2">검색</button>
-							</div>
+<!-- 							<div class="col-sm-offset-7"> -->
+<!-- 								<select class="col-sm-4" name="sType"> -->
+<!-- 									<option value="b_title">제목</option> -->
+<!-- 									<option value="b_author">작성자</option> -->
+<!-- 								</select> <input type="text" class="col-sm-4" name="sTitle" id="bTitle"> -->
+<!-- 								<button type="submit" class="col-sm-2">검색</button> -->
+<!-- 							</div> -->
 						</form>
 						<table class="table table-hover">
 							<tr>
@@ -68,9 +76,9 @@
 								</tr>
 							</c:forEach>
 						</table>
-						<div class="col-sm-offset-10">
-					     <button type="button" onclick="document.location.href='kinWrite.jsp'" class="col-sm-4 btn btn-info">글쓰기</button>
-						</div>
+<!-- 						<div class="col-sm-offset-10"> -->
+<!-- 					     <button type="button" onclick="document.location.href='kinWrite.jsp'" class="col-sm-4 btn btn-lg">글쓰기</button> -->
+<!-- 						</div> -->
 						<br/><br/>
 						<nav align="center">
 						  <ul class="pagination">
@@ -99,7 +107,7 @@
 						  </ul>
 						</nav>
 							<div class="panel-footer">
-								<button class="btn btn-lg">등록하기</button>
+								<button class="btn btn-lg" onclick="document.location.href='kinWrite.jsp'">등록하기</button>
 							</div>
 					</div>
 				</div>

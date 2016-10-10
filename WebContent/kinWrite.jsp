@@ -30,28 +30,23 @@ function moveListPage() {
 
 </head>
 <body>
-<%-- 	<%@ include file="topMenu.jsp"%> --%>
-<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
-<h5 class="text-center"> 질문 등록</h5><br/>
+<%@ include file="topMenuSuccess.jsp"%>
+	<div class="jumbotron text-center">
+		<h1>지식 IN</h1>
+		<p>질문 & 답변</p>
+	</div>
 
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
 		<div class="row">
 			<div class="text-center">
-			
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group" >
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
 
 			</div>
 			<div class="row slideanim">
 				<div class="col-sm-12 col-xs-12">
 					<div class="panel panel-default text-center">
 						<div class="panel-heading">
-							<h1>Basic</h1>
+							<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
 						</div>
 						
 						<form class="form-horizontal" name="entryForm" method="post" enctype="multipart/form-data">
@@ -90,16 +85,12 @@ function moveListPage() {
 						    	<input type="file" class="form-control" name="kFile2" id="kFile2">
 						    </div>
 						    <div class="form-group">
-						    <div class="col-sm-offset-6">
-						      <button type="button" onclick="moveEntryPage()" class="col-sm-2 btn btn-info">글쓰기</button>
-						      <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-info">취소</button>
-						    </div>
-						  </div>
 						 </div>
 						</form>
 						
 						<div class="panel-footer">
-							<button class="btn btn-lg">등록하기</button>
+							<button class="btn btn-lg" onclick="moveEntryPage()">등록하기</button>
+							<button class="btn btn-lg" onclick="moveListPage()">취소</button>
 						</div>
 					</div>
 				</div>
