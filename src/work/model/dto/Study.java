@@ -30,11 +30,12 @@ public class Study implements Serializable{
 	private String stFile2;
 	private int stHit;
 	private String stStatus;
+	private int stCount;
 	
 	public Study() { }
 	
 	public Study(int stNo, String stTitle, String stAuthor, String stDate, String stPeriod, String stOverview,
-			String stContent, String stFile1, String stFile2, int stHit, String stStatus) {
+			String stContent, String stFile1, String stFile2, int stHit, String stStatus, int stCount) {
 		this.stNo = stNo;
 		this.stTitle = stTitle;
 		this.stAuthor = stAuthor;
@@ -46,6 +47,7 @@ public class Study implements Serializable{
 		this.stFile2 = stFile2;
 		this.stHit = stHit;
 		this.stStatus = stStatus;
+		this.stCount = stCount;
 	}
 
 	public int getStNo() {
@@ -134,5 +136,13 @@ public class Study implements Serializable{
 
 	public void setStStatus(String stStatus) {
 		this.stStatus = stStatus;
+	}
+
+	public int getStCount() {
+		return stCount;
+	}
+
+	public void setStCount(int stCount) {
+		this.stCount = stCount;
 	}
 }
