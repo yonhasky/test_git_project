@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>고객센터</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -21,7 +21,7 @@
 		<div class="row ">
 	<!-- Container (Contact Section) -->
 	<a href="NoticeController?action=noticeList&pageNum=1"><span class="glyphicon glyphicon-list-alt logo-small col-xs-4"> 공지사항</span></a>
-	<a href="Controller?action=noticeList&pageNum=1"><span class="glyphicon glyphicon-question-sign logo-small col-xs-4"> FAQ</span></a>
+	<a href="faq.jsp"><span class="glyphicon glyphicon-question-sign logo-small col-xs-4"> FAQ</span></a>
 	<a href="RecommendController?action=recommendList&pageNum=1"><span class="glyphicon glyphicon-phone-alt logo-small col-xs-4"> 건의사항</span></a>
 	</div>
 	</div>
