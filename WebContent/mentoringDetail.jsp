@@ -210,8 +210,102 @@ img {
 						</c:forEach>
 
 
-						<li role="presentation" class="active"><a
-							href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
+						<li role="presentation" class="active" data-toggle="modal"
+							data-target="#myModal" style="margin: 8px"><a>멘토링신청</a></li>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								
+									<div id="about" class="container-fluid">
+										<div class="row">
+										<h3>멘토링 신청</h3><br/>
+											<div class="col-sm-4">
+												<span class="glyphicon glyphicon-user logo"></span>
+											</div>
+											<div class="col-sm-8">
+												<form name="form" class="form-horizontal" method="post"
+													action="MentoringController?action=mentoringInsert">
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">멘토
+															ID</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="id" name="id"
+																value=<%=request.getParameter("id")%> readonly>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">ID</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mEntry"
+															name="mEntry" maxlength="12"
+															value=<%=session.getAttribute("id")%> readonly>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">학번</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mGrade"
+															name="mGrade" maxlength="12"
+															value=<%=session.getAttribute("grade")%> readonly>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">전공</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mMajor"
+															name="mMajor" maxlength="12"
+															value=<%=session.getAttribute("major")%> readonly>
+													</div>
+
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">이름</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="mName"
+																name="mName" value=<%=session.getAttribute("name")%>
+																readonly>
+														</div>
+													</div>
+
+
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">내용</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="mComment"
+																name="mComment">
+														</div>
+													</div>
+
+
+
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-4">
+															<button id="btnJoin" type="submit"
+																class="btn btn-default btn-lg" name="submit">Sign
+																in</button>
+
+														</div>
+													</div>
+
+												</form>
+
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
 					</ul>
 				</div>
 				<div class="col-xs-offset-1 col-xs-8">
@@ -221,10 +315,11 @@ img {
 						<li role="presentation"><a
 							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.major}</a></li>
 						<li role="presentation"><a
-							style="font-weight: bold; font-size: 15px; color: #f4511e">
-							<c:choose><c:when test="${dto.division ne null}">
+							style="font-weight: bold; font-size: 15px; color: #f4511e"> <c:choose>
+									<c:when test="${dto.division ne null}">
 							${dto.division}</c:when>
-							<c:otherwise>세부전공없음</c:otherwise></c:choose></a></li>
+									<c:otherwise>세부전공없음</c:otherwise>
+								</c:choose></a></li>
 					</ul>
 					<table class="table" style="margin-top: 20px;">
 						<tr>
