@@ -30,7 +30,6 @@
 			 </div>
 				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
 				<button type="submit" class="btn btn-danger" >검색</button>
-			
 		</form>
 	</div>
 	
