@@ -22,7 +22,7 @@
 <link href="css/common.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<%@ include file="topMenu.jsp"%>
+<%@ include file="topMenuSuccess.jsp"%>
 <script>
 <% if (request.getAttribute("message") != null) {%>
 	alert('<%=request.getAttribute("message")%>');

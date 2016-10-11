@@ -26,6 +26,11 @@ font-weight:bold;
 </style>
 </head>
 <body>
+<% if(request.getAttribute("message")!= null) {%>
+<script>
+alert('<%=request.getAttribute("message") %>');
+</script>
+<%}%>
 	<%@ include file="topMenuSuccess.jsp"%>
 	<%  Study dto = null;
 		ArrayList list = (ArrayList)request.getAttribute("list");
@@ -106,7 +111,7 @@ font-weight:bold;
 							<td><img alt="images/job.png" src="images/job.png">첨부파일1</td>
 							<td></td>
 							<%if(dto.getStFile1() != null) { %>
-							<td><img src="<%=dto.getStFile1()%>"></td>
+							<td><a href="StudyController?action=fileDown&path=<%=dto.getStFile1()%>">다운로드1[<%=dto.getStFile1().substring(dto.getStFile1().indexOf("\\")+1,dto.getStFile1().length()) %>]</a></td>
 							<%} else {%>
 							<td></td>
 							<%} %>
@@ -115,9 +120,8 @@ font-weight:bold;
 						</tr>
 						<%if(dto.getStFile2() != null) { %>
 						<tr>
-							<td><img alt="images/job.png" src="images/job.png">첨부파일2</td>
 							<td></td>
-							<td><img src="<%=dto.getStFile2()%>"></td>
+							<td><a href="StudyController?action=fileDown&path=<%=dto.getStFile2()%>">다운로드2[<%=dto.getStFile2().substring(dto.getStFile2().indexOf("\\")+1,dto.getStFile2().length()) %>]</a></td>
 							<td></td>
 							<td></td>
 						</tr>
@@ -146,7 +150,7 @@ font-weight:bold;
 		<% 	String stAuthor = dto.getStAuthor();
 			String userId = stAuthor.substring(0, stAuthor.indexOf('['));
 			if(userId.equals(session.getAttribute("id"))){%>
-			<li role="presentation" class="active"><a href="#" onclick="if(confirm('수정하시겠습니까?')){location.href='StudyController?action=modifyStudy&stNo=<%=dto.getStNo()%>'}"><img
+			<li role="presentation" class="active"><a href="#" onclick="if(confirm('수정하시겠습니까?')){location.href='StudyController?action=searchStudy&opt=update&stNo=<%=dto.getStNo()%>'}"><img
 										src="images/update.png">수정</a></li>
 			<li role="presentation" class="active"><a href="#" onclick="if(confirm('스터디를 삭제하시겠습니까?')){location.href='StudyController?action=removeStudy&stNo=<%=dto.getStNo()%>'}"><img
 			src="images/delete.png">삭제</a></li>
@@ -169,23 +173,23 @@ font-weight:bold;
 								</div>
 								
 								<div class="modal-body">
-									<form class="form-horizontal" name="entryForm" method="post" action="StudyController?action=studyMatch&stNo=<%=dto.getStNo()%>">
+									<form class="form-horizontal" id="noteForm" name="noteForm" method="post" action="StudyController?action=sendNote&stNo=<%=dto.getStNo()%>">
 										<div class="form-group">
-											<label for="stmHost" class="col-xs-3 control-label">받는 사람</label>
+											<label for="nReceiver" class="col-xs-3 control-label">받는 사람</label>
 											<div class="col-xs-8">
-												<input type="text" class="form-control" id="stmHost" name="stmHost" value="<%=dto.getStAuthor()%>" readonly>
+												<input type="text" class="form-control" id="nReciever" name="nReciever" value="<%=dto.getStAuthor()%>" readonly>
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="stmHost" class="col-xs-3 control-label">보내는 사람</label>
+											<label for="nSender" class="col-xs-3 control-label">보내는 사람</label>
 											<div class="col-xs-8">
-												<input type="text" class="form-control" id="stmEntry" name="stmEntry" value="<%=session.getAttribute("id")+"["+session.getAttribute("name")+"]"%>" readonly>												
+												<input type="text" class="form-control" id="nSender" name="nSender" value="<%=session.getAttribute("id")+"["+session.getAttribute("name")+"]"%>" readonly>												
 											</div>
 										</div>
 										<div class="form-group">
-											<label for="stmPeriod" class="col-xs-3 control-label">제목</label>
+											<label for="nTitle" class="col-xs-3 control-label">제목</label>
 											<div class="col-xs-8">
-												<input type="text" class="form-control" id="stmPeriod" name="stmPeriod">
+												<input type="text" class="form-control" id="nTitle" name="nTitle">
 											</div>
 										</div>
 										<div class="form-group">
@@ -197,7 +201,7 @@ font-weight:bold;
 								
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-9">
-												<button type="button" class="btn btn-info" onclick="if(confirm('쪽지를 보내시겠습니까?')){document.noteForm.submit()}">보내기</button>
+												<button type="button" class="btn btn-info" onclick="if(confirm('쪽지를 보내시겠습니까?')){document.noteForm.submit();}">보내기</button>
 												<button type="button" class="btn btn-info" data-dismiss="modal"> 취 소 </button>
 											</div>
 										</div>
@@ -230,7 +234,7 @@ font-weight:bold;
 								</div>
 								
 								<div class="modal-body">
-									<form class="form-horizontal" name="entryForm" method="post" action="StudyController?action=studyMatch&stNo=<%=dto.getStNo()%>">
+									<form class="form-horizontal" id="entryForm" name="entryForm" method="post" action="StudyController?action=addStudyMatch&stNo=<%=dto.getStNo()%>">
 										<div class="form-group">
 											<label for="stmTitle" class="col-xs-3 control-label">스터디 명</label>
 											<div class="col-xs-8">
@@ -264,7 +268,7 @@ font-weight:bold;
 								
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-9">
-												<button type="button" class="btn btn-warning" onclick="if(confirm('스터디를 신청하겠습니까?')){document.entryForm.submit()}">신청</button>
+												<button type="button" class="btn btn-warning" onclick="if(confirm('스터디를 신청하겠습니까?')){document.entryForm.submit();}">신청</button>
 												<button type="button" class="btn btn-warning" data-dismiss="modal">닫기</button>
 											</div>
 										</div>
@@ -325,10 +329,15 @@ font-weight:bold;
 							<td class="memberList2 col-xs-2"><%=dto1.getStmEntryDate() %></td>
 							<%if(dto1.getStmEntryStatus().equals("A")) {  %>
 								<td class="memberList2 col-xs-1">수락</td>
-							<%} else { %>
+							<%} else if(dto1.getStmEntryStatus().equals("D")) { %>
 								<td class="memberList2 col-xs-1">거절</td>
+							<%} else {%>
+								<%if((session.getAttribute("id")+"["+session.getAttribute("name")+"]").equals(dto.getStAuthor())) { %>
+									<td class="memberList2 col-xs-1"><a href="#" onclick="if(confirm('스터디 신청을 수락하시겠습니까?')){location.href='StudyController?action=updateStatus&status=A&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>';}">수락하기</a> | <a href="#" onclick="if(confirm('스터디 신청을 거절하시겠습니까?')){location.href='StudyController?action=updateStatus&status=D&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>';}">거절하기</a></td>
+								<%} else { %>
+									<td class="memberList2 col-xs-1">대기</td>
+								<%} %>
 							<%} %>
-						
 						</tr>
 						<%} %>
 				</table>

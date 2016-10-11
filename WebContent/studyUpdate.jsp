@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@page import="java.util.ArrayList" 
+        import="work.model.dto.Study"  %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +17,7 @@
 function moveEntryPage() {
 	if(confirm('해당 내용으로 수정하시겠습니까?')) {
 		document.entryForm.method = "POST";
-		document.entryForm.action = "StudyController?action=modifyStudy";
+		document.entryForm.action = "StudyController?action=modifyStudy&stno=<%=request.getParameter("stNo")%>";
 		document.entryForm.submit();
 	}
 }
@@ -149,6 +151,10 @@ window.onload=init;
 			<h2>Study Room</h2>
 			<h4>재학생 및 졸업생들을 위한 공부방</h4>
 </div>
+<% 
+	ArrayList list = (ArrayList)request.getAttribute("list");
+	Study dto = (Study)list.get(0);
+%>
 <form class="form-horizontal" method="POST" name="entryForm" enctype="multipart/form-data">
   <div class="form-group">
     <label for="stYear1" class="col-xs-2 control-label">수행기간</label>
@@ -184,19 +190,19 @@ window.onload=init;
   <div class="form-group">
     <label for="stTitle" class="col-sm-2 control-label">제목</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="stTitle" id="stTitle" placeholder="Input Title">
+      <input type="text" class="form-control" name="stTitle" id="stTitle" value=<%=dto.getStTitle()%>>
     </div>
   </div>
   <div class="form-group">
     <label for="stOverview" class="col-sm-2 control-label">개요</label>
     <div class="col-sm-8">
-      <input type="text" class="form-control" name="stOverview" id="stOverview" placeholder="Input Overview">
+      <input type="text" class="form-control" name="stOverview" id="stOverview" value=<%=dto.getStOverview() %>>
     </div>
   </div>
   <div class="form-group">
     <label for="stContent" class="col-sm-2 control-label">내용</label>
     <div class="col-sm-8">
-   		<textarea class="form-control" name="stContent" rows="9"></textarea>   
+   		<textarea class="form-control" name="stContent" rows="9"><%=dto.getStContent()%></textarea>   
     </div>
   </div>
   
@@ -213,7 +219,7 @@ window.onload=init;
 
   <div class="form-group">
     <div class="col-sm-offset-8">
-      <button type="button" onclick="moveEntryPage()" class="col-sm-2 btn btn-info" style="margin:1px">스터디 등록</button>
+      <button type="button" onclick="moveEntryPage()" class="col-sm-2 btn btn-info" style="margin:1px">스터디 수정</button>
       <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-info" style="margin:1px">취소</button>
     </div>
   </div>

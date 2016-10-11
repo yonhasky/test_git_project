@@ -20,7 +20,13 @@
 					<!-- Button trigger modal -->
 					<%if(session.getAttribute("id") != null) { %>
 					<button type="button" class="btn btn-primary" style="margin: 8px" onclick="location.href='myPage.jsp'">
-						<%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급</a>
+						<%=session.getAttribute("id")%>님&nbsp;	<%if(session.getAttribute("part").equals("S")) {%>
+			재학생 
+		<%} else if(session.getAttribute("part").equals("G")) {%>
+			졸업생
+		<%} else { %>
+			관리자
+		<%} %></a>
 					</button>
 					<%} else {%>
 						<button type="button" class="btn btn-primary " data-toggle="modal"

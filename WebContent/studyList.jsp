@@ -28,28 +28,28 @@ font-weight:bold;
 </style>
 </head>
 <body>
-<script>
+
 <% if(request.getAttribute("message")!= null) {%>
+<script>
 alert('<%=request.getAttribute("message") %>');
-<%}%>
 </script>
+<%}%>
 	<%@ include file="topMenuSuccess.jsp"%>
 	<div class="jumbotron text-center">
 
 		<h1>Study</h1>
 		<p>Study Campus in Sahmyook University</p>
-		<form name="form" class="form-inline">
+		<form name="form" method="POST" class="form-inline" action="StudyController?action=searchKeywordList&pageNum=1">
 			<span class="form-group"> <span class="col-xs-12"> 
-			<select	class="form-control" name="stType" size=1>
-						<OPTION value="">검색</OPTION>
-						<OPTION value="">제목</OPTION>
-						<OPTION value="">작성자</OPTION>
-						<OPTION value="">내용</OPTION>
+			<select	class="form-control" name="type" size=1>
+						<OPTION value="st_title">제목</OPTION>
+						<OPTION value="st_author">작성자</OPTION>
+						<OPTION value="st_content">내용</OPTION>
 			</select>
 			</span>
 			</span>
-			<input type="text" class="form-control" size="50" placeholder="검색" required>
-			<button type="button" class="btn btn-danger">검색</button>
+			<input type="text" class="form-control" name="keyword" size="50" placeholder="검색" required>
+			<button type="submit" class="btn btn-danger">검색</button>
 		</form>
 	</div>
 
@@ -122,17 +122,20 @@ alert('<%=request.getAttribute("message") %>');
 		<div class="col-xs-1"></div>
 		<div class="col-xs-8">
 		<ul class="pagination">
-    	<% if(dto.getStCount() != 0) { %>
+    	<% if(dto.getStCount() != 1) { %>
     	<li>
       	<a href="StudyController?action=searchStudyList&pageNum=<%=Integer.parseInt(request.getParameter("pageNum"))-1 %>" aria-label="Previous">
         	<span aria-hidden="true">&laquo;</span>
       	</a>
     	</li>
     	<%} %>
-    	<% for(int i = 0 ; i < dto.getStCount() ; i++) { %>
+   
+    	<% for(int i = 0; i < dto.getStCount(); i++) { %>
     	<li><a href="StudyController?action=searchStudyList&pageNum=<%=i+1%>"><%=i+1%></a></li>
-    	<%} %>
-    	<% if(dto.getStCount() != 0) { %>
+    	
+    	<%}%>
+    	
+    	<% if(dto.getStCount() != 1) { %>
     	<li>
       	<a href="StudyController?action=searchStudyList&pageNum=<%=Integer.parseInt(request.getParameter("pageNum"))+1%>" aria-label="Next">
         	<span aria-hidden="true">&raquo;</span>

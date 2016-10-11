@@ -125,9 +125,12 @@ function moveListPage() {
 				</form>
 				<div class="panel-footer">
 							<button class="btn btn-lg" onclick="if(confirm('답변을 등록하시겠습니까?')){document.location.href='Kcontroller?action=kinSearchRpl&kNo=<%=request.getParameter("kNo")%>'}">답변하기</button>
+							<%if(session.getAttribute("id").equals(dto.getkAuthor())) { %>
 							<button class="btn btn-lg" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}">수정</button>
 							<button class="btn btn-lg" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}">삭제</button>
-							</div>
+							<%} %>
+							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
+				</div>
 				<br/>
 				<!-- ---------------------------------------------------------------- -->
 				
@@ -156,11 +159,6 @@ function moveListPage() {
 					<br/>
 				</c:forEach>
 				<%} %>
-				  
-						<div class="panel-footer">
-							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
-						</div>
-			
 			<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
 	</a>
