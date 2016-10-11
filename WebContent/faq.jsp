@@ -76,7 +76,7 @@
 			$('.faq2').hide();
 			$('.faq3').hide();
 			$('.faq4').hide();
-			$('.faq5').hide();
+			$('.faq1').hide();
 			$('.faq6').hide();
 		});
 		
