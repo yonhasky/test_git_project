@@ -28,8 +28,12 @@ font-weight:bold;
 </style>
 </head>
 <body>
+<script>
+<% if(request.getAttribute("message")!= null) {%>
+alert('<%=request.getAttribute("message") %>');
+<%}%>
+</script>
 	<%@ include file="topMenuSuccess.jsp"%>
-
 	<div class="jumbotron text-center">
 
 		<h1>Study</h1>
@@ -107,7 +111,7 @@ font-weight:bold;
 					</div>
 					<button class="col-xs-2 btn"
 						style="height: 190px; background-color: #f4511e">
-						<a href="Controller?action=graduationDetail&id=${dto.id}"
+						<a href="StudyController?action=searchStudy&stNo=<%=dto.getStNo()%>"
 							class="glyphicon glyphicon-chevron-right logo-small"
 							style="color: white" role="button"></a>
 					</button>
@@ -118,19 +122,23 @@ font-weight:bold;
 		<div class="col-xs-1"></div>
 		<div class="col-xs-8">
 		<ul class="pagination">
+    	<% if(dto.getStCount() != 0) { %>
     	<li>
       	<a href="StudyController?action=searchStudyList&pageNum=<%=Integer.parseInt(request.getParameter("pageNum"))-1 %>" aria-label="Previous">
         	<span aria-hidden="true">&laquo;</span>
       	</a>
     	</li>
+    	<%} %>
     	<% for(int i = 0 ; i < dto.getStCount() ; i++) { %>
     	<li><a href="StudyController?action=searchStudyList&pageNum=<%=i+1%>"><%=i+1%></a></li>
     	<%} %>
+    	<% if(dto.getStCount() != 0) { %>
     	<li>
       	<a href="StudyController?action=searchStudyList&pageNum=<%=Integer.parseInt(request.getParameter("pageNum"))+1%>" aria-label="Next">
         	<span aria-hidden="true">&raquo;</span>
       	</a>
     	</li>
+    	<%} %>
     	</ul>
     	</div>
     	<div class="col-xs-2">

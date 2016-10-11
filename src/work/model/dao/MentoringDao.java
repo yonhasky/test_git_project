@@ -348,6 +348,36 @@ public class MentoringDao {
 		return 0;
 	}
 
+	
+	/**
+	 * 멘토의 멘토링신청 허락 -> 멘토링 신청정보 변경
+	 * 
+	 * @param board
+	 * @return int
+	 */
+	public int mentoringAccept(int mNo) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String status = "수락";
+
+		try {
+			conn = factory.getConnection();
+			String sql = "update Mentorings set m_status=? where M_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, status);
+			pstmt.setInt(2, mNo);
+
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("error: 등록 오류");
+			System.out.println(e.getMessage());
+		} finally {
+			// 자원해제
+			factory.close(conn, pstmt);
+		}
+		return 0;
+	}
+	
 	/**
 	 * 멘토링 삭제
 	 * 

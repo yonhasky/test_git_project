@@ -149,17 +149,19 @@
 
 .table>tbody>tr {
 	border: 20px;
-}	
+}
+
 img {
-width:15px;}	
+	width: 15px;
+}
 }
 </style>
 </head>
 <body>
 	<%@ include file="topMenuSuccess.jsp"%>
 
-	
-	
+
+
 
 	<div class="row container-fluid text-center">
 		<div class=" col-xs-offset-2 col-xs-8"
@@ -173,6 +175,7 @@ width:15px;}
 
 				<table class="table" style="margin-top: 20px;">
 					<tr>
+						<td class="memberList">멘토</td>
 						<td class="memberList">이름</td>
 						<td class="memberList">제목</td>
 						<td class="memberList">학과</td>
@@ -183,6 +186,7 @@ width:15px;}
 					</tr>
 					<c:forEach var="list" items="${requestScope.list}">
 						<tr>
+							<td class="memberList2">${list.mHost}</td>
 							<td class="memberList2">${list.mName}</td>
 							<td class="memberList2">${list.mComment}</td>
 							<td class="memberList2">${list.mMajor}학과</td>
@@ -190,8 +194,10 @@ width:15px;}
 							<td class="memberList2">${list.mDate}</td>
 							<td class="memberList2">${list.mStatus}상태</td>
 							<c:if test="${list.mEntry eq sessionScope.id}">
-								<td class="memberList2"><a href="MentoringController?action=mentoringDetail&mNo=${list.mNo}"><img
-										src="images/update.png"></a> |<a href="MentoringController?action=mentoringDelete&mEntry=${list.mEntry}&mNo=${list.mNo}&mHost=${list.mHost}"><img
+								<td class="memberList2"><a
+									href="MentoringController?action=mentoringDetail&mNo=${list.mNo}"><img
+										src="images/update.png"></a> |<a
+									href="MentoringController?action=mentoringDelete&mEntry=${list.mEntry}&mNo=${list.mNo}&mHost=${list.mHost}"><img
 										src="images/delete.png"></a></td>
 							</c:if>
 						</tr>

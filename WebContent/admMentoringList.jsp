@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="work.model.dto.Student"%>
+<%@ page import="work.util.Utility"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -118,7 +122,6 @@
 
 			}
 		}
-
 	}
 </script>
 </head>
@@ -137,74 +140,42 @@
 		</form>
 	</div>
 
-
-
 	<!-- Container (Services Section) -->
-
 	<div id="services" class="container-fluid text-center">
 
-		<h2>MCS</h2>
-		<h4><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급
-		</h4>
-		<br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="controller?action=studentList"> <span
-					class="glyphicon glyphicon-user logo-small"></span>
-					<h4>회원관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a  href="controller?action=studentList"> <span
-					class="glyphicon glyphicon-lock logo-small"></span>
-					<h4>스터디관리</h4></a>
+		<table class="table table-striped" align="center" id="tblSort">
+			<thead>
+				<tr align="center">
+					<td class="memberList">이름</td>
+					<td class="memberList">제목</td>
+					<td class="memberList">학과</td>
+					<td class="memberList">학번</td>
+					<td class="memberList">신청일</td>
+					<td class="memberList">상태</td>
+					<td class="memberList">관리</td>
+				</tr>
+			</thead>
 
-			</div>
-			<div class="col-sm-4">
-				<a href="MentoringController?action=mentoringList"> <span
-					class="glyphicon glyphicon-trash logo-small"></span>
-					<h4>멘토링관리</h4></a>
+			<tbody>
+				<c:forEach var="list" items="${requestScope.list}">
 
-			</div>
-		</div>
-		<br> <br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-education logo-small"></span>
-					<h4>지식인관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-heart-empty logo-small"></span>
-					<h4>공지관리</h4>
-				</a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-info-sign logo-small"></span>
-					<h4>1대1문의 관리</h4></a>
-			</div>
-
-		</div>
-		<br> <br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-question-sign logo-small"></span>
-					<h4>쪽지관리</h4></a> </a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-envelope logo-small"></span>
-					<h4>쪽지관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span class="glyphicon glyphicon-plane logo-small"></span>
-					<h4>SU-Wings</h4></a>
-			</div>
-		</div>
+					<tr align="center">
+						<td class="memberList2">${list.mName}</td>
+						<td class="memberList2">${list.mComment}</td>
+						<td class="memberList2">${list.mMajor}</td>
+						<td class="memberList2">${list.mGrade}</td>
+						<td class="memberList2">${list.mDate}</td>
+						<td class="memberList2">${list.mStatus}</td>
+						<td class="memberList2"><a
+							href="MentoringController?action=mentoringDetail&mNo=${list.mNo}" style="margin-right:10px"><img
+								src="images/update.png"></a> | <a
+							href="MentoringController?action=mentoringDelete2&mNo=${list.mNo}" style="margin-left:10px"><img
+								src="images/delete.png"></a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
-
 
 	<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
@@ -214,8 +185,6 @@
 		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
 	</p>
 	</footer>
-
-
 
 </body>
 </html>

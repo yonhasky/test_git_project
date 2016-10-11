@@ -195,8 +195,10 @@
 
 					<tr align="center">
 						<td class="memberList2"><a
-							href="Controller?action=studentDetail&id=${dto.id}"><button>»ó¼¼</button></a>
-						</td>
+							href="Controller?action=studentDetail&id=${dto.id}" style="margin-right:6px"><img
+								src="images/update.png"></a> |<a
+							href="controller?action=deleteM&id=${dto.id}" style="margin-left:6px"><img
+								src="images/delete.png"></a></td>
 						<td class="memberList2">${dto.id}</td>
 						<td class="memberList2">${dto.pw}</td>
 						<td class="memberList2">${dto.name}</td>
