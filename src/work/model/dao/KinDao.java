@@ -170,7 +170,7 @@ public class KinDao {
 		
 		try {
 			conn = factory.getConnection();
-			String sql = "SELECT COUNT(b_number) FROM boards";
+			String sql = "SELECT COUNT(*) FROM kins";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			int bCount = 0;
@@ -188,9 +188,9 @@ public class KinDao {
 			pstmt.close();
 			rs.close();
 			
-			sql = "SELECT k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM ( SELECT rownum as rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM (SELECT rownum AS rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM boards WHERE "+keyword+" LIKE ? ORDER BY b_date DESC)) WHERE rown>=? AND rown<=?";
+			sql = "SELECT k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM ( SELECT rownum as rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM (SELECT rownum AS rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl FROM kins WHERE "+ keywordType +" LIKE ? ORDER BY k_date DESC)) WHERE rown>=? AND rown<=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+ keyword +"%");
 			pstmt.setInt(2, ((pageNo-1)*10)+1);
 			pstmt.setInt(3, ((pageNo)*10));
 			rs = pstmt.executeQuery();
@@ -209,18 +209,14 @@ public class KinDao {
 			int kCount = 0;
 			
 			while(rs.next()) {
-				kNo = rs.getInt(1);
-				kType = rs.getString(2);
-				kTitle = rs.getString(3);
-				kAuthor = rs.getString(4);
-				kDate = rs.getString(5);
-				kContent = rs.getString(6);
-				kHit = rs.getInt(7);
-				kRpl = rs.getInt(8);
-				kRecommends = rs.getInt(9);
-				kFile1 = rs.getString(10);
-				kFile2 = rs.getString(11);
-				kCount = rs.getInt("k_count");
+				kNo = rs.getInt("k_no");
+				kType = rs.getString("k_type");
+				kTitle = rs.getString("k_title");
+				kAuthor = rs.getString("k_author");
+				kDate = rs.getString("k_date");
+				kContent = rs.getString("k_content");
+				kHit = rs.getInt("k_hit");
+				kRpl = rs.getInt("k_rpl");
 				
 				dto = new Kin(kNo, kType, kTitle, kAuthor, kDate, kContent,
 						kHit, kRpl, kRecommends, kFile1, kFile2, kCount);

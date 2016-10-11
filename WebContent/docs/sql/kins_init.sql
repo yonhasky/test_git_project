@@ -24,3 +24,17 @@ insert into kins values
 (seq_kin_num.nextval, '공모전', '크리에이티브 삼육 아이디어 이전 수상작들 조회 어디서 하죠?', '김훈호', to_char(sysdate, 'yyyy-mm-dd'), '크리에이티브 삼육 아이디어 이전 수상작들 조회 어디서 하죠?', 0, 0, 0, null, null,0);
 
 commit;
+
+
+SELECT k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl 
+FROM ( SELECT rownum as rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl 
+	   FROM (SELECT rownum AS rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl 
+	   		 FROM kins ORDER BY k_date DESC)) 
+WHERE rown>=1 AND rown<=10;
+
+
+SELECT k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl
+FROM ( SELECT rownum as rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl 
+	   FROM (SELECT rownum AS rown, k_no, k_type ,k_title, k_author, k_date, k_content, k_hit, k_rpl
+	   		 FROM kins WHERE k_title LIKE '%질문%' ORDER BY k_date DESC)) 
+WHERE rown>=1 AND rown<=10;

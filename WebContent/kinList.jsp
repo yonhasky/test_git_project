@@ -21,24 +21,24 @@
 	<div class="jumbotron text-center">
 		<h1>지식 IN</h1>
 		<p>질문 & 답변</p>
-		<form class="form-inline">
-			<input type="text" class="form-control" size="50" placeholder="검색"
-				required>
-			<button type="button" class="btn btn-danger">검색</button>
+		<form class="form-inline" method="post" action="Kcontroller?action=kinListSearch&pageNum=1">
+			<div class="col-sm-offset-7">
+				<select class="col-sm-2" name="keywordType">
+					 <option value="k_title">제목</option>
+					 <option value="k_author">작성자</option>
+				 </select>
+			 </div>
+				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
+				<button type="submit" class="btn btn-danger" >검색</button>
+			
 		</form>
 	</div>
+	
 	
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
 		<div class="row">
 			<div class="text-center">
-
-<!-- 				<form class="navbar-form navbar-left" role="search"> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<input type="text" class="form-control" placeholder="Search"> -->
-<!-- 					</div> -->
-<!-- 					<button type="submit" class="btn btn-default">Submit</button> -->
-<!-- 				</form> -->
 
 			</div>
 			<div class="row slideanim">
@@ -49,13 +49,6 @@
 						</div>
 						<form method="post"
 							action="Kcontroller?action=kinListSearch&pageNum=1">
-<!-- 							<div class="col-sm-offset-7"> -->
-<!-- 								<select class="col-sm-4" name="sType"> -->
-<!-- 									<option value="b_title">제목</option> -->
-<!-- 									<option value="b_author">작성자</option> -->
-<!-- 								</select> <input type="text" class="col-sm-4" name="sTitle" id="bTitle"> -->
-<!-- 								<button type="submit" class="col-sm-2">검색</button> -->
-<!-- 							</div> -->
 						</form>
 						<table class="table table-hover">
 							<tr>
