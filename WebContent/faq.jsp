@@ -14,9 +14,13 @@
 <script src="script/jquery-1.7.1.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('.books').hide();
-		$('.movies').hide();
-		$('.music').hide();
+		$('.faq1').hide();
+		$('.faq2').hide();
+		$('.faq3').hide();
+		$('.faq4').hide();
+		$('.faq5').hide();
+		$('.faq6').hide();
+
 
 		$('a').hover(function(event) {
 			$(this).addClass('rightselectfig');
@@ -26,25 +30,64 @@
 			$(this).parent().removeClass('leftselectfig');
 		});
 
-		$('#booksbutton').click(function(event) {
+		$('#faq1button').click(function(event) {
 			event.preventDefault();
-			$('.books').show('slow');
-			$('.movies').hide();
-			$('.music').hide();
+			$('.faq1').show('slow');
+			$('.faq2').hide();
+			$('.faq3').hide();
+			$('.faq4').hide();
+			$('.faq5').hide();
+			$('.faq6').hide();
 		});
 
-		$('#moviesbutton').click(function(event) {
+		$('#faq2button').click(function(event) {
 			event.preventDefault();
-			$('.movies').show('slow');
-			$('.books').hide();
-			$('.music').hide();
+			$('.faq2').show('slow');
+			$('.faq1').hide();
+			$('.faq3').hide();
+			$('.faq4').hide();
+			$('.faq5').hide();
+			$('.faq6').hide();
 		});
-
-		$('#musicbutton').click(function(event) {
+		
+		$('#faq3button').click(function(event) {
 			event.preventDefault();
-			$('.music').show('slow');
-			$('.books').hide();
-			$('.movies').hide();
+			$('.faq3').show('slow');
+			$('.faq2').hide();
+			$('.faq1').hide();
+			$('.faq4').hide();
+			$('.faq5').hide();
+			$('.faq6').hide();
+		});
+		
+		$('#faq4button').click(function(event) {
+			event.preventDefault();
+			$('.faq4').show('slow');
+			$('.faq2').hide();
+			$('.faq3').hide();
+			$('.faq1').hide();
+			$('.faq5').hide();
+			$('.faq6').hide();
+		});
+		
+		$('#faq5button').click(function(event) {
+			event.preventDefault();
+			$('.faq5').show('slow');
+			$('.faq2').hide();
+			$('.faq3').hide();
+			$('.faq4').hide();
+			$('.faq5').hide();
+			$('.faq6').hide();
+		});
+		
+		$('#faq6button').click(function(event) {
+			event.preventDefault();
+			$('.faq6').show('slow');
+			$('.faq2').hide();
+			$('.faq3').hide();
+			$('.faq4').hide();
+			$('.faq5').hide();
+			$('.faq1').hide();
 		});
 	});
 </script>
@@ -54,14 +97,21 @@
 
 	<div id="portfolio" class="container-fluid text-center bg-grey">
 		<div class="row ">
-			<span class="buttons"><a href="example.com" id="booksbutton">
-					질문유형1 </a></span> <span class="buttons"><a href="example.com"
-				id="moviesbutton"> 질문유형2 </a></span> <span class="buttons"><a
-				href="example.com" id="musicbutton"> 질문유형3 </a></span><br>
+		
+			<span class="buttons"><a href="example.com" id="faq1button"> 게시물을 삭제 또는 수정하고 싶어요. </a></span><br>
+			<span class="buttons"><a href="example.com"	id="faq2button"> 회원가입은 어디에서 하면 되나요? </a></span><br>
+			<span class="buttons"><a href="example.com" id="faq3button"> 아이디와 비밀번호가 기억이 나지 않아요. </a></span><br>
+			<span class="buttons"><a href="example.com" id="faq4button"> 질문유형4 </a></span><br>
+			<span class="buttons"><a href="example.com"	id="faq5button"> 질문유형5 </a></span><br>
+			<span class="buttons"><a href="example.com" id="faq6button"> 질문유형6 </a></span><br>
 			<br>
-			<p class="books">답변 1</p>
-			<p class="movies">답변 2</p>
-			<p class="music">답변 3</p>
+			<br>
+			<p class="faq1"> 사용자께서 작성하신 해당 게시물에 접속하여 게시글 아래의 수정 또는 삭제 버튼을 클릭하시면 수정 또는 삭제가 정상적으로 완료 됩니다. </p>
+			<p class="faq2"> 메인 메뉴 페이지의 'login' 버튼을 클릭하시면 로그인 창과 함께 'join us' 버튼창을 누르시면 회원가입을 하실 수 있습니다. </p>
+			<p class="faq3"> 메인 메뉴 페이지의 'login' 버튼을 클릭하시면 로그인 창과 함께 'find ID' 버튼이나 'find PW' 버튼을 클릭하시면 아이디와 비밀번호를 찾으실 수 있습니다. </p>
+			<p class="faq4">  </p>
+			<p class="faq5">  </p>
+			<p class="faq6">  </p>
 				</div>
 	</div>
 </body>
