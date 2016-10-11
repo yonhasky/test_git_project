@@ -64,17 +64,24 @@ public class FrontController extends HttpServlet {
 		int birth = Integer.parseInt(multi.getParameter("birth"));
 		String major = multi.getParameter("second");
 		String division = multi.getParameter("third");
-		String grade = multi.getParameter("grade");
+		String grade = multi.getParameter("grade")+"학번";
 		String img = multi.getFilesystemName("img");
 		String gDate1 = multi.getParameter("gDate1");
 		String gDate2 = multi.getParameter("gDate2");
-		String gDate = gDate1 + "-" + gDate2;
+		String gDate = gDate1 + "년" + gDate2 + "월 졸업";
 		String company = multi.getParameter("company");
 		String job = multi.getParameter("job");
 		String career1 = multi.getParameter("career1");
 		String career2 = multi.getParameter("career2");
-		String career = career1 + "-" + career2;
+		String career = career1 + "년" + career2+ "개월";
 		String part = "G";
+		
+		if(gender.equals("M")){
+			gender = "남자";
+		}else if(gender.equals("F")){
+			gender = "여자";
+		}
+		
 
 		if (img != null) {
 			img = "img" + "\\" + img;
@@ -89,7 +96,6 @@ public class FrontController extends HttpServlet {
 			request.setAttribute("message", "정보를 제대로 입력해 주세요");
 			request.getRequestDispatcher("loginError.jsp").forward(request,
 					response);
-			System.out.println("aaaa");
 		} else {
 			// Model 요청의뢰
 			Student dto = new Student(id, pw, name, mobile, email, birth,
@@ -151,14 +157,20 @@ public class FrontController extends HttpServlet {
 		int birth = Integer.parseInt(multi.getParameter("birth"));
 		String major = multi.getParameter("second");
 		String division = multi.getParameter("third");
-		String grade = multi.getParameter("grade");
+		String grade = multi.getParameter("grade")+"학번";
 		String img = multi.getFilesystemName("img");
 		String part = "S";
 		String gDate = null;
 		String company = null;
 		String job = null;
 		String career = null;
-
+		
+		if(gender.equals("M")){
+			gender = "남자";
+		}else if(gender.equals("F")){
+			gender = "여자";
+		}
+		
 		if (img != null) {
 			img = "img" + "\\" + img;
 		}else {
@@ -279,7 +291,7 @@ public class FrontController extends HttpServlet {
 	}
 
 	/**
-	 * idCheck 응답 데이터 : json 응답 처리 메서드 json : {"valid","true"}
+	 * pwCheck 응답 데이터 : json 응답 처리 메서드 json : {"valid","true"}
 	 */
 	protected void responseJson2(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -307,7 +319,7 @@ public class FrontController extends HttpServlet {
 	}
 
 	/**
-	 * 비밀번호 체크
+	 * 비밀번호 체크(회원삭제)
 	 * 
 	 * @param request
 	 * @param response
@@ -332,7 +344,7 @@ public class FrontController extends HttpServlet {
 	}
 
 	/**
-	 * idCheck 응답 데이터 : json 응답 처리 메서드 json : {"valid","true"}
+	 * pwCheck 응답 데이터 : json 응답 처리 메서드 json : {"valid","true"}
 	 */
 	protected void responseJson3(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -409,14 +421,10 @@ public class FrontController extends HttpServlet {
 			// 응답페이지이동:실패
 			// 로그인 성공-> HttpSession 으로 변경 예정
 			StringBuilder error = new StringBuilder();
-			error.append("아이디 비밀번호 확인바랍니다");
-			error.append("<br>");
-			error.append("등록되지 않은 아이디거나 잘못입력하셨습니다.");
-
+	
 			request.setAttribute("message", "로그인 정보가 부적절합니다.");
-			request.getRequestDispatcher("loginError.jsp").forward(request,
+			request.getRequestDispatcher("errorLogin.jsp").forward(request,
 					response);
-			System.out.println("dd");
 
 		}
 		// 응답페이지이동: 성공, 실패, 기타

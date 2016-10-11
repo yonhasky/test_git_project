@@ -27,6 +27,8 @@ public class MentoringService {
 	public  ArrayList<Mentoring> memtoringSelectList() {
 		return dao.selectList();
 	}
+	
+	//∏‡≈‰∫∞ ∏‡∆º∏ÆΩ∫∆Æ
 	public  ArrayList<Mentoring> memtoringSelectList(String id) {
 		return dao.selectList(id);
 	}
@@ -55,5 +57,10 @@ public class MentoringService {
 	public int deleteMentoring(int mNo) {
 		return dao.deleteMentoring(mNo);
 	}
+	
+	public int mentoringAccept(int mNo) {
+		return dao.mentoringAccept(mNo);
+	}
+
 
 }

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>MCS-멘토링 상세조회 </title>
+<title>MCS-멘토링 상세조회</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -149,9 +149,11 @@
 
 .table>tbody>tr {
 	border: 20px;
-}	
+}
+
 img {
-width:15px;}	
+	width: 15px;
+}
 }
 </style>
 </head>
@@ -199,7 +201,15 @@ width:15px;}
 					<img src="${dto.img}" alt="..." class="img-circle"
 						style="width: 100%; height: 200px;">
 					<ul class="pager">
-						<li role="presentation" class="active"><a href="#">쪽지보내기</a></li>
+						<c:forEach var="list" items="${requestScope.list}">
+
+							<c:if
+								test="${sessionScope.id eq list.mEntry and list.mStatus eq '수락'}">
+								<li role="presentation" class="active"><a href="#">쪽지보내기</a></li>
+							</c:if>
+						</c:forEach>
+
+
 						<li role="presentation" class="active"><a
 							href="mentoringInsert.jsp?id=${dto.id}">멘토링신청</a></li>
 					</ul>
@@ -211,24 +221,27 @@ width:15px;}
 						<li role="presentation"><a
 							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.major}</a></li>
 						<li role="presentation"><a
-							style="font-weight: bold; font-size: 15px; color: #f4511e">${dto.division}</a></li>
+							style="font-weight: bold; font-size: 15px; color: #f4511e">
+							<c:choose><c:when test="${dto.division ne null}">
+							${dto.division}</c:when>
+							<c:otherwise>세부전공없음</c:otherwise></c:choose></a></li>
 					</ul>
 					<table class="table" style="margin-top: 20px;">
 						<tr>
 							<td><img alt="images/grade.png" src="images/grade.png"></td>
-							<td>${dto.grade}학번</td>
+							<td>${dto.grade}</td>
 							<td><img alt="images/gDate.png" src="images/gDate.png"></td>
-							<td>${dto.gDate}졸업</td>
+							<td>${dto.gDate}</td>
 						</tr>
 						<tr>
 							<td><img alt="images/job.png" src="images/job.png"></td>
-							<td>${dto.job}직종</td>
+							<td>${dto.job}</td>
 							<td><img alt="images/company.png" src="images/company.png"></td>
-							<td>${dto.company}입사</td>
+							<td>${dto.company}</td>
 						</tr>
 						<tr>
 							<td><img alt="images/career.png" src="images/career.png"></td>
-							<td>${dto.career}경력</td>
+							<td>경력 ${dto.career}</td>
 							<td><img alt="images/grade.png" src="images/gender.png"></td>
 							<td>${dto.gender}</td>
 						</tr>
@@ -240,7 +253,11 @@ width:15px;}
 						</tr>
 						<tr>
 							<td><img alt="images/grade.png" src="images/phone.png"></td>
-							<td>${dto.mobile}</td>
+							<td><c:forEach var="list" items="${requestScope.list}">
+									<c:if
+										test="${sessionScope.id eq list.mEntry and list.mStatus eq '수락'}">
+								${dto.mobile}</c:if>
+								</c:forEach></td>
 							<td><img alt="images/grade.png" src="images/grade.png"></td>
 							<td>삼육대학교</td>
 						</tr>
@@ -248,10 +265,7 @@ width:15px;}
 				</div>
 			</div>
 		</div>
-
-
 	</div>
-
 
 	<div class="row container-fluid text-center">
 		<div class=" col-xs-offset-2 col-xs-8"
@@ -271,19 +285,29 @@ width:15px;}
 						<td class="memberList">신청일</td>
 						<td class="memberList">상태</td>
 						<td class="memberList"></td>
+						<td class="memberList"></td>
+
 					</tr>
 					<c:forEach var="list" items="${requestScope.list}">
 						<tr>
 							<td class="memberList2">${list.mName}</td>
 							<td class="memberList2">${list.mComment}</td>
-							<td class="memberList2">${list.mMajor}학과</td>
-							<td class="memberList2">${list.mGrade}학번</td>
+							<td class="memberList2">${list.mMajor}</td>
+							<td class="memberList2">${list.mGrade}</td>
 							<td class="memberList2">${list.mDate}</td>
-							<td class="memberList2">${list.mStatus}상태</td>
+							<td class="memberList2">${list.mStatus}</td>
 							<c:if test="${list.mEntry eq sessionScope.id}">
-								<td class="memberList2"><a href="MentoringController?action=mentoringDetail&mNo=${list.mNo}"><img
-										src="images/update.png"></a> |<a href="MentoringController?action=mentoringDelete&mEntry=${list.mEntry}&mNo=${list.mNo}&mHost=${list.mHost}"><img
-										src="images/delete.png"></a></td>
+								<td class="memberList2"><a
+									href="MentoringController?action=mentoringDetail&mNo=${list.mNo}"
+									style="margin-right: 10px"><img src="images/update.png"></a>
+									|<a
+									href="MentoringController?action=mentoringDelete&mEntry=${list.mEntry}&mNo=${list.mNo}&mHost=${list.mHost}"
+									style="margin-left: 10px"><img src="images/delete.png"></a></td>
+							</c:if>
+							<c:if test="${sessionScope.id eq dto.id}">
+								<td class="memberList2"><a
+									href="MentoringController?action=mentoringAccept&mNo=${list.mNo}"><img
+										src="images/accept.png"></a></td>
 							</c:if>
 						</tr>
 					</c:forEach>
