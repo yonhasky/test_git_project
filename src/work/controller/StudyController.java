@@ -84,7 +84,15 @@ public class StudyController extends HttpServlet {
     }
     
     protected void removeStudy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
+    	String stNo = request.getParameter("stNo");
+    	if(service.deleteStudy(stNo)==1) {
+    		request.setAttribute("message","스터디가 삭제되었습니다.");
+    		request.getRequestDispatcher("StudyController?action=searchStudyList&pageNum=1").forward(request, response);
+    	} else {
+    		request.setAttribute("message", "스터디 삭제에 실패했습니다. 다시 시도해주세요.");
+    		request.getRequestDispatcher("error.jsp").forward(request, response);
+    	}
+ 
     }
     
     protected void modifyStudy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,6 +119,7 @@ public class StudyController extends HttpServlet {
     	HttpSession session = request.getSession(false);
     	if(session != null && session.getAttribute("id") != null) {
     		String pageNum = request.getParameter("pageNum");
+    		System.out.println("pageNum : "+pageNum);
     		ArrayList<Study> list = service.selectStudyList(pageNum);
     		request.setAttribute("list", list);
     		request.getRequestDispatcher("studyList.jsp").forward(request, response);

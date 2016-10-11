@@ -78,10 +78,10 @@ public class StudyDao {
 
 			if (pageNo == 0) {
 				pageNo = 1;
-			} else if (pageNo >= stCount) {
+			} else if (pageNo != 1 && pageNo >= stCount) {
 				pageNo = stCount;
 			}
-
+			System.out.println("pageNo"+pageNo);
 			pstmt.close();
 			rs.close();
 			
