@@ -137,19 +137,17 @@ function moveListPage() {
 				<c:forEach var="dto" items="${requestScope.list}">
 					<table class="table table-hover">
 							<tr>
-								<th align="center">No.1</th>
-								<th align="center">제목</th>
-								<th align="center">질문자</th>
-								<th align="center">답변내용</th>
-								<th align="center">답변일</th>
+								<th >제목</th>
+								<th >답변자</th>
+								<th >답변내용</th>
+								<th >답변일</th>
 							</tr>
-								<tr>
-								<td>${dto.rNo}</td>
+							<tr>
 								<td>${dto.rTitle}</td>
 								<td>${dto.rAuthor}</td>
 								<td>${dto.rContent}</td>
 								<td>${dto.rDate}</td>
-								</tr>
+							</tr>
 					</table>
 					<div class="panel-footer">
 					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=<%=request.getParameter("kNo")%>&rNo=<%=request.getParameter("rNo")%>'}">수정</button>
