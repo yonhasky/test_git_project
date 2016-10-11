@@ -14,6 +14,16 @@
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/controller</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>MentoringController</display-name>
+    <servlet-name>MentoringController</servlet-name>
+    <servlet-class>work.controller.MentoringController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MentoringController</servlet-name>
+    <url-pattern>/MentoringController</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>StudyController</display-name>

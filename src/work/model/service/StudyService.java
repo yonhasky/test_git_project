@@ -11,7 +11,7 @@ public class StudyService {
 		return dao.insertStudy(dto);
 	}
 	
-	public Study selectStudy(String stNo) {
+	public ArrayList selectStudy(String stNo) {
 		return dao.selectStudy(stNo);
 	}
 	

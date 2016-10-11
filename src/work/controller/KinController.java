@@ -53,6 +53,7 @@ public class KinController extends HttpServlet {
     	String keywordType = request.getParameter("keywordType");
     	String keyword = request.getParameter("keyword");
     	String pageNum = request.getParameter("pageNum");
+    	System.out.println(keywordType +" : " + keyword);
     	ArrayList<Kin> list = dao.selectKinListSearch(pageNum, keywordType, keyword);
 		
     	if(keywordType == null && keywordType.trim().length() < 1 ||
