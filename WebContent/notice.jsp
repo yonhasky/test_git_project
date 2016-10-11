@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<%@ include file="topMenu.jsp"%>
+	<%@ include file="topMenuSuccess.jsp"%>
 
 <div id="portfolio" class="container-fluid text-center bg-grey">
 		<div class="row ">

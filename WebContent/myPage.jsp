@@ -60,7 +60,6 @@
 				document.getElementById("btnPw").disabled = true;
 				document.getElementById("pw").focus();
 
-
 			} else if (result == 'required') {
 				document.getElementById("pwConfirm").innerHTML = "미입력";
 				document.getElementById("btnPw").disabled = true;
@@ -70,64 +69,62 @@
 		}
 
 	}
-	 
-	 
-	 function isPwDelete() {
-			//web.xml
-			var url = "controller";
 
-			var params = "";
-			params += "action=pwCheckDelete";
+	function isPwDelete() {
+		//web.xml
+		var url = "controller";
 
-			var pwDelete = document.getElementById("pwDelete").value;
-			params += "&pwDelete=" + pwDelete;
+		var params = "";
+		params += "action=pwCheckDelete";
 
-			// 응답데이터 : Json
-			params += "&responseDataType=json";
+		var pwDelete = document.getElementById("pwDelete").value;
+		params += "&pwDelete=" + pwDelete;
 
-			//응답위한 콜백 함수 바인딩
-			var callback = responseJson2;
-			var method = "GET";
-			// js/ajax.js 스크립트 이용햐소 ajax 서버 요청
-			new ajax.xhr.Request(url, params, callback, method)
-		}
+		// 응답데이터 : Json
+		params += "&responseDataType=json";
 
-		/** Json 응답데이터 처리 callback 함수
-		 {"valid","true"}
+		//응답위한 콜백 함수 바인딩
+		var callback = responseJson2;
+		var method = "GET";
+		// js/ajax.js 스크립트 이용햐소 ajax 서버 요청
+		new ajax.xhr.Request(url, params, callback, method)
+	}
 
-		 eval("1+2") =>문자열수식 변환함수
-		 json 형식의 문자열을 json객체 변환
-		 eval("("+json형식의 응답문자열+")")
-		 */
-		function responseJson2(xhr) {
-			if (xhr.readyState == 4 && xhr.status == 200) {
-				var resultJson = eval("(" + xhr.responseText + ")");
-				var result = resultJson.valid;
-				if (result == 'true') {
-					// messageUserId 결과메세지 출력
-					document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>일치 ";
-					document.getElementById("btnPwDelete").disabled = false;
+	/** Json 응답데이터 처리 callback 함수
+	 {"valid","true"}
 
-				} else if (result == 'false') {
-					document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>불일치 ";
-					document.getElementById("btnPwDelete").disabled = true;
-					document.getElementById("pwDelete").focus();
+	 eval("1+2") =>문자열수식 변환함수
+	 json 형식의 문자열을 json객체 변환
+	 eval("("+json형식의 응답문자열+")")
+	 */
+	function responseJson2(xhr) {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var resultJson = eval("(" + xhr.responseText + ")");
+			var result = resultJson.valid;
+			if (result == 'true') {
+				// messageUserId 결과메세지 출력
+				document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-ok' aria-hidden='true'></span><span class='sr-only'>Error:</span>일치 ";
+				document.getElementById("btnPwDelete").disabled = false;
 
+			} else if (result == 'false') {
+				document.getElementById("pwConfirmDelete").innerHTML = "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span><span class='sr-only'>Error:</span>불일치 ";
+				document.getElementById("btnPwDelete").disabled = true;
+				document.getElementById("pwDelete").focus();
 
-				} else if (result == 'required') {
-					document.getElementById("pwConfirmDelete").innerHTML = "미입력";
-					document.getElementById("btnPwDelete").disabled = true;
-					document.getElementById("pwDelete").focus();
+			} else if (result == 'required') {
+				document.getElementById("pwConfirmDelete").innerHTML = "미입력";
+				document.getElementById("btnPwDelete").disabled = true;
+				document.getElementById("pwDelete").focus();
 
-				}
 			}
-
 		}
+
+	}
 </script>
 </head>
 <body id="myPage">
 
-		<%@ include file="topMenuSuccess.jsp"%>
+	<%@ include file="topMenuSuccess.jsp"%>
 
 
 	<div class="jumbotron text-center">
@@ -215,12 +212,6 @@
 				</div>
 
 
-
-
-
-
-
-
 			</div>
 			<div class="col-sm-4">
 				<a data-toggle="modal" data-target="#deleteModal"> <span
@@ -253,8 +244,10 @@
 									</div>
 									<div class="form-group">
 										<label for="inputPassword3" class="col-sm-2 control-label">pwConfirm</label>
-										<div class="col-sm-10"><span id="pwConfirmDelete" class="col-xs-4 "
-											style="margin-left: 10px"></span></div>
+										<div class="col-sm-10">
+											<span id="pwConfirmDelete" class="col-xs-4 "
+												style="margin-left: 10px"></span>
+										</div>
 									</div>
 
 									<div class="form-group">
@@ -268,10 +261,6 @@
 						</div>
 					</div>
 				</div>
-
-
-
-
 			</div>
 		</div>
 		<br> <br>
@@ -282,7 +271,7 @@
 					<h4>나의 스터디</h4></a>
 			</div>
 			<div class="col-sm-4">
-				<a href="#"> <span
+				<a href="MentoringController?action=myMentoring"> <span
 					class="glyphicon glyphicon-heart-empty logo-small"></span>
 					<h4>나의 멘토링</h4>
 				</a>
@@ -307,12 +296,12 @@
 					<h4>쪽지관리</h4></a>
 			</div>
 			<div class="col-sm-4">
-				<a href="#"> <span class="glyphicon glyphicon-plane logo-small"></span>
+				<a href="www.syu.ac.kr"> <span
+					class="glyphicon glyphicon-plane logo-small"></span>
 					<h4>SU-Wings</h4></a>
 			</div>
 		</div>
 	</div>
-
 
 	<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
@@ -322,8 +311,6 @@
 		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
 	</p>
 	</footer>
-
-
 
 </body>
 </html>

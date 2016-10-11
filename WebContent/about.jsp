@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>MCS-소개</title>
 <!-- Theme Made By www.w3schools.com - No Copyright -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -26,9 +26,9 @@
 				<h2>삼육대학교 커뮤니티</h2>
 				<br>
 				<h4>삼육대학교 재학생과 졸업생 모두가 소통할 수 있는 공간. 지금 우리에게 필요한 소통은 우리학교 학생들과의
-					소통입니다. 학교내의 인프라를</h4>
+					소통입니다. 학교내의 인프라를 확장시키고 활성화 시켜 삼육대학교 동문을 일으키기 위한 노력입니다.</h4>
 				<br>
-				<p>재학생과 졸업생이 서로 정보를 주고받는 윈윈전략을</p>
+				<p>삼육대학교 재학생과 졸업생 모두가 서로 어울려 함께 이루어 나가자는 목표를 가집니다.</p>
 				<br>
 				<button class="btn btn-default btn-lg"><a href="http://www.syu.ac.kr">삼육대학교 바로가기</a></button>
 			</div>

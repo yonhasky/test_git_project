@@ -168,6 +168,58 @@ public class MentoringDao {
 	
 	
 	
+
+	/**
+	 * 회원 나의 멘토링신청 조회
+	 * 
+	 * @return ArrayList 반환
+	 */
+	public ArrayList<Mentoring> myList(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Mentoring> arr = new ArrayList<Mentoring>();
+
+		try {
+			conn = factory.getConnection();
+			String sql = "select * from Mentorings where m_entry=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+
+				int mNo = rs.getInt("m_no");
+				String mHost = rs.getString("m_host");
+				String mEntry = rs.getString("m_entry");
+				String mName = rs.getString("m_name");
+				String mMajor = rs.getString("m_major");
+				String mGrade = rs.getString("m_grade");
+				String mComment = rs.getString("m_comment");
+				String mDate = rs.getString("m_date");
+				String mStatus = rs.getString("m_STATUS");
+				
+				Mentoring dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor, mGrade,
+						mComment, mDate, mStatus);
+
+				arr.add(dto);
+			}
+			return arr;
+		} catch (SQLException e) {
+			System.out.println("error: 조회 오류");
+			e.printStackTrace();
+
+		} finally {
+			// 자원해제
+			factory.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+	
+	
+	
+	
 	/**
 	 * 상세조회
 	 * 

@@ -85,6 +85,7 @@ function moveListPage() {
 						    	<input type="file" class="form-control" name="kFile2" id="kFile2">
 						    </div>
 						    <div class="form-group">
+						 	</div>
 						 </div>
 						</form>
 						
@@ -97,6 +98,15 @@ function moveListPage() {
 			</div>
 		</div>
 	</div>
+	
+	<footer class="container-fluid text-center"> <a href="#myPage"
+		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
+	</a>
+	<p>
+		Made By group ACE &nbsp;&nbsp; designed By group ACE <br>Tel:02-112-1122
+		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
+	</p>
+	</footer>
 
 </body>
 </html>

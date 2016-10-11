@@ -1,6 +1,7 @@
 package work.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -81,7 +82,7 @@ public class MentoringController extends HttpServlet {
 			// 응답페이지이동: 성공, 실패, 기타
 		}
 	}
-	
+
 	/**
 	 * 회원 상세조회
 	 * 
@@ -92,25 +93,22 @@ public class MentoringController extends HttpServlet {
 	 */
 	protected void mentoringDetail(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		int mNo= Integer.parseInt(request.getParameter("mNo"));
+		int mNo = Integer.parseInt(request.getParameter("mNo"));
 
 		if (mNo == 0) {
 			request.setAttribute("message", "로그인 후 사용해");
 			request.getRequestDispatcher("loginError.jsp").forward(request,
 					response);
-			System.out.println("dd");
 		}
-		System.out.println("aa");
 
 		Mentoring dto = mentoringService.mentroingSelectOne(mNo);
 
 		request.setAttribute("dto", dto);
 		request.getRequestDispatcher("mentoringUpdate.jsp").forward(request,
 				response);
-		;
+
 	}
-	
-	
+
 	/**
 	 * 회원 - 회원정보변경
 	 * 
@@ -137,7 +135,7 @@ public class MentoringController extends HttpServlet {
 			request.getRequestDispatcher("joinError.jsp").forward(request,
 					response);
 		} else {
-			Mentoring dto =new Mentoring(mNo, mHost, mEntry, mName, mMajor,
+			Mentoring dto = new Mentoring(mNo, mHost, mEntry, mName, mMajor,
 					mGrade, mComment, mDate, mStatus);
 			int updateStudent = mentoringService.boardupdateUser(dto);
 
@@ -214,7 +212,35 @@ public class MentoringController extends HttpServlet {
 		}
 		// 응답페이지이동: 성공, 실패, 기타
 	}
-	
+
+	/**
+	 * 회원 자신의 멘토링 조회
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void myMentoring(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession(false);
+		String id = (String) session.getAttribute("id");
+
+		if (session != null && session.getAttribute("id") != null) {
+			ArrayList<Mentoring> list = mentoringService.myList(id);
+
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("myMentoring.jsp").forward(request,
+					response);
+		} else {
+			request.setAttribute("message", "접근권한이 부족합니다");
+			request.getRequestDispatcher("loginError.jsp").forward(request,
+					response);
+
+		}
+
+	}
 
 	/**
 	 * get, post 요청을 처리하는 서비스 메소드
@@ -241,6 +267,9 @@ public class MentoringController extends HttpServlet {
 			case "mentoringDelete":
 				mentoringDelete(request, response);
 				break;
+			case "myMentoring":
+				myMentoring(request, response);
+				break;
 			default:
 				break;
 			// 지원하지 않는 요청 오류
@@ -252,11 +281,6 @@ public class MentoringController extends HttpServlet {
 		}
 
 	}
-	
-	
-	
-	
-	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -264,6 +288,8 @@ public class MentoringController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+
 		process(request, response);
 	}
 
@@ -273,6 +299,8 @@ public class MentoringController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+
 		process(request, response);
 	}
 

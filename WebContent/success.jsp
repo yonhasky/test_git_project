@@ -44,7 +44,6 @@
 					</button></li>
 				<li><a href="about.jsp">ABOUT</a></li>
 				<li><a href="mentoring.jsp">멘토링</a></li>
-				<li><a href="study.jsp">그룹스터디</a></li>
 				<li><a href="StudyController?action=searchStudyList&pageNum=1">그룹스터디</a></li>
 				<li><a href="Kcontroller?action=kinList&pageNum=1">지식IN</a></li>
 				<li><a href="notice.jsp">고객센터</a></li>

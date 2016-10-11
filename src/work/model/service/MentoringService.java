@@ -28,8 +28,13 @@ public class MentoringService {
 		return dao.selectList();
 	}
 	public  ArrayList<Mentoring> memtoringSelectList(String id) {
-		return dao.selectList();
+		return dao.selectList(id);
 	}
+	//회원 자신의 멘토링신청조회
+	public ArrayList<Mentoring> myList(String id) {
+		return dao.myList(id);
+	}
+
 
 	// 게시판 상세조회
 	public Mentoring mentroingSelectOne(int mNo) {
