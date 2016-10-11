@@ -21,39 +21,20 @@
 	<div class="jumbotron text-center">
 		<h1>지식 IN</h1>
 		<p>질문 & 답변</p>
-		<div class="col-sm-offset-3">
+		<div class="col-sm-offset-1">
 		<form class="form-inline" method="post" action="Kcontroller?action=kinListSearch&pageNum=1">
-		<div>
+			<span class="form-group"> <span class="col-xs-12"> 
 				<select class="form-control col-sm-2" name="keywordType">
 					 <option value="k_title">제목</option>
 					 <option value="k_author">작성자</option>
-				 </select>
-			 
-				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
-				<button type="submit" class="btn btn-danger" >검색</button>
-		</div>	
-		</form>
-		</div>
-	</div>
-	<div class="jumbotron text-center">
-
-		<h1>Study</h1>
-		<p>Study Campus in Sahmyook University</p>
-		<form name="form" class="form-inline">
-			<span class="form-group"> <span class="col-xs-12"> 
-			<select	class="form-control" name="stType" size=1>
-						<OPTION value="">검색</OPTION>
-						<OPTION value="">제목</OPTION>
-						<OPTION value="">작성자</OPTION>
-						<OPTION value="">내용</OPTION>
 			</select>
 			</span>
 			</span>
-			<input type="text" class="form-control" size="50" placeholder="검색" required>
-			<button type="button" class="btn btn-danger">검색</button>
+				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
+				<button type="submit" class="btn btn-danger" >검색</button>
 		</form>
+		</div>
 	</div>
-	
 	
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">

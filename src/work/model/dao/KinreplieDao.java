@@ -192,7 +192,7 @@ public class KinreplieDao {
 
 		try {
 			conn = factory.getConnection();
-			String sql = "UPDATE kinreplies SET r_title=?, r_date=to_char(sysdate,'yy-MM-dd'), r_content=?, r_file1=?, r_file2=? WHERE k_no=? and r_no=?";
+			String sql = "UPDATE kinreplies SET r_title=?, r_date=to_char(sysdate, 'yyyy-MM-dd'), r_content=?, r_file1=?, r_file2=? WHERE k_no=? and r_no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getrTitle());
 			pstmt.setString(2, dto.getrContent());

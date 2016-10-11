@@ -105,13 +105,17 @@ public class RplController extends HttpServlet {
 		String savePath = application.getRealPath("images");
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "EUC-KR", new DefaultFileRenamePolicy());
 		
+		
+		String kNo = multi.getParameter("kNo");
+		String rNo = multi.getParameter("rNo");
 		String rTitle = multi.getParameter("rTitle");
 		String rContent = multi.getParameter("rContent");
 		String rFile1 = multi.getFilesystemName("rFile1");
 		String rFile2 = multi.getFilesystemName("rFile2");
 		String filePath1 = null;
 		String filePath2 = null;
-		
+		System.out.println("kNo : " + kNo);
+		System.out.println("rNo : " + rNo);
 		
 		if(rFile1 != null) {
 			filePath1 = "images"+"\\"+rFile1;
@@ -119,14 +123,15 @@ public class RplController extends HttpServlet {
 		if(rFile2 != null) {
 			filePath2 = "images"+"\\"+rFile2;
 		}
-		Kinreplie dto = new Kinreplie(0, rTitle, null, null, rContent, null, filePath1, filePath2, null, 0);
+		Kinreplie dto = new Kinreplie(Integer.parseInt(rNo), rTitle, null, null, rContent, null, filePath1, filePath2, null, Integer.parseInt(kNo));
 		int row = dao.updateRpl(dto);
-		
+		System.out.println("dto : " + dto);
+		System.out.println("row : " + row);
 		if(row == 1) {
-			request.setAttribute("message", "게시글 수정 성공.");
-			request.getRequestDispatcher("Controller?action=kinList").forward(request, response);	
+			request.setAttribute("message", "답변 수정 성공.");
+			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);	
 		} else {
-			request.setAttribute("message", "게시글 수정 에러.");
+			request.setAttribute("message", "답변 수정 에러.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
@@ -225,7 +230,7 @@ public class RplController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			
 			if(opt == null) {
-				request.getRequestDispatcher("kinItem.jsp").forward(request, response);
+				request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+dto.getkNo()).forward(request, response);
 			} else if(opt.equals("update")) {
 				request.getRequestDispatcher("rplUpdate.jsp").forward(request, response);
 			}
