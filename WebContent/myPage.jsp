@@ -26,7 +26,7 @@
 		var params = "";
 		params += "action=pwCheck";
 
-		var pw = document.getElementById("pw").value;
+		var pw = document.updatePw.pw.value;
 		params += "&pw=" + pw;
 
 		// 응답데이터 : Json
@@ -176,7 +176,7 @@
 								<h4 class="modal-title" id="myModalLabel">비밀번호 변경</h4>
 							</div>
 							<div class="modal-body">
-								<form class="form-horizontal" method="post"
+								<form class="form-horizontal" name="updatePw" method="post"
 									action="controller?action=newPasswd">
 									<div class="form-group">
 										<label for="inputEmail3" class="col-sm-2 control-label">PW</label>
@@ -296,22 +296,14 @@
 					<h4>쪽지관리</h4></a>
 			</div>
 			<div class="col-sm-4">
-				<a href="www.syu.ac.kr"> <span
+				<a href="https://suwings.syu.ac.kr/sso/login.jsp"> <span
 					class="glyphicon glyphicon-plane logo-small"></span>
 					<h4>SU-Wings</h4></a>
 			</div>
 		</div>
 	</div>
 
-	<footer class="container-fluid text-center"> <a href="#myPage"
-		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
-	</a>
-	<p>
-		Made By group ACE &nbsp;&nbsp; designed By group ACE <br>Tel:02-112-1122
-		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
-	</p>
-	</footer>
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
 

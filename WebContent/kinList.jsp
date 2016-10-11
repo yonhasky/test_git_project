@@ -35,25 +35,6 @@
 		</form>
 		</div>
 	</div>
-	<div class="jumbotron text-center">
-
-		<h1>Study</h1>
-		<p>Study Campus in Sahmyook University</p>
-		<form name="form" class="form-inline">
-			<span class="form-group"> <span class="col-xs-12"> 
-			<select	class="form-control" name="stType" size=1>
-						<OPTION value="">검색</OPTION>
-						<OPTION value="">제목</OPTION>
-						<OPTION value="">작성자</OPTION>
-						<OPTION value="">내용</OPTION>
-			</select>
-			</span>
-			</span>
-			<input type="text" class="form-control" size="50" placeholder="검색" required>
-			<button type="button" class="btn btn-danger">검색</button>
-		</form>
-	</div>
-	
 	
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">

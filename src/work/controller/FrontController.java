@@ -300,7 +300,7 @@ public class FrontController extends HttpServlet {
 
 		String id = (String) session.getAttribute("id");
 		String pw = request.getParameter("pw");
-
+		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/plain");
 		response.setHeader("Cache-Control", "no-cache");

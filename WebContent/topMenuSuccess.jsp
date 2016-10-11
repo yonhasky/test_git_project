@@ -19,13 +19,18 @@
 					<li>
 					<!-- Button trigger modal -->
 					<%if(session.getAttribute("id") != null) { %>
-					<button type="button" class="btn btn-primary " data-toggle="modal"
-						data-target="#myModal" style="margin: 8px">
-						<a href="myPage.jsp"><%=session.getAttribute("id")%>´Ô&nbsp;<%=session.getAttribute("part")%>µî±Þ</a>
+					<button type="button" class="btn btn-primary" style="margin: 8px" onclick="location.href='myPage.jsp'">
+						<%=session.getAttribute("id")%>´Ô&nbsp;<%=session.getAttribute("part")%>µî±Þ</a>
 					</button>
 					<%} else {%>
 						<button type="button" class="btn btn-primary " data-toggle="modal"
 						data-target="#myModal" style="margin: 8px">login</button>					
+					<%} %>
+					<%if(session.getAttribute("id") != null) { %>
+					<li><button type="button" class="btn btn-danger "
+						style="margin: 8px" onclick="location.href='controller?action=logout'">
+						<a href="#">logout</a>
+					</button></li>
 					<%} %>
 				</li>
 					 <!-- Modal -->
