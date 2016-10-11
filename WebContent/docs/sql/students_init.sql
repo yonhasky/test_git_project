@@ -14,7 +14,6 @@ INSERT INTO STUDENTS VALUES('kim01','1234','김태준','010-4512-4545','kim01@naver
 
 
 
-
 INSERT INTO STUDENTS VALUES('sungwah','1234','성준희','010-1156-4545','kdfw1@naver.com',1985,'남자','컴퓨터학부','컴퓨터시스템','2007학번',null,'2012년02월 졸업','자소설닷컴','IT·인터넷','2년 3개월','G');
 INSERT INTO STUDENTS VALUES('sdjee','1234','이지희','010-1226-4255','kdsdf@naver.com',1989,'여자','컴퓨터학부','컴퓨터시스템','2010학번',null,'2015년02월 졸업','에누리닷컴','IT·인터넷','2년 3개월','G');
 
