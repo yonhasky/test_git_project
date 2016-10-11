@@ -85,7 +85,7 @@ public class KinreplieDao {
 		PreparedStatement pstmt = null;
 		try {
 			conn = factory.getConnection();
-			String sql = "INSERT INTO kinreplies VALUES(seq_rpl_num.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),?,0,?,?,F,?)";
+			String sql = "INSERT INTO kinreplies VALUES(seq_rpl_num.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),?,0,?,?,'F',?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getrTitle());
 			pstmt.setString(2, dto.getrAuthor());

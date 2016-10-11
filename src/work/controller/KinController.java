@@ -70,8 +70,6 @@ public class KinController extends HttpServlet {
     protected void kinSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kNo = request.getParameter("kNo");
 		String opt = request.getParameter("opt");
-		System.out.println("kNo : " + kNo);
-		System.out.println("opt : " + opt);
 		Kin dto = null;
 		Cookie[] cookies = request.getCookies();
 		Cookie viewCookie = null;
@@ -85,12 +83,10 @@ public class KinController extends HttpServlet {
 		}
 		
 		if(viewCookie == null) {
-			System.out.println("VIEWCOOKIE 없음");
 			Cookie newCookie = new Cookie("VCOOKIE","|"+kNo+"|"); 
 			response.addCookie(newCookie);
 			dto = dao.selectKin(Integer.parseInt(kNo));
 		} else {
-			System.out.println("VIEWCOOKIE 있음");
 			String value = viewCookie.getValue();
 			  
 			if(value.indexOf("|"+kNo+"|") <  0) { 
@@ -126,7 +122,7 @@ public class KinController extends HttpServlet {
     /** 4-1.질문글 답변창에 조회 */
     protected void kinSearchRpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String kNo = request.getParameter("kNo");
-		System.out.println("kNo : " + kNo);
+		System.out.println("답변 조회 kNo : " + kNo);
 		Kin dto = null;
 		
 		dto = dao.selectKin(Integer.parseInt(kNo));
@@ -173,7 +169,6 @@ public class KinController extends HttpServlet {
 			int row = 0;
 			row = dao.insertKin(dto);
 			
-//			System.out.println(row);
 			if(row == 1) {
 				request.setAttribute("message", "질문등록 성공.");
 				response.sendRedirect("Kcontroller?action=kinList&pageNum=1");
@@ -254,7 +249,6 @@ public class KinController extends HttpServlet {
 				}  
 			}
 			if(viewCookie == null) {
-				System.out.println("VIEWCOOKIE 없음");
 				Cookie newCookie = new Cookie("VIEWCOOKIE","|"+kNo+"|"); //("VIEWCOOKIE"는 name, "|"+bbsno+"|" 는 value 다. 
 				response.addCookie(newCookie);
 				int rows = dao.updateRecKin(Integer.parseInt(kNo));			
@@ -266,7 +260,6 @@ public class KinController extends HttpServlet {
 					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
 				}
 			} else {
-				System.out.println("VIEWCOOKIE 있음");
 				String value = viewCookie.getValue();
 				  
 				if(value.indexOf("|"+kNo+"|") <  0) { // 입력한 번화와 일치하는 번호가 없으면 추가한다.

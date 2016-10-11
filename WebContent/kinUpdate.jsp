@@ -114,14 +114,14 @@ function moveListPage() {
 				    </div>
 				  </div>
 					
-				  <div class="form-group">
+				</form>
+				<div class="form-group">
 				    <div class="col-sm-offset-7">
 				      <button type="button" onclick="moveUpdatePage()" class="col-sm-2 btn btn-lg">수정</button>
 				      <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-lg">취소</button>
 				      <input type="hidden" name="kNo" value="<%=request.getParameter("kNo")%>">
 				    </div>
 				  </div>
-				</form>
 						
 						<div class="panel-footer">
 							<button class="btn btn-lg">등록하기</button>

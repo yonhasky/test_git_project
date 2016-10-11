@@ -19,21 +19,21 @@
 
 <script>
 function moveListPage() {
-	document.entryForm.action = "Kcontroller?action=kinList&pageNum=1";
-	document.entryForm.submit();
+	document.rplForm.action = "Kcontroller?action=kinList&pageNum=1";
+	document.rplForm.submit();
 }
 
 function moveEntryPage() {
 	if(confirm('답변을 등록하시겠습니까?')) {
-		document.entryForm.action = "Rcontroller?action=rplEnroll";
-		document.entryForm.submit();
+		document.rplForm.action = "Rcontroller?action=rplEnroll";
+		document.rplForm.submit();
 	}
 }
 
 function moveListPage() {
 	if(confirm('글 작성을 취소시겠습니까?')) {
-		document.entryForm.action = "Kcontroller?action=kinList&pageNum=1";
-		document.entryForm.submit();
+		document.rplForm.action = "Kcontroller?action=kinList&pageNum=1";
+		document.rplForm.submit();
 	}
 }
 </script>
@@ -69,7 +69,7 @@ function moveListPage() {
 					}
 					Kin dto = (Kin)request.getAttribute("dto");
 				%>
-<!-- 				<form class="form-horizontal" name="entryForm" method="post"> -->
+				<form class="form-horizontal" name="entryForm" method="post">
 				  <div class="form-group">
 				    <label for="kTitle" class="col-sm-2 control-label">제목</label>
 				    <div class="col-sm-8">
@@ -115,15 +115,21 @@ function moveListPage() {
 				    </div>
 				  </div>
 				  
-<!-- 				</form> -->
+				</form>
 				
 				
 				<p>
 				<hr/>
 				<!-- ---------------------------------------------------------------- -->
 				<h5 class="text-center"> 답변 </h5><br/>
-				<form class="form-horizontal" name="entryForm" method="post" enctype="multipart/form-data">
-					  
+				<form class="form-horizontal" name="rplForm" method="post" enctype="multipart/form-data">
+					 
+					  <div class="form-group">
+				    <label for="kTitle" class="col-sm-2 control-label">질문</label>
+				    <div class="col-sm-8">
+				      <label class="text-center"><%=dto.getkTitle()%></label>
+				    </div>
+				  </div>
 						  <div class="form-group">
 						    <label for="rContent" class="col-sm-2 control-label">내용</label>
 						    <div class="col-sm-8">
@@ -142,12 +148,14 @@ function moveListPage() {
 						    <div class="form-group">
 						 </div>
 						 </div>
-						</form>
-							 <div class="panel-footer">
+						  <div class="panel-footer">
+						    <input type="hidden" name="kNo" value="<%=dto.getkNo()%>">
+							<input type="hidden" name="kTitle" value="<%=dto.getkTitle()%>">
 							<button class="btn btn-lg" onclick="moveEntryPage()">등록하기</button>
 							<button class="btn btn-lg" onclick="moveListPage()">취소</button>
-							<input type="hidden" name="kNo" value="<%=request.getParameter("kNo")%>">
 							</div>
+						</form>
+							
 						
 						
 						<div class="panel-footer">
