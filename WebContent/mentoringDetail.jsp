@@ -275,37 +275,20 @@ img {
 																name="mComment">
 														</div>
 													</div>
-
-
-
 													<div class="form-group">
 														<div class="col-sm-offset-2 col-sm-4">
 															<button id="btnJoin" type="submit"
 																class="btn btn-default btn-lg" name="submit">Sign
 																in</button>
-
 														</div>
 													</div>
-
 												</form>
-
-
 											</div>
-
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
-
-
-
-
-
-
-
 					</ul>
 				</div>
 				<div class="col-xs-offset-1 col-xs-8">
