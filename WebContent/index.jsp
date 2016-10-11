@@ -31,7 +31,59 @@
 			<button type="button" class="btn btn-danger">°Ë»ö</button>
 		</form>
 	</div>
-				
+
+
+
+	<!-- Container (Services Section) -->
+	<div id="services" class="container-fluid text-center">
+
+
+		<!-- content -->
+		<div style="width: 90%; height: 400px; margin: 0 auto;">
+
+			<div id="carousel-example-generic" class="carousel slide"
+				data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<img src="images/ceci1.jpg" style="width: 100%; height: 400px;"
+							alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<img src="images/ceci2.jpg" style="width: 100%; height: 400px;"
+							alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<img src="images/ceci3.jpg" style="width: 100%; height: 400px;"
+							alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<img src="images/ceci4.jpg" style="width: 100%; height: 400px;"
+							alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+					<div class="item">
+						<img src="images/ceci5.jpg" style="width: 100%; height: 400px;"
+							alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+
+				</div>
+							
 				<!-- Controls -->
 				<a class="left carousel-control" href="#carousel-example-generic"
 					role="button" data-slide="prev"> <span

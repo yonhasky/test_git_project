@@ -140,70 +140,7 @@
 
 
 	<!-- Container (Services Section) -->
-	<div id="services" class="container-fluid text-center">
-
-		<h2>MCS</h2>
-		<h4><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급
-		</h4>
-		<br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="controller?action=studentList"> <span
-					class="glyphicon glyphicon-user logo-small"></span>
-					<h4>회원관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a data-toggle="modal" data-target="#upPwModal"> <span
-					class="glyphicon glyphicon-lock logo-small"></span>
-					<h4>스터디관리</h4></a>
-
-			</div>
-			<div class="col-sm-4">
-				<a data-toggle="modal" data-target="#deleteModal"> <span
-					class="glyphicon glyphicon-trash logo-small"></span>
-					<h4>멘토링관리</h4></a>
-
-			</div>
-		</div>
-		<br> <br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-education logo-small"></span>
-					<h4>지식인관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-heart-empty logo-small"></span>
-					<h4>공지관리</h4>
-				</a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-info-sign logo-small"></span>
-					<h4>1대1문의 관리</h4></a>
-			</div>
-
-		</div>
-		<br> <br>
-		<div class="row slideanim">
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-question-sign logo-small"></span>
-					<h4>쪽지관리</h4></a> </a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-envelope logo-small"></span>
-					<h4>쪽지관리</h4></a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span class="glyphicon glyphicon-plane logo-small"></span>
-					<h4>SU-Wings</h4></a>
-			</div>
-		</div>
-	</div>
-
+	
 
 	<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
