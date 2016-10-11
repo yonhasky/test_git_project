@@ -85,7 +85,7 @@ public class KinreplieDao {
 		PreparedStatement pstmt = null;
 		try {
 			conn = factory.getConnection();
-			String sql = "INSERT INTO kinreplies VALUES(seq_rpl_num.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),?,0,?,?,F,?)";
+			String sql = "INSERT INTO kinreplies VALUES(seq_rpl_num.nextval,?,?,to_char(sysdate, 'yyyy-mm-dd'),?,0,?,?,'F',?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getrTitle());
 			pstmt.setString(2, dto.getrAuthor());
@@ -93,6 +93,13 @@ public class KinreplieDao {
 			pstmt.setString(4, dto.getrFile1());
 			pstmt.setString(5, dto.getrFile2());
 			pstmt.setInt(6, dto.getkNo());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			sql = "UPDATE kins SET k_rpl=k_rpl+1 WHERE k_no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getkNo());
+
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

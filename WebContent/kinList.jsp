@@ -71,7 +71,7 @@
 								<td>${dto.kNo}</td>
 								<td>(${dto.kType})<a href="Kcontroller?action=kinSearch&kNo=${dto.kNo}"> ${dto.kTitle}</a></td>
 								<td>${dto.kAuthor}</td>
-								<td>${dto.kRpl}</td>
+								<td><span style="color: red;">${dto.kRpl}</span></td>
 								<td>${dto.kDate}</td>
 								</tr>
 							</c:forEach>
@@ -114,6 +114,15 @@
 			</div>
 		</div>
 	</div>
+	
+	<footer class="container-fluid text-center"> <a href="#myPage"
+		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
+	</a>
+	<p>
+		Made By group ACE &nbsp;&nbsp; designed By group ACE <br>Tel:02-112-1122
+		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
+	</p>
+	</footer>
 
 </body>
 </html>

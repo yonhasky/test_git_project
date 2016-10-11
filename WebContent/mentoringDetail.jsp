@@ -205,9 +205,88 @@ img {
 
 							<c:if
 								test="${sessionScope.id eq list.mEntry and list.mStatus eq '수락'}">
-								<li role="presentation" class="active"><a href="#">쪽지보내기</a></li>
+								<li role="presentation" class="active"  data-toggle="modal"
+							data-target="#myModal2"><a href="#">쪽지보내기</a></li>
 							</c:if>
 						</c:forEach>
+
+<!-- Modal -->
+						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								
+									<div id="about" class="container-fluid">
+										<div class="row">
+										<h3>멘토링 신청</h3><br/>
+											<div class="col-sm-4">
+												<span class="glyphicon glyphicon-user logo"></span>
+											</div>
+											<div class="col-sm-8">
+												<form name="form" class="form-horizontal" method="post"
+													action="MentoringController?action=mentoringInsert">
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">멘토
+															ID</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="id" name="id"
+																value=<%=request.getParameter("id")%> readonly>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">ID</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mEntry"
+															name="mEntry" maxlength="12"
+															value=<%=session.getAttribute("id")%> readonly>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">학번</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mGrade"
+															name="mGrade" maxlength="12"
+															value=<%=session.getAttribute("grade")%> readonly>
+													</div>
+													<div class="form-group">
+														<label for="inputEmail3" class="col-xs-4 control-label">전공</label>
+														<span class="col-xs-8" > <input
+															type="text" class="form-control" id="mMajor"
+															name="mMajor" maxlength="12"
+															value=<%=session.getAttribute("major")%> readonly>
+													</div>
+
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">이름</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="mName"
+																name="mName" value=<%=session.getAttribute("name")%>
+																readonly>
+														</div>
+													</div>
+
+
+													<div class="form-group">
+														<label for="inputPassword3" class="col-xs-4 control-label">내용</label>
+														<div class="col-xs-8">
+															<input type="text" class="form-control" id="mComment"
+																name="mComment">
+														</div>
+													</div>
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-4">
+															<button id="btnJoin" type="submit"
+																class="btn btn-default btn-lg" name="submit">Sign
+																in</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
 
 
 						<li role="presentation" class="active" data-toggle="modal"

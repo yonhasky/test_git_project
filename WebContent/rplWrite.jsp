@@ -19,8 +19,22 @@
 
 <script>
 function moveListPage() {
-	document.entryForm.action = "Kcontroller?action=kinList&pageNum=1";
-	document.entryForm.submit();
+	document.rplForm.action = "Kcontroller?action=kinList&pageNum=1";
+	document.rplForm.submit();
+}
+
+function moveEntryPage() {
+	if(confirm('답변을 등록하시겠습니까?')) {
+		document.rplForm.action = "Rcontroller?action=rplEnroll";
+		document.rplForm.submit();
+	}
+}
+
+function moveListPage() {
+	if(confirm('글 작성을 취소시겠습니까?')) {
+		document.rplForm.action = "Kcontroller?action=kinList&pageNum=1";
+		document.rplForm.submit();
+	}
 }
 </script>
 </head>
@@ -86,18 +100,7 @@ function moveListPage() {
 				   		<textarea class="form-control" name="bContent" rows="7" readonly><%=dto.getkContent()%></textarea>   
 				    </div>
 				  </div>
-<!-- 				  <div class="form-group"> -->
-<!-- 				    <label for="bContent" class="col-sm-2 control-label">사진</label>&nbsp &nbsp &nbsp -->
-<%-- 				  <%if(dto.getkFile1() != null) { %> --%>
-<%-- 				  <img src="<%=dto.getkFile1()%>" width="200px" height="150px" onclick="if(confirm('해당 항목을 추천하시겠습니까?')){document.location.href='Controller?action=boardRecommend&rNum=1&boardNum=<%=request.getParameter("boardNum")%>'}"/> --%>
-<%-- 				  <label><span class="glyphicon glyphicon-thumbs-up"></span>추천수<%=dto.getkRecommends()%></label> --%>
-<%-- 				  <%}%> --%>
-<%-- 				  <%if(dto.getbFile2() != null) { %> --%>
-<%-- 				  <img src="<%=dto.getbFile2()%>" width="200px" height="150px" onclick="if(confirm('해당 항목을 추천하시겠습니까?')){document.location.href='Controller?action=boardRecommend&rNum=2&boardNum=<%=request.getParameter("boardNum")%>'}"/> --%>
-<%-- 				  <label><span class="glyphicon glyphicon-thumbs-up"></span>추천수<%=dto.getbRecommend2()%></label> --%>
-<%-- 				  <%}%> --%>
-<!-- 				  </div> -->
-				 
+				  
 				  <div class="form-group">
 				    <label for="kDate" class="col-sm-2 control-label">조회수</label>
 				    <div class="col-sm-8">
@@ -112,54 +115,53 @@ function moveListPage() {
 				    </div>
 				  </div>
 				  
-				  <div class="form-group">
-				    <div class="col-sm-offset-8">
-<%-- 				      <%if(session.getAttribute("uGrade") != null || session.getAttribute("uId") != null) {%> --%>
-<%-- 				      <%if(session.getAttribute("uGrade").equals("A") || (session.getAttribute("uId").equals(dto.getkAuthor()))) { %> --%>
-
-<%-- 				      <%} --%>
-<%-- 				        }%>  --%>
-							
+				</form>
+				
+				
+				<p>
+				<hr/>
+				<!-- ---------------------------------------------------------------- -->
+				<h5 class="text-center"> 답변 </h5><br/>
+				<form class="form-horizontal" name="rplForm" method="post" enctype="multipart/form-data">
+					 
+					  <div class="form-group">
+				    <label for="kTitle" class="col-sm-2 control-label">질문</label>
+				    <div class="col-sm-8">
+				      <label class="text-center"><%=dto.getkTitle()%></label>
 				    </div>
 				  </div>
-				</form>
-				<div class="panel-footer">
-							<button class="btn btn-lg" onclick="if(confirm('답변을 등록하시겠습니까?')){document.location.href='Kcontroller?action=kinSearchRpl&kNo=<%=request.getParameter("kNo")%>'}">답변하기</button>
-							<button class="btn btn-lg" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}">수정</button>
-							<button class="btn btn-lg" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}">삭제</button>
+						  <div class="form-group">
+						    <label for="rContent" class="col-sm-2 control-label">내용</label>
+						    <div class="col-sm-8">
+						   		<textarea class="form-control" name="rContent" rows="7"></textarea>   
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="rFile" class="col-sm-2 control-label">파일 업로드</label>
+						    <div class="col-sm-3">
+						    	<input type="file" class="form-control" name="rFile1" id="rFile1">
+						    </div>
+						    <div class="col-sm-3">
+						    	<input type="file" class="form-control" name="rFile2" id="rFile2">
+						    </div>
+						    <div class="form-group">
+						 </div>
+						 </div>
+						  <div class="panel-footer">
+						    <input type="hidden" name="kNo" value="<%=dto.getkNo()%>">
+							<input type="hidden" name="kTitle" value="<%=dto.getkTitle()%>">
+							<button class="btn btn-lg" onclick="moveEntryPage()">등록하기</button>
+							<button class="btn btn-lg" onclick="moveListPage()">취소</button>
 							</div>
-				<br/>
-				<!-- ---------------------------------------------------------------- -->
-				
-					
-				<% ArrayList<Kinreplie> list = (ArrayList)request.getAttribute("list");
-				if(list != null) {%>
-				<c:forEach var="dto" items="${requestScope.list}">
-					<table class="table table-hover">
-							<tr>
-								<th >제목</th>
-								<th >답변자</th>
-								<th >답변내용</th>
-								<th >답변일</th>
-							</tr>
-							<tr>
-								<td>${dto.rTitle}</td>
-								<td>${dto.rAuthor}</td>
-								<td>${dto.rContent}</td>
-								<td>${dto.rDate}</td>
-							</tr>
-					</table>
-					<div class="panel-footer">
-					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=<%=request.getParameter("kNo")%>&rNo=<%=request.getParameter("rNo")%>'}">수정</button>
-					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=<%=request.getParameter("kNo")%>&rNo=<%=request.getParameter("rNo")%>'}">삭제</button>
-					</div>
-					<br/>
-				</c:forEach>
-				<%} %>
-				  
+						</form>
+							
+						
+						
 						<div class="panel-footer">
 							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
 						</div>
+						
 			
 			<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
