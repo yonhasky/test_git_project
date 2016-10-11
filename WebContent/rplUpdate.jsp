@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ page import="work.model.dto.Kin" %>		
+<%@ page import="work.model.dto.Kinreplie" %>		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,14 +15,14 @@
 
 <script>
 function moveUpdatePage() {
-	if(confirm('게시글을 수정하시겠습니까?')) {
-		document.updateForm.action = "Kcontroller?action=kinUpdate";
+	if(confirm('답변을 수정하시겠습니까?')) {
+		document.updateForm.action = "Rcontroller?action=rplUpdate";
 		document.updateForm.submit();
 	}
 }
 
 function moveListPage() {
-	if(confirm('글 수정을 취소시겠습니까?')) {
+	if(confirm('답변 수정을 취소시겠습니까?')) {
 		document.updateForm.action = "Kcontroller?action=kinList&pageNum=1";
 		document.updateForm.submit();
 	}
@@ -49,82 +49,42 @@ function moveListPage() {
 				<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
 				<h5 class="text-center"> 수정 </h5><br/>
 				<%
-					Kin dto = (Kin)request.getAttribute("dto");
+					Kinreplie dto = (Kinreplie)request.getAttribute("dto");
 				%>
 				<form class="form-horizontal" name="updateForm" method="post" enctype="multipart/form-data">
 				  <div class="form-group">
-				    <label for="kTitle" class="col-sm-2 control-label">제목</label>
+				    <label for="rTitle" class="col-sm-2 control-label">제목</label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" name="kTitle" id="kTitle" value="<%=dto.getkTitle()%>">
+				      <input type="text" class="form-control" name="rTitle" id="rTitle" value="<%=dto.getrTitle()%>">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
-				    <label for="kContent" class="col-sm-2 control-label">작성자</label>
+				    <label for="rContent" class="col-sm-2 control-label">작성자</label>
 				    <div class="col-sm-8">
-				      <label class="text-center" ><%=dto.getkAuthor()%></label>
+				      <label class="text-center" ><%=dto.getrAuthor()%></label>
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
-						    <label for="kType" class="col-sm-2 control-label">타입</label>
-						    <div class="col-sm-8">
-						      <select name="kType">
-							    <option value="취업">취업</option>
-							    <option value="동아리">동아리</option>
-							    <option value="강의">강의</option>
-							    <option value="학교생활">학교생활</option>
-							    <option value="행사">행사</option>
-							    <option value="공모전">공모전</option>
-							</select>
-						    </div>
-						  </div>
-						  
-				  <div class="form-group">
-				    <label for="bContent" class="col-sm-2 control-label">내용</label>
+				    <label for="rContent" class="col-sm-2 control-label">내용</label>
 				    <div class="col-sm-8">
-				   		<textarea class="form-control" name="kContent" rows="7"><%=dto.getkContent()%></textarea>   
+				   		<textarea class="form-control" name="rContent" rows="7"><%=dto.getrContent()%></textarea>   
 				    </div>
 				  </div>
 				
-<!-- 				  <div class="form-group"> -->
-<!-- 				    <label for="bFile1" class="col-sm-2 control-label">사진 업로드</label> -->
-<!-- 				    <div class="col-sm-3"> -->
-<%-- 				    	<input type="file" class="form-control" name="bFile1" id="bFile1" value="<%=dto.getbFile1()%>"> --%>
-<!-- 				    </div> -->
-<!-- 				    <div class="col-sm-3"> -->
-<%-- 				    	<input type="file" class="form-control" name="bFile2" id="bFile2" value="<%=dto.getbFile2()%>"> --%>
-<!-- 				    </div> -->
-<!-- 				    <div class="col-sm-offset-2 col-sm-3"> -->
-<%-- 				    	<input type="file" class="form-control" name="bFile3" id="bFile3" value="<%=dto.getbFile3()%>"> --%>
-<!-- 				    </div> -->
-<!-- 				  </div>	 -->
-				  
-				  <div class="form-group">
-				    <label for="kDate" class="col-sm-2 control-label">조회수</label>
-				    <div class="col-sm-8">
-				      <label class="text-center"><%=dto.getkHit()%></label>
-				    </div>
-				  </div>
-				  
-				  <div class="form-group">
-				    <label for="kDate" class="col-sm-2 control-label">답변수</label>
-				    <div class="col-sm-8">
-				      <label class="text-center"><%= dto.getkRpl() %></label>
-				    </div>
-				  </div>
 					<div class="panel-footer">
 				    <div class="col-sm-offset-7">
 				      <button type="button" onclick="moveUpdatePage()" class="btn btn-lg">수정</button>
 				      <button type="button" onclick="moveListPage()" class="btn btn-lg">취소</button>
-				      <input type="hidden" name="kNo" value="<%=request.getParameter("kNo")%>">
+				      <input type="hidden" name="kNo" value="<%=dto.getkNo()%>">
+				      <input type="hidden" name="rNo" value="<%=dto.getrNo()%>">
 				    </div>
 				  </div>
 				</form>
 				</div>
 				</div>
 				</div>
-				
 				
 	
 	<footer class="container-fluid text-center"> <a href="#myPage"

@@ -150,8 +150,8 @@ function moveListPage() {
 							</tr>
 					</table>
 					<div class="panel-footer">
-					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=<%=request.getParameter("kNo")%>&rNo=<%=request.getParameter("rNo")%>'}">수정</button>
-					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=<%=request.getParameter("kNo")%>&rNo=<%=request.getParameter("rNo")%>'}">삭제</button>
+					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=${dto.kNo}&rNo=${dto.rNo}'}">수정</button>
+					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=${dto.kNo}&rNo=${dto.rNo}'}">삭제</button>
 					</div>
 					<br/>
 				</c:forEach>

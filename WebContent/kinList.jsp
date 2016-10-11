@@ -21,17 +21,17 @@
 	<div class="jumbotron text-center">
 		<h1>지식 IN</h1>
 		<p>질문 & 답변</p>
-		<div class="col-sm-offset-3">
+		<div class="col-sm-offset-1">
 		<form class="form-inline" method="post" action="Kcontroller?action=kinListSearch&pageNum=1">
-		<div>
+			<span class="form-group"> <span class="col-xs-12"> 
 				<select class="form-control col-sm-2" name="keywordType">
 					 <option value="k_title">제목</option>
 					 <option value="k_author">작성자</option>
-				 </select>
-			 
+			</select>
+			</span>
+			</span>
 				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
 				<button type="submit" class="btn btn-danger" >검색</button>
-		</div>	
 		</form>
 		</div>
 	</div>
