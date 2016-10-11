@@ -71,7 +71,7 @@
 								<td>${dto.kNo}</td>
 								<td>(${dto.kType})<a href="Kcontroller?action=kinSearch&kNo=${dto.kNo}"> ${dto.kTitle}</a></td>
 								<td>${dto.kAuthor}</td>
-								<td>${dto.kRpl}</td>
+								<td><span style="color: red;">${dto.kRpl}</span></td>
 								<td>${dto.kDate}</td>
 								</tr>
 							</c:forEach>

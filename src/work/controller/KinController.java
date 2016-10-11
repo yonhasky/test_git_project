@@ -147,8 +147,8 @@ public class KinController extends HttpServlet {
 		
 		String kType = multi.getParameter("kType");
 		String kTitle = multi.getParameter("kTitle");
-		String kAuthor = "test";
-//				(String)session.getAttribute("uId");
+		String kAuthor = (String)session.getAttribute("id");
+		System.out.println("kAuthor : " + kAuthor);
 		String kContent = multi.getParameter("kContent");
 		String kFile1 = multi.getFilesystemName("kFile1");
 		String kFile2 = multi.getFilesystemName("kFile2");
@@ -161,14 +161,14 @@ public class KinController extends HttpServlet {
 		if(kFile2 != null) {
 			filePath2 = "images"+"\\"+kFile2;
 		}
-		Kin dto = new Kin(0, kType, kTitle, "test", null, kContent,
+		Kin dto = new Kin(0, kType, kTitle, kAuthor, null, kContent,
 				0, 0, 0, filePath1, filePath2, 0);
 		
 		
 		if(kType != null && kTitle != null && kAuthor != null && kContent != null) {
 			int row = 0;
 			row = dao.insertKin(dto);
-			
+			System.out.println(dto);
 			if(row == 1) {
 				request.setAttribute("message", "질문등록 성공.");
 				response.sendRedirect("Kcontroller?action=kinList&pageNum=1");
@@ -213,7 +213,7 @@ public class KinController extends HttpServlet {
 		
 		if(row == 1) {
 			request.setAttribute("message", "게시글 수정 성공.");
-			request.getRequestDispatcher("Kcontroller?action=kinList&pageNum=1").forward(request, response);	
+			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+dto.getkNo()).forward(request, response);	
 		} else {
 			request.setAttribute("message", "게시글 수정 에러.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -254,10 +254,10 @@ public class KinController extends HttpServlet {
 				int rows = dao.updateRecKin(Integer.parseInt(kNo));			
 				if(rows == 1) {
 					request.setAttribute("message", "추천 완료");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+Integer.parseInt(kNo)).forward(request, response);
 				} else {
 					request.setAttribute("message", "추천 실패.");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+Integer.parseInt(kNo)).forward(request, response);
 				}
 			} else {
 				String value = viewCookie.getValue();
@@ -269,19 +269,19 @@ public class KinController extends HttpServlet {
 				   int rows = dao.updateRecKin(Integer.parseInt(kNo));				
 				   if(rows == 1) {
 						request.setAttribute("message", "추천 완료");
-						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+Integer.parseInt(kNo)).forward(request, response);
 				   } else {
 						request.setAttribute("message", "추천 실패.");
-						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+Integer.parseInt(kNo)).forward(request, response);
 				   }
 				} else {
 					request.setAttribute("message", "추천 중복은 불가능합니다.");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+Integer.parseInt(kNo)).forward(request, response);
 				} 	
 			}
 		} else {
 			request.setAttribute("message", "추천 실패. 로그인 후 다시 시도해주세요.");
-			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+Integer.parseInt(kNo)).forward(request, response);
 		}
 	}
     

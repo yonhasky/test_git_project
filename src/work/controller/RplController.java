@@ -49,8 +49,7 @@ public class RplController extends HttpServlet {
 		
 		String kNo = multi.getParameter("kNo");
 		String rTitle = multi.getParameter("kTitle");
-		String rAuthor = "test";
-//				(String)session.getAttribute("uId");
+		String rAuthor = (String)session.getAttribute("id");
 		String rContent = multi.getParameter("rContent");
 		String rFile1 = multi.getFilesystemName("rFile1");
 		String rFile2 = multi.getFilesystemName("rFile2");
@@ -69,9 +68,7 @@ public class RplController extends HttpServlet {
 		
 		if(rTitle != null && rAuthor != null && rContent != null) {
 			int row = 0;
-			System.out.println(dto);
 			row = dao.insertRpl(dto);
-			System.out.println(row);
 			if(row == 1) {
 				request.setAttribute("message", "답변등록 성공.");
 				request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+dto.getkNo()).forward(request, response);
@@ -151,40 +148,40 @@ public class RplController extends HttpServlet {
 			}
 			if(viewCookie == null) {
 				System.out.println("VIEWCOOKIE 없음");
-				Cookie newCookie = new Cookie("VIEWCOOKIE","|"+kNo+"|"); //("VIEWCOOKIE"는 name, "|"+bbsno+"|" 는 value 다. 
+				Cookie newCookie = new Cookie("VIEWCOOKIE","|"+kNo+"|"); 
 				response.addCookie(newCookie);
 				int rows = dao.updateRplCount(Integer.parseInt(kNo));			
 				if(rows == 1) {
 					request.setAttribute("message", "답변수 증가 완료");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);
 				} else {
 					request.setAttribute("message", "답변수 증가 실패.");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);
 				}
 			} else {
 				System.out.println("VIEWCOOKIE 있음");
 				String value = viewCookie.getValue();
 				  
-				if(value.indexOf("|"+kNo+"|") <  0) { // 입력한 번화와 일치하는 번호가 없으면 추가한다.
+				if(value.indexOf("|"+kNo+"|") <  0) { 
 				   value = value+"|"+kNo+"|";
 				   viewCookie.setValue(value);
 				   response.addCookie(viewCookie);
 				   int rows = dao.updateRplCount(Integer.parseInt(kNo));				
 				   if(rows == 1) {
 						request.setAttribute("message", "답변수 증가 완료");
-						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);
 				   } else {
 						request.setAttribute("message", "답변수 증가 실패.");
-						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+						request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);
 				   }
 				} else {
 					request.setAttribute("message", "답변수 증가 중복은 불가능합니다.");
-					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+					request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);
 				} 	
 			}
 		} else {
 			request.setAttribute("message", "추천 실패. 로그인 후 다시 시도해주세요.");
-			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo"+kNo).forward(request, response);
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 	
