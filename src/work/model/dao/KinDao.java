@@ -266,7 +266,7 @@ public class KinDao {
 	/** 3. 질문 내용 상세보기 메서드
 	 * 
 	 */
-	public Kin selectKin(int kNo, int flag) {
+	public Kin selectKin(int kNo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -304,16 +304,10 @@ public class KinDao {
 				kFile1 = rs.getString(10);
 				kFile2 = rs.getString(11);
 				kCount = rs.getInt("k_count");
-//				if(flag==0){
 					dto = new Kin(kNo, kType, kTitle, kAuthor, kDate, kContent,
 							kHit+1, kRpl, kRecommends, kFile1, kFile2, kCount);
-//				} else {
-//					dto = new Kin(kNo, kType, kTitle, kAuthor, kDate, kContent,
-//							kHit+1, kRpl, kRecommends, kFile1, kFile2, kCount);
-//				}
 				pstmt.close();
 				
-//				if(flag == 0) {
 					sql="UPDATE KINS SET k_hit=?+1 WHERE k_no=?";
 				
 					pstmt = conn.prepareStatement(sql);

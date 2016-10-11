@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import work.model.dao.KinDao;
 import work.model.dao.KinreplieDao;
 import work.model.dto.Kin;
 import work.model.dto.Kinreplie;
@@ -24,6 +25,7 @@ import work.model.dto.Kinreplie;
 public class RplController extends HttpServlet {
        
 	private KinreplieDao dao = KinreplieDao.getInstance();
+	private KinDao dao2 = KinDao.getInstance();
 	
 	/** 1. 답변 전체 리스트  */
 	protected void rplList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +49,8 @@ public class RplController extends HttpServlet {
 		
 		String kNo = multi.getParameter("kNo");
 		String rTitle = multi.getParameter("rTitle");
-		String rAuthor = (String)session.getAttribute("uId");
+		String rAuthor = "test";
+//				(String)session.getAttribute("uId");
 		String rContent = multi.getParameter("rContent");
 		String kFile1 = multi.getFilesystemName("kFile1");
 		String kFile2 = multi.getFilesystemName("kFile2");
@@ -61,14 +64,14 @@ public class RplController extends HttpServlet {
 		if(kFile2 != null) {
 			filePath2 = "images"+"\\"+kFile2;
 		}
-		Kinreplie dto = new Kinreplie(0, rTitle, rAuthor, null, rContent, 				null, filePath1, filePath2, null, Integer.parseInt(kNo));
+		Kinreplie dto = new Kinreplie(0, rTitle, rAuthor, null, rContent, null, filePath1, filePath2, null, Integer.parseInt(kNo));
 				
 		if(rTitle != null && rAuthor != null && rContent != null) {
 			int row = 0;
 			row = dao.insertRpl(dto);
 			if(row == 1) {
-				request.setAttribute("message", "질문등록 성공.");
-				response.sendRedirect("Kcontroller?action=kinList&pageNum=1");
+				request.setAttribute("message", "답변등록 성공.");
+				request.getRequestDispatcher("kinItem.jsp").forward(request, response);
 			} else {
 				request.setAttribute("message", "게시글 등록 오류 발생");
 				request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -88,7 +91,7 @@ public class RplController extends HttpServlet {
 		System.out.println(kNo + "," + rNo);
 		if(row == 1) {
 			request.setAttribute("message", "게시글 삭제 성공.");
-			request.getRequestDispatcher("Kcontroller?action=kinList&pageNum=1").forward(request, response);	
+			request.getRequestDispatcher("kinItem.jsp").forward(request, response);	
 		} else {
 			request.setAttribute("message", "게시글 삭제 에러.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);

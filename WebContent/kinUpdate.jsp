@@ -116,8 +116,8 @@ function moveListPage() {
 					
 				  <div class="form-group">
 				    <div class="col-sm-offset-7">
-				      <button type="button" onclick="moveUpdatePage()" class="col-sm-2 btn btn-warning">수정</button>
-				      <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-warning">취소</button>
+				      <button type="button" onclick="moveUpdatePage()" class="col-sm-2 btn btn-lg">수정</button>
+				      <button type="button" onclick="moveListPage()" class="col-sm-2 btn btn-lg">취소</button>
 				      <input type="hidden" name="kNo" value="<%=request.getParameter("kNo")%>">
 				    </div>
 				  </div>
@@ -129,8 +129,15 @@ function moveListPage() {
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+	
+	<footer class="container-fluid text-center"> <a href="#myPage"
+		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
+	</a>
+	<p>
+		Made By group ACE &nbsp;&nbsp; designed By group ACE <br>Tel:02-112-1122
+		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
+	</p>
+	</footer>
 
 </body>
 </html>
