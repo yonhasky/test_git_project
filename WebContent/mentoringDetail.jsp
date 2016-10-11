@@ -205,83 +205,80 @@ img {
 
 							<c:if
 								test="${sessionScope.id eq list.mEntry and list.mStatus eq '수락'}">
-								<li role="presentation" class="active"  data-toggle="modal"
-							data-target="#myModal2"><a href="#">쪽지보내기</a></li>
+								<li role="presentation" class="active" data-toggle="modal"
+									data-target="#noteModal"><a href="#">쪽지보내기</a></li>
 							</c:if>
 						</c:forEach>
 
-<!-- Modal -->
-						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
-							aria-labelledby="myModalLabel">
+						<!-- Modal -->
+						<div class="modal fade" id="noteModal" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" style="margin: 30px;">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
-								
-									<div id="about" class="container-fluid">
-										<div class="row">
-										<h3>멘토링 신청</h3><br/>
-											<div class="col-sm-4">
-												<span class="glyphicon glyphicon-user logo"></span>
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<br /> <img alt="images/grade.png" src="images/email.png">
+										<h4 class="modal-title" id="myModalLabel">쪽지보내기</h4>
+									</div>
+
+									<div class="modal-body">
+										<form class="form-horizontal" name="entryForm" method="post"
+											action="">
+											<div class="form-group">
+												<label for="stmHost" class="col-xs-3 control-label">받는
+													사람</label>
+												<div class="col-xs-8">
+													<input type="text" class="form-control" id="stmHost"
+														name="stmHost" value="<%=request.getParameter("id")%>"
+														readonly>
+												</div>
 											</div>
-											<div class="col-sm-8">
-												<form name="form" class="form-horizontal" method="post"
-													action="MentoringController?action=mentoringInsert">
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">멘토
-															ID</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="id" name="id"
-																value=<%=request.getParameter("id")%> readonly>
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">ID</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mEntry"
-															name="mEntry" maxlength="12"
-															value=<%=session.getAttribute("id")%> readonly>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">학번</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mGrade"
-															name="mGrade" maxlength="12"
-															value=<%=session.getAttribute("grade")%> readonly>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">전공</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mMajor"
-															name="mMajor" maxlength="12"
-															value=<%=session.getAttribute("major")%> readonly>
-													</div>
-
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">이름</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="mName"
-																name="mName" value=<%=session.getAttribute("name")%>
-																readonly>
-														</div>
-													</div>
-
-
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">내용</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="mComment"
-																name="mComment">
-														</div>
-													</div>
-													<div class="form-group">
-														<div class="col-sm-offset-2 col-sm-4">
-															<button id="btnJoin" type="submit"
-																class="btn btn-default btn-lg" name="submit">Sign
-																in</button>
-														</div>
-													</div>
-												</form>
+											<div class="form-group">
+												<label for="stmHost" class="col-xs-3 control-label">보내는
+													사람</label>
+												<div class="col-xs-8">
+													<input type="text" class="form-control" id="stmEntry"
+														name="stmEntry"
+														value="<%=session.getAttribute("id") + "["
+					+ session.getAttribute("name") + "]"%>"
+														readonly>
+												</div>
 											</div>
-										</div>
+											<div class="form-group">
+												<label for="stmPeriod" class="col-xs-3 control-label">제목</label>
+												<div class="col-xs-8">
+													<input type="text" class="form-control" id="stmPeriod"
+														name="stmPeriod">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="nContent" class="col-xs-3 control-label">내용</label>
+												<div class="col-xs-8">
+													<textarea class="form-control" rows="10" id="nContent"
+														name="nContent"> </textarea>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-9">
+													<button type="button" class="btn btn-info"
+														onclick="if(confirm('쪽지를 보내시겠습니까?')){document.noteForm.submit()}">보내기</button>
+													<button type="button" class="btn btn-info"
+														data-dismiss="modal">취 소</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div class="modal-footer">
+										<div class="col-xs-12 glyphicon glyphicon-remove"
+											style="float: left">스터디에 관해 궁금한 점을 보내주세요.</div>
+										<br />
+										<div class="col-xs-12 glyphicon glyphicon-remove"
+											style="float: left">장난으로 보낼 경우 불이익을 받을 수 있습니다!</div>
 									</div>
 								</div>
 							</div>
@@ -290,78 +287,92 @@ img {
 
 
 						<li role="presentation" class="active" data-toggle="modal"
-							data-target="#myModal" style="margin: 8px"><a>멘토링신청</a></li>
+							data-target="#myModal1" style="margin: 8px"><a>멘토링신청</a></li>
 
 						<!-- Modal -->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+						<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
 							aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-								
+								<div class="modal-content" style="margin-top: 60px;">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+										<br />
+										<h4 class="modal-title" id="myModalLabel">멘토링신청</h4>
+									</div>
 									<div id="about" class="container-fluid">
 										<div class="row">
-										<h3>멘토링 신청</h3><br/>
-											<div class="col-sm-4">
-												<span class="glyphicon glyphicon-user logo"></span>
-											</div>
-											<div class="col-sm-8">
-												<form name="form" class="form-horizontal" method="post"
-													action="MentoringController?action=mentoringInsert">
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">멘토
-															ID</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="id" name="id"
-																value=<%=request.getParameter("id")%> readonly>
+											<div class="modal-body">
+												<div class="col-sm-4">
+													<span class="glyphicon glyphicon-user logo"></span>
+												</div>
+												<div class="col-sm-8">
+													<form name="form" class="form-horizontal" method="post"
+														action="MentoringController?action=mentoringInsert">
+														<div class="form-group">
+															<label for="inputPassword3"
+																class="col-xs-4 control-label">멘토 ID</label>
+															<div class="col-xs-8">
+																<input type="text" class="form-control" id="id"
+																	name="id" value=<%=request.getParameter("id")%>
+																	readonly>
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">ID</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mEntry"
-															name="mEntry" maxlength="12"
-															value=<%=session.getAttribute("id")%> readonly>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">학번</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mGrade"
-															name="mGrade" maxlength="12"
-															value=<%=session.getAttribute("grade")%> readonly>
-													</div>
-													<div class="form-group">
-														<label for="inputEmail3" class="col-xs-4 control-label">전공</label>
-														<span class="col-xs-8" > <input
-															type="text" class="form-control" id="mMajor"
-															name="mMajor" maxlength="12"
-															value=<%=session.getAttribute("major")%> readonly>
-													</div>
-
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">이름</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="mName"
-																name="mName" value=<%=session.getAttribute("name")%>
+														<div class="form-group">
+															<label for="inputEmail3" class="col-xs-4 control-label">ID</label>
+															<span class="col-xs-8"> <input type="text"
+																class="form-control" id="mEntry" name="mEntry"
+																maxlength="12" value=<%=session.getAttribute("id")%>
 																readonly>
 														</div>
-													</div>
+														<div class="form-group">
+															<label for="inputEmail3" class="col-xs-4 control-label">학번</label>
+															<span class="col-xs-8"> <input type="text"
+																class="form-control" id="mGrade" name="mGrade"
+																maxlength="12" value=<%=session.getAttribute("grade")%>
+																readonly>
+														</div>
+														<div class="form-group">
+															<label for="inputEmail3" class="col-xs-4 control-label">전공</label>
+															<span class="col-xs-8"> <input type="text"
+																class="form-control" id="mMajor" name="mMajor"
+																maxlength="12" value=<%=session.getAttribute("major")%>
+																readonly>
+														</div>
+
+														<div class="form-group">
+															<label for="inputPassword3"
+																class="col-xs-4 control-label">이름</label>
+															<div class="col-xs-8">
+																<input type="text" class="form-control" id="mName"
+																	name="mName" value=<%=session.getAttribute("name")%>
+																	readonly>
+															</div>
+														</div>
 
 
-													<div class="form-group">
-														<label for="inputPassword3" class="col-xs-4 control-label">내용</label>
-														<div class="col-xs-8">
-															<input type="text" class="form-control" id="mComment"
-																name="mComment">
+														<div class="form-group">
+															<label for="inputPassword3"
+																class="col-xs-4 control-label">내용</label>
+															<div class="col-xs-8">
+																<input type="text" class="form-control" id="mComment"
+																	name="mComment">
+															</div>
 														</div>
-													</div>
-													<div class="form-group">
-														<div class="col-sm-offset-2 col-sm-4">
-															<button id="btnJoin" type="submit"
-																class="btn btn-default btn-lg" name="submit">Sign
-																in</button>
+														<div class="modal-footer">
+
+															<div class="form-group">
+																<div class="col-sm-offset-2 col-sm-4">
+																	<button id="btnJoin" type="submit"
+																		class="btn btn-default btn-lg" name="submit">Sign
+																		in</button>
+																</div>
+															</div>
 														</div>
-													</div>
-												</form>
+													</form>
+												</div>
 											</div>
 										</div>
 									</div>
