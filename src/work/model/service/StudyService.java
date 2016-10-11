@@ -15,8 +15,8 @@ public class StudyService {
 		return dao.selectStudy(stNo);
 	}
 	
-	public ArrayList<Study> selectStudyList() {
-		return dao.selectStudyList();
+	public ArrayList<Study> selectStudyList(String pageNum) {
+		return dao.selectStudyList(pageNum);
 	}
 	
 	public int deleteStudy(String stNo) {

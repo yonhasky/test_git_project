@@ -48,7 +48,7 @@ public class FrontController extends HttpServlet {
 		String savePath = application.getRealPath("img");
 
 		MultipartRequest multi = new MultipartRequest(request, savePath,
-				sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+				sizeLimit, "euc-kr", new DefaultFileRenamePolicy());
 
 		String id = multi.getParameter("id");
 		String pw = multi.getParameter("pwConfirm");
@@ -78,6 +78,8 @@ public class FrontController extends HttpServlet {
 
 		if (img != null) {
 			img = "img" + "\\" + img;
+		}else {
+			img = "img/default.jpg";   //사진 미선택시 기본사진
 		}
 		if (id == null || id.trim().length() == 0 || pw == null
 				|| pw.trim().length() == 0 || name == null
@@ -133,32 +135,34 @@ public class FrontController extends HttpServlet {
 		String savePath = application.getRealPath("img");
 
 		MultipartRequest multi = new MultipartRequest(request, savePath,
-				sizeLimit, "utf-8", new DefaultFileRenamePolicy());
+				sizeLimit, "euc-kr", new DefaultFileRenamePolicy());
 
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pwConfirm");
-		String name = request.getParameter("name");
-		String mobile1 = request.getParameter("mobile1");
-		String mobile2 = request.getParameter("mobile2");
-		String mobile3 = request.getParameter("mobile3");
+		String id = multi.getParameter("id");
+		String pw = multi.getParameter("pwConfirm");
+		String name = multi.getParameter("name");
+		String mobile1 = multi.getParameter("mobile1");
+		String mobile2 = multi.getParameter("mobile2");
+		String mobile3 = multi.getParameter("mobile3");
 		String mobile = mobile1 + "-" + mobile2 + "-" + mobile3;
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
+		String email1 = multi.getParameter("email1");
+		String email2 = multi.getParameter("email2");
 		String email = email1 + email2;
-		String gender = request.getParameter("gender");
-		int birth = Integer.parseInt(request.getParameter("birth"));
-		String major = request.getParameter("major");
-		String division = request.getParameter("division");
-		String grade = request.getParameter("grade");
+		String gender = multi.getParameter("gender");
+		int birth = Integer.parseInt(multi.getParameter("birth"));
+		String major = multi.getParameter("second");
+		String division = multi.getParameter("third");
+		String grade = multi.getParameter("grade");
 		String img = multi.getFilesystemName("img");
 		String part = "S";
-		String gDate = "";
-		String company = "";
-		String job = "";
-		String career = "";
+		String gDate = null;
+		String company = null;
+		String job = null;
+		String career = null;
 
 		if (img != null) {
 			img = "img" + "\\" + img;
+		}else {
+			img = "img/default.jpg";   //사진 미선택시 기본사진
 		}
 
 		if (id == null || id.trim().length() == 0 || pw == null

@@ -25,7 +25,6 @@
 			group[i] = new Array();
 
 		group[0][0] = new Option("대학분류", "");
-
 		group[1][0] = new Option("학과선택", "");
 		group[1][1] = new Option("영어영문학부", "영어영문학부");
 		group[1][2] = new Option("중국어학과", "중국어학과");
@@ -145,6 +144,10 @@ background-color:#f4511e;
 color:white;
 font-weight:bold;
 }
+
+.col-xs-5{
+padding:0px
+}
 </style>
 </head>
 <body>
@@ -191,11 +194,11 @@ font-weight:bold;
 
 					<div class="col-xs-5" style="background-color: white; margin: 30px">
 						<div class="col-xs-3">
-							<div class="col-xs-12 glyphicon glyphicon-education logo-small"></div>
-							<div class="col-xs-12 ">
+							<div class="col-xs-12 glyphicon glyphicon-education logo-small" ></div>
+							
 								<img src="${dto.img}" alt="images/ceci1.jpg" class="img-circle"
-									style="width: 120px; height: 120px; margin: 10px">
-							</div>
+									style="width: 120px; height: 120px;">
+							
 
 
 						</div>
@@ -220,8 +223,10 @@ font-weight:bold;
 							</div>
 						</div>
 						<button class="col-xs-2 btn" style="height:190px;background-color:#f4511e">
-						<a href="controller?action=graduationDetail&id=${dto.id}" class="glyphicon glyphicon-chevron-right logo-small" style=" color:white"
-							role="button"></a></button>
+							<a href="controller?action=graduationDetail&id=${dto.id}"
+								class="glyphicon glyphicon-chevron-right logo-small"
+								style="color: white" role="button"></a>
+						</button>
 					</div>
 				</c:forEach>
 
