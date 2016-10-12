@@ -17,7 +17,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <link href="css/common.css" rel="stylesheet" type="text/css">
-	<%@ include file="topMenu.jsp"%>
+
 <script>
 function moveListPage() {
 	document.entryForm.action = "NoticeController?action=noticeList&pageNum=1";
@@ -25,7 +25,8 @@ function moveListPage() {
 }
 </script>
 </head>
-<body>
+<body>		
+<%@ include file="topMenuSuccess.jsp"%>
 <div id="portfolio" class="container-fluid text-center bg-grey">
 		<div class="row">
 <h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> Notice</h1><br/><br/>

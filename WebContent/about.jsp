@@ -44,7 +44,7 @@
 				<span class="glyphicon glyphicon-globe logo slideanim"></span>
 			</div>
 			<div class="col-sm-8">
-				<h2>MVP pettern</h2>
+				<h2>MVP pattern</h2>
 				<br>
 				<p>
 					<strong>MISSION:</strong>¹Ì¼Ç

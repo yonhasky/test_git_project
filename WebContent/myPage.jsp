@@ -133,11 +133,7 @@
 
 		<h1>MC in SYU</h1>
 		<p>Mentoring Campus in Sahmyook University</p>
-		<form class="form-inline">
-			<input type="text" class="form-control" size="50" placeholder="검색"
-				required>
-			<button type="button" class="btn btn-danger">검색</button>
-		</form>
+		
 	</div>
 
 
@@ -147,8 +143,15 @@
 
 
 
-		<h2>MCS</h2>
-		<h4><%=session.getAttribute("id")%>님&nbsp;<%=session.getAttribute("part")%>등급
+		<h2>MEMBER Information</h2>
+		<h4><%=session.getAttribute("id")%>님&nbsp;
+		<%if(session.getAttribute("part").equals("S")) {%>
+			재학생 등급 
+		<%} else if(session.getAttribute("part").equals("G")) {%>
+			졸업생 등급
+		<%} else { %>
+			관리자 등급
+		<%} %>
 		</h4>
 		<br>
 		<div class="row slideanim">
@@ -270,31 +273,13 @@
 					class="glyphicon glyphicon-education logo-small"></span>
 					<h4>나의 스터디</h4></a>
 			</div>
-			<div class="col-sm-4">
-				<a href="MentoringController?action=myMentoring"> <span
-					class="glyphicon glyphicon-heart-empty logo-small"></span>
-					<h4>나의 멘토링</h4>
-				</a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-info-sign logo-small"></span>
-					<h4>나의 지식인</h4></a>
-			</div>
 
-		</div>
-		<br> <br>
-		<div class="row slideanim">
 			<div class="col-sm-4">
-				<a href="#"> <span
-					class="glyphicon glyphicon-question-sign logo-small"></span>
-					<h4>나의 문의내역</h4></a> </a>
-			</div>
-			<div class="col-sm-4">
-				<a href="#"> <span
+				<a href="StudyController?action=searchNoteList"> <span
 					class="glyphicon glyphicon-envelope logo-small"></span>
 					<h4>쪽지관리</h4></a>
 			</div>
+			
 			<div class="col-sm-4">
 				<a href="https://suwings.syu.ac.kr/sso/login.jsp"> <span
 					class="glyphicon glyphicon-plane logo-small"></span>

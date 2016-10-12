@@ -29,11 +29,11 @@ function moveListPage() {
 	<div class="jumbotron text-center">
 		<h1>지식 IN</h1>
 		<p>질문 & 답변</p>
-<!-- 		<form class="form-inline"> -->
-<!-- 			<input type="text" class="form-control" size="50" placeholder="검색" -->
-<!-- 				required> -->
-<!-- 			<button type="button" class="btn btn-danger">검색</button> -->
-<!-- 		</form> -->
+		<form class="form-inline">
+			<input type="text" class="form-control" size="50" placeholder="검색"
+				required>
+			<button type="button" class="btn btn-danger">검색</button>
+		</form>
 	</div>
 
 	<!-- Container (Pricing Section) -->
@@ -42,7 +42,7 @@ function moveListPage() {
 			<div class="text-center">
 			
 				<h1 class="text-center"><span class="glyphicon glyphicon-list-alt"></span> 지식IN</h1><br/><br/>
-						<h3 class="text-center"> 질문 </h3><br/>
+						<h5 class="text-center"> 질문 </h5><br/>
 				<hr/>
 				<% 
 					String message = (String)request.getAttribute("message");
@@ -124,19 +124,17 @@ function moveListPage() {
 				  </div>
 				</form>
 				<div class="panel-footer">
-					<button class="btn btn-lg" onclick="if(confirm('답변을 등록하시겠습니까?')){document.location.href='Kcontroller?action=kinSearchRpl&kNo=<%=request.getParameter("kNo")%>'}">답변하기</button>
-				<c:if test="${sessionScope.id eq dto.kAuthor}">
-					<button class="btn btn-lg" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}">수정</button>
-					<button class="btn btn-lg" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}">삭제</button>
-					</div>
-					</div>
-					</div>
-					</div>
-				</c:if>
-				<br><br><br><br><br><br>
+							<button class="btn btn-lg" onclick="if(confirm('답변을 등록하시겠습니까?')){document.location.href='Kcontroller?action=kinSearchRpl&kNo=<%=request.getParameter("kNo")%>'}">답변하기</button>
+							<%if(session.getAttribute("id").equals(dto.getkAuthor())) { %>
+							<button class="btn btn-lg" onclick="if(confirm('게시글을 수정하시겠습니까?')){document.location.href='Kcontroller?action=kinSearch&opt=update&kNo=<%=request.getParameter("kNo")%>'}">수정</button>
+							<button class="btn btn-lg" onclick="if(confirm('게시글을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=kinDelete&kNo=<%=request.getParameter("kNo")%>'}">삭제</button>
+							<%} %>
+							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
+				</div>
+				<br/>
 				<!-- ---------------------------------------------------------------- -->
 				
-				<h3 class="text-center"> 답변 </h3><br/>	
+					
 				<% ArrayList<Kinreplie> list = (ArrayList)request.getAttribute("list");
 				if(list != null) {%>
 				<c:forEach var="dto" items="${requestScope.list}">
@@ -154,20 +152,13 @@ function moveListPage() {
 								<td>${dto.rDate}</td>
 							</tr>
 					</table>
-					<c:if test="${sessionScope.id eq dto.rAuthor}">
 					<div class="panel-footer">
 					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=${dto.kNo}&rNo=${dto.rNo}'}">수정</button>
 					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=${dto.kNo}&rNo=${dto.rNo}'}">삭제</button>
 					</div>
-					</c:if>
-					<br><br><br>
+					<br/>
 				</c:forEach>
 				<%} %>
-				  
-						<div class="panel-footer">
-							<button class="btn btn-lg" onclick="moveListPage()">목록</button>
-						</div>
-			
 			<footer class="container-fluid text-center"> <a href="#myPage"
 		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
 	</a>

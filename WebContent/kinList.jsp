@@ -19,9 +19,10 @@
 <body>
 	<%@ include file="topMenuSuccess.jsp"%>
 	<div class="jumbotron text-center">
+		
 		<h1>지식 IN</h1>
-		<p>질문 & 답변</p>
-		<div class="col-sm-offset-1">
+		<p>Question & Answer</p>
+		
 		<form class="form-inline" method="post" action="Kcontroller?action=kinListSearch&pageNum=1">
 			<span class="form-group"> <span class="col-xs-12"> 
 				<select class="form-control col-sm-2" name="keywordType">
@@ -33,14 +34,16 @@
 				<input type="text" class="form-control" size="50" placeholder="검색" name="keyword" required>
 				<button type="submit" class="btn btn-danger" >검색</button>
 		</form>
-		</div>
+		
 	</div>
 	
 	<!-- Container (Pricing Section) -->
 	<div id="pricing" class="container-fluid">
 		<div class="row">
+			
 			<div class="text-center">
-
+			<h2>Q & A</h2>
+			<h4>대학 내에 여러 주제에 대해 자유롭게 질문 & 답변</h4>
 			</div>
 			<div class="row slideanim">
 				<div class="col-sm-12 col-xs-12">
@@ -108,15 +111,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<footer class="container-fluid text-center"> <a href="#myPage"
-		title="To Top"> <span class="glyphicon glyphicon-chevron-up"></span>
-	</a>
-	<p>
-		Made By group ACE &nbsp;&nbsp; designed By group ACE <br>Tel:02-112-1122
-		&nbsp;&nbsp; e-mail: syu@ac.kr <br> <a href="#">www.ACEteam.com</a>
-	</p>
-	</footer>
+	<%@include file="footer.jsp" %>
 
 </body>
 </html>
