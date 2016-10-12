@@ -138,12 +138,12 @@ function moveListPage() {
 				<% ArrayList<Kinreplie> list = (ArrayList)request.getAttribute("list");
 				if(list != null) {%>
 				<c:forEach var="dto" items="${requestScope.list}">
-					<table class="table table-hover">
+					<table class="table table-hover col-xs-8">
 							<tr>
-								<th >제목</th>
-								<th >답변자</th>
-								<th >답변내용</th>
-								<th >답변일</th>
+								<th class="text-center">제목</th>
+								<th class="text-center">답변자</th>
+								<th class="text-center">답변내용</th>
+								<th class="text-center">답변일</th>
 							</tr>
 							<tr>
 								<td>${dto.rTitle}</td>
@@ -152,7 +152,7 @@ function moveListPage() {
 								<td>${dto.rDate}</td>
 							</tr>
 					</table>
-					<c:if test="${dto.rAuthor eq sessionScope.id }"> 
+					<c:if test="${dto.rAuthor eq sessionScope.id}"> 
 					<div class="panel-footer">
 					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=${dto.kNo}&rNo=${dto.rNo}'}">수정</button>
 					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=${dto.kNo}&rNo=${dto.rNo}'}">삭제</button>
