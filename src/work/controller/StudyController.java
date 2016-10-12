@@ -245,7 +245,11 @@ public class StudyController extends HttpServlet {
     	String stNo = request.getParameter("stNo");
     	String stmEntry = request.getParameter("stmEntry");
     	stmEntry = new String(stmEntry.getBytes("8859_1"),"euc-kr");
-    	if(service.updateStatus(status, stNo, stmEntry) == 1) {
+
+    	String stTitle = request.getParameter("stTitle");
+    	stTitle = new String(stTitle.getBytes("8859_1"),"euc-kr");
+
+    	if(service.updateStatus(status, stNo, stmEntry, stTitle) == 1) {
     		request.setAttribute("message", "스터디 신청 수락/거절이 완료되었습니다.");
      		request.getRequestDispatcher("StudyController?action=searchStudy&stNo="+stNo).forward(request, response);
     	} else {

@@ -254,7 +254,7 @@ public class StudyDao {
 		return 0;
 	}
 	
-	public int updateStatus(String status, String stNo, String stmEntry) {
+	public int updateStatus(String status, String stNo, String stmEntry, String stTitle) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
@@ -265,6 +265,23 @@ public class StudyDao {
 			pstmt.setString(1, status);
 			pstmt.setInt(2, Integer.parseInt(stNo));
 			pstmt.setString(3, stmEntry);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			sql = "INSERT INTO notes VALUES(seq_notes.nextval, '관리자', ?, ?, ?, to_char(sysdate,'yyyy/MM/dd'), 'T')";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, stmEntry.substring(0,stmEntry.indexOf('[')));
+			if(status.equals("A")) {
+				pstmt.setString(2, "스터디 신청을 수락 받았습니다.");
+			} else {
+				pstmt.setString(2, "스터디 신청이 거절 되었습니다.");			
+			}
+			if(status.equals("A")) {
+				pstmt.setString(3, "[ " + stTitle +" ] 스터디 신청이 수락되었습니다.");
+			} else { 
+				pstmt.setString(3, "[ " + stTitle +" ] 스터디 신청이 거절되었습니다.");
+			}
 			
 			return pstmt.executeUpdate();
 		} catch(SQLException e) {

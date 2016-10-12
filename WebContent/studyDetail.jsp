@@ -333,7 +333,7 @@ alert('<%=request.getAttribute("message") %>');
 								<td class="memberList2 col-xs-1">거절</td>
 							<%} else {%>
 								<%if((session.getAttribute("id")+"["+session.getAttribute("name")+"]").equals(dto.getStAuthor())) { %>
-									<td class="memberList2 col-xs-1"><a href="#" onclick="if(confirm('스터디 신청을 수락하시겠습니까?')){location.href='StudyController?action=updateStatus&status=A&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>';}">수락하기</a> | <a href="#" onclick="if(confirm('스터디 신청을 거절하시겠습니까?')){location.href='StudyController?action=updateStatus&status=D&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>';}">거절하기</a></td>
+									<td class="memberList2 col-xs-1"><a href="#" onclick="if(confirm('스터디 신청을 수락하시겠습니까?')){location.href='StudyController?action=updateStatus&status=A&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>&stTitle=<%=dto.getStTitle()%>';}">수락하기</a> | <a href="#" onclick="if(confirm('스터디 신청을 거절하시겠습니까?')){location.href='StudyController?action=updateStatus&status=D&stNo=<%=dto.getStNo()%>&stmEntry=<%=dto1.getStmEntry()%>';}">거절하기</a></td>
 								<%} else { %>
 									<td class="memberList2 col-xs-1">대기</td>
 								<%} %>

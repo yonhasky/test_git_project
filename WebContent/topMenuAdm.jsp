@@ -21,8 +21,8 @@
 					</button>
 				</li>
 				<li><button type="button" class="btn btn-danger "
-						style="margin: 8px">
-						<a href="controller?action=logout">logout</a>
+						style="margin: 8px" onclick="location.href='controller?action=logout'">
+						<a href="#">logout</a>
 					</button></li>
 			</ul>
 		</div>

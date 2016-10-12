@@ -196,7 +196,7 @@ padding:0px
 						<div class="col-xs-3">
 							<div class="col-xs-12 glyphicon glyphicon-education logo-small" ></div>
 							
-								<img src="${dto.img}" alt="images/ceci1.jpg" class="img-circle"
+								<img alt="img/default.jpg" src="${dto.img}" alt="images/ceci1.jpg" class="img-circle"
 									style="width: 120px; height: 120px;">
 							
 

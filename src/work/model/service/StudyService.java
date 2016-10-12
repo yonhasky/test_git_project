@@ -42,8 +42,8 @@ public class StudyService {
 		return dao.sendNote(dto);
 	}
 	
-	public int updateStatus(String status, String stNo, String stmEntry) {
-		return dao.updateStatus(status, stNo, stmEntry);
+	public int updateStatus(String status, String stNo, String stmEntry, String stTitle) {
+		return dao.updateStatus(status, stNo, stmEntry, stTitle);
 	}
 	
 	public ArrayList<Note> searchNoteList(String receiver) {
