@@ -324,7 +324,7 @@ public class MentoringController extends HttpServlet {
 				request.setAttribute("list", list);	
 				request.getRequestDispatcher("myMentoring.jsp").forward(request,
 						response);
-			}else if(session.getAttribute("part").equals("s")){
+			}else if(session.getAttribute("part").equals("S")){
 			
 			ArrayList<Mentoring> list = mentoringService.myList(id);
 

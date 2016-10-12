@@ -110,10 +110,6 @@
 							</div>
 						</div>
 					</div>
-
-
-
-
 				</li>
 				<li><a href="about.jsp">ABOUT</a></li>
 				<li><a href="mentoring.jsp">∏‡≈‰∏µ</a></li>

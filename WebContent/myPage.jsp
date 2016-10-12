@@ -269,9 +269,9 @@
 		<br> <br>
 		<div class="row slideanim">
 			<div class="col-sm-4">
-				<a href="#"> <span
+				<a href="MentoringController?action=myMentoring"> <span
 					class="glyphicon glyphicon-education logo-small"></span>
-					<h4>나의 스터디</h4></a>
+					<h4>나의 멘토링</h4></a>
 			</div>
 
 			<div class="col-sm-4">
