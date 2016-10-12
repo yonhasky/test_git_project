@@ -142,7 +142,11 @@
 </head>
 <body>
 	<%@ include file="topMenuSuccess.jsp"%>
-
+<%if(session.getAttribute("id") == null) {
+		request.setAttribute("message", "로그인 후 이용가능합니다");
+		request.getRequestDispatcher("error.jsp").forward(request,response);
+}%>
+				
 	<div class="jumbotron text-center">
 
 		<h1>Mentoring</h1>

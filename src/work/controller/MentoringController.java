@@ -76,8 +76,7 @@ public class MentoringController extends HttpServlet {
 				error.append("회원 등록 정보를 잘못입력하셨습니다.");
 
 				request.setAttribute("message", "회원가입 정보가 부적절합니다.");
-				request.getRequestDispatcher("loginError.jsp").forward(request,
-						response);
+				request.getRequestDispatcher("loginError.jsp").forward(request, response);
 			}
 			// 응답페이지이동: 성공, 실패, 기타
 		}

@@ -30,11 +30,17 @@ public class KinController extends HttpServlet {
     /** 1. 전체 리스트 조회 */
     protected void kinList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String pageNum = request.getParameter("pageNum");
-		ArrayList<Kin> list = dao.selectKinList(pageNum);
-		if(list != null) {
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("kinList.jsp").forward(request, response);
-		}
+    	HttpSession session = request.getSession(false);
+    	if(session != null && session.getAttribute("id") != null) {
+			ArrayList<Kin> list = dao.selectKinList(pageNum);
+			if(list != null) {
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("kinList.jsp").forward(request, response);
+			}
+    	} else {
+    		request.setAttribute("message", "로그인 후 이용 가능합니다.");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+    	}
 	}
     
     /** 2. 카테고리별 리스트 조회 */
