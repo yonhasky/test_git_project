@@ -176,11 +176,24 @@ public class StudentDao {
 				loginmap.put("major", major);
 
 
+			}
+			pstmt.close();
+			rs.close();
+			
+			sql = "select COUNT(*) from notes WHERE n_receiver=? AND n_status='F'";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println(rs.getInt(1));
+				loginmap.put("count", rs.getInt(1)+"");
+
 				return loginmap;
 			}
+			
 		} catch (SQLException e) {
-			System.out.println("error: 조회 오류");
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 
 		} finally {
 			// 자원해제

@@ -14,13 +14,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>	
 <link href="css/common.css" rel="stylesheet" type="text/css">
-
 </head>
 <body id="myPage">
-
+<% if(session.getAttribute("count")!= null && !(session.getAttribute("count").equals(0+""))) {%>
+<script>
+if(confirm(<%=session.getAttribute("count")%>+'개의 새 쪽지가 존재합니다. 쪽지메뉴로 가시겠습니까?')){
+	location.href='StudyController?action=searchNoteList&id=<%=session.getAttribute("id")%>';
+}
+</script>
+<%} %>
 	<jsp:include page="topMenuSuccess.jsp"/>
 	<div class="jumbotron text-center">
-
+	
 
 
 		<h1>MC in SYU</h1>

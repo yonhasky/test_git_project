@@ -144,6 +144,7 @@ function moveListPage() {
 								<th class="text-center">답변자</th>
 								<th class="text-center">답변내용</th>
 								<th class="text-center">답변일</th>
+								<th><th>
 							</tr>
 							<tr>
 								<td>${dto.rTitle}</td>
@@ -155,7 +156,7 @@ function moveListPage() {
 					<c:if test="${dto.rAuthor eq sessionScope.id}"> 
 					<div class="panel-footer">
 					<button class="btn btn-lg" onclick="if(confirm('답변을 수정하시겠습니까?')){document.location.href='Rcontroller?action=rplSearch&opt=update&kNo=${dto.kNo}&rNo=${dto.rNo}'}">수정</button>
-					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Kcontroller?action=rplDelete&kNo=${dto.kNo}&rNo=${dto.rNo}'}">삭제</button>
+					<button class="btn btn-lg" onclick="if(confirm('답변을 삭제하시겠습니까?')){document.location.href='Rcontroller?action=rplDelete&kNo=${dto.kNo}&rNo=${dto.rNo}'}">삭제</button>
 					</div>
 					</c:if>
 					<br/>

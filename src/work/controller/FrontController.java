@@ -407,7 +407,7 @@ public class FrontController extends HttpServlet {
 			session.setAttribute("grade", loginMap.get("grade"));
 			session.setAttribute("major", loginMap.get("major"));
 			session.setAttribute("part", loginMap.get("part"));
-
+			session.setAttribute("count", loginMap.get("count"));
 			if (session.getAttribute("part").equals("A")) {
 				request.getRequestDispatcher("admSuccess.jsp").forward(request,
 						response);

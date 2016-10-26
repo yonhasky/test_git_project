@@ -88,10 +88,10 @@ public class RplController extends HttpServlet {
 		String rNo = request.getParameter("rNo");
 		String kNo = request.getParameter("kNo");
 		int row = dao.deleteRpl(Integer.parseInt(kNo),Integer.parseInt(rNo));
-		System.out.println(kNo + "," + rNo);
+		System.out.println("row "+ row);
 		if(row == 1) {
 			request.setAttribute("message", "게시글 삭제 성공.");
-			request.getRequestDispatcher("kinItem.jsp").forward(request, response);	
+			request.getRequestDispatcher("Kcontroller?action=kinSearch&kNo="+kNo).forward(request, response);	
 		} else {
 			request.setAttribute("message", "게시글 삭제 에러.");
 			request.getRequestDispatcher("error.jsp").forward(request, response);

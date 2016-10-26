@@ -257,6 +257,7 @@ public class StudyDao {
 	public int updateStatus(String status, String stNo, String stmEntry, String stTitle) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = factory.getConnection();
@@ -269,16 +270,44 @@ public class StudyDao {
 			
 			pstmt.close();
 			
+			sql = "SELECT stm_host FROM studymatches WHERE st_no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(stNo));
+			rs = pstmt.executeQuery();
+			
+			String stmHost = null;
+			String id = null;
+			
+			if(rs.next()) {
+				stmHost = rs.getString("stm_host");
+				id = stmHost.substring(0,stmHost.indexOf('['));
+			}
+			
+			sql = "SELECT name, mobile, email FROM students WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			String name = null;
+			String mobile = null;
+			String email = null;
+			
+			if(rs.next()) {
+				name = rs.getString("name");
+				mobile = rs.getString("mobile");
+				email = rs.getString("email");
+			}
+			
+			
 			sql = "INSERT INTO notes VALUES(seq_notes.nextval, '관리자', ?, ?, ?, to_char(sysdate,'yyyy/MM/dd'), 'T')";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, stmEntry.substring(0,stmEntry.indexOf('[')));
 			if(status.equals("A")) {
-				pstmt.setString(2, "스터디 신청을 수락 받았습니다.");
+				pstmt.setString(2, "[ " + stTitle +" ] 스터디 신청을 수락 받았습니다.");
 			} else {
-				pstmt.setString(2, "스터디 신청이 거절 되었습니다.");			
+				pstmt.setString(2, "[ " + stTitle +" ] 스터디 신청이 거절 되었습니다.");			
 			}
 			if(status.equals("A")) {
-				pstmt.setString(3, "[ " + stTitle +" ] 스터디 신청이 수락되었습니다.");
+				pstmt.setString(3, "[ " + stTitle +" ] 스터디 신청이 수락되었습니다.<br/> 스터디 주최자 연락처:"+mobile+"<br/> 스터디 주최자 이메일:"+email+"</br> <a href='StudyController?action=searchStudy&stNo="+stNo+"'>이동</a>");
 			} else { 
 				pstmt.setString(3, "[ " + stTitle +" ] 스터디 신청이 거절되었습니다.");
 			}
@@ -334,7 +363,7 @@ public class StudyDao {
 			pstmt.setString(1, stmEntry.substring(0, stmEntry.indexOf('[')));
 			pstmt.setString(2, stmHost.substring(0, stmHost.indexOf('[')));
 			pstmt.setString(3, "[ "+ stmTitle + " ] 스터디에 새로운 신청자가 대기 중 입니다.");
-			pstmt.setString(4, "[ "+ stmTitle + " ] 스터디에 새로운 신청자가 대기 중 입니다.<br/>" + "신청자 : " + stmEntry + "<br/>" + "각오 : " + stmEntryComment + "<br/>");
+			pstmt.setString(4, "[ "+ stmTitle + " ] 스터디에 새로운 신청자가 대기 중 입니다.<br/>" + "신청자 : " + stmEntry + "<br/>" + "각오 : " + stmEntryComment + "<br/> <a href='StudyController?action=searchStudy&stNo="+stNo+"'>이동</a>");
 			pstmt.setString(5, "F");
 			
 			return pstmt.executeUpdate();
